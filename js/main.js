@@ -6,12 +6,12 @@
 
 	var GLOBAL_CLASS_USETOUCH = "touch";
 
-	var SPREADSHEET_URL =  "data/videos.csv";
+	var LOCATIONS_SPREADSHEET_URL =  "data/locations.csv";
 
 	var _map;
 	var _layerMarkers;
 
-	var _records;	
+	var _locations;	
 	var _selected;
 
 	$(document).ready(function() {
@@ -36,7 +36,7 @@
 				states:[
 					{
 						icon: "fa fa-home",
-						onClick: function(btn, map){_map.fitBounds(_layerMarkers.getBounds());},
+						onClick: function(btn, map){_map.fitBounds(_layerMarkers.getBounds().pad(0.5));},
 						title: "Full extent"
 					}
 				]
@@ -44,15 +44,15 @@
 		}
 
 		Papa.parse(
-			SPREADSHEET_URL, 
+			LOCATIONS_SPREADSHEET_URL, 
 			{
 				header: true,
 				download: true,
 				complete: function(data) {
-					_records = $.grep(data.data, function(value){return value.X && value.Y;});
-					_records = $.map(
-						_records, 
-						function(value, index){return new Record(value);}
+					_locations = $.grep(data.data, function(value){return value.X && value.Y;});
+					_locations = $.map(
+						_locations, 
+						function(value, index){return new Location(value);}
 					);
 					finish();
 				}
@@ -63,24 +63,24 @@
 		{
 
 			$.each(
-				_records, 
-				function(index, record) {
+				_locations, 
+				function(index, location) {
 
 					L.marker(
-						record.getLatLng(), 
+						location.getLatLng(), 
 						{
 							riseOnHover: true
 						}
 					)
-						.bindPopup(record.getTitle(), {closeButton: false})
-						.bindTooltip(record.getTitle())
+						.bindPopup(location.getName(), {closeButton: false})
+						.bindTooltip(location.getName())
 						.addTo(_layerMarkers)
-						.key = record.getID();
+						.key = location.getName();
 
 				}
 			);
 
-			_map.fitBounds(_layerMarkers.getBounds());
+			_map.fitBounds(_layerMarkers.getBounds().pad(0.5));
 
 			// one time check to see if touch is being used
 
@@ -103,8 +103,8 @@
 	{
 		$(".leaflet-tooltip").remove();
 		_selected = $.grep(
-			_records, 
-			function(value){return value.getID() === e.layer.key;}
+			_locations, 
+			function(value){return value.getName() === e.layer.key;}
 		).shift();
 	}
 
