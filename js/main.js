@@ -7,8 +7,6 @@
 	var GLOBAL_CLASS_USETOUCH = "touch";
 
 	var SPREADSHEET_URL =  "https://docs.google.com/spreadsheets/d/e/2PACX-1vRWKw3HRGX2Il-SyDcPNddVbgjsaq68edQk4pW-J1EYslkF4DqZtSU9jJGMaAjPr4sX5W_9aDLAQPWx/pub?gid=0&single=true&output=csv";
-	var HILLSHADE_SERVICE_URL = "https://services.arcgisonline.com/arcgis/rest/services/Elevation/World_Hillshade/MapServer/";
-	var VECTOR_BASEMAP_ID = "fc3fec26b9ef44ae95674eed0a4a92ff";
 
 	var _map;
 	var _layerMarkers;
@@ -24,8 +22,7 @@
 			"map", 
 			{zoomControl: !L.Browser.mobile, attributionControl: false, maxZoom: 12, minZoom: 2, worldCopyJump: true}
 		)
-			.addLayer(L.esri.tiledMapLayer({url: HILLSHADE_SERVICE_URL, opacity: 0.2}))			
-			.addLayer(L.esri.Vector.layer(VECTOR_BASEMAP_ID))
+			.addLayer(L.esri.basemapLayer("NationalGeographic"))
 			.addControl(L.control.attribution({position: 'bottomleft'}))
 			.on("click", onMapClick)
 			.on("moveend", onExtentChange);
