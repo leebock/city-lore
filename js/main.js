@@ -7,11 +7,13 @@
 	var GLOBAL_CLASS_USETOUCH = "touch";
 
 	var LOCATIONS_SPREADSHEET_URL =  "data/locations.csv";
+	var VIDEOS_SPREADSHEET_URL = "data/videos.csv";
 
 	var _map;
 	var _layerMarkers;
 
-	var _locations;	
+	var _locations;
+	var _videos;	
 	var _selected;
 
 	$(document).ready(function() {
@@ -58,9 +60,29 @@
 				}
 			}
 		);
+		
+		Papa.parse(
+			VIDEOS_SPREADSHEET_URL,
+			{
+				header: true,
+				download: true,
+				complete: function(data) {
+					_videos = $.grep(data.data, function(value){return value.X && value.Y;});
+					_videos = $.map(
+						_videos, 
+						function(value, index){return new Video(value);}
+					);
+					finish();
+				}
+			}
+		);
 
 		function finish()
 		{
+
+			if (!_locations || !_videos) {
+				return;
+			}
 
 			$.each(
 				_locations, 
