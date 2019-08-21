@@ -6,7 +6,7 @@
 
 	var GLOBAL_CLASS_USETOUCH = "touch";
 
-	var SPREADSHEET_URL =  "https://docs.google.com/spreadsheets/d/e/2PACX-1vRWKw3HRGX2Il-SyDcPNddVbgjsaq68edQk4pW-J1EYslkF4DqZtSU9jJGMaAjPr4sX5W_9aDLAQPWx/pub?gid=0&single=true&output=csv";
+	var SPREADSHEET_URL =  "data/videos.csv";
 
 	var _map;
 	var _layerMarkers;
@@ -49,10 +49,10 @@
 				header: true,
 				download: true,
 				complete: function(data) {
-					_records = $.grep(data.data, function(value){return value.Lat && value.Long;});
+					_records = $.grep(data.data, function(value){return value.X && value.Y;});
 					_records = $.map(
 						_records, 
-						function(value, index){return new Record(value, index);}
+						function(value, index){return new Record(value);}
 					);
 					finish();
 				}

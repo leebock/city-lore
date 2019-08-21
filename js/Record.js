@@ -1,40 +1,24 @@
-function Record(json, index)
+function Record(json)
 {
-	this._id = index;
 	this._json = json;
 }
 
 Record.prototype.getID = function()
 {
-	return this._id;
+	return this._json.ID;
 };
 
 Record.prototype.getTitle = function()
 {
-	return this._json.Location;
+	return this._json.Title;
 };
 
-Record.prototype.getText = function()
+Record.prototype.getDescription = function()
 {
-	return this._json.Text;
-};
-
-Record.prototype.getHint = function()
-{
-	return this._json.Hint;
-};
-
-Record.prototype.getExclamation = function()
-{
-	return this._json.Exclamation;
-};
-
-Record.prototype.getImageURL = function()
-{
-	return this._json["Image-URL"];
+	return this._json.Description;
 };
 
 Record.prototype.getLatLng = function()
 {
-	return L.latLng(this._json.Lat, this._json.Long);
+	return L.latLng(this._json.Y, this._json.X);
 };
