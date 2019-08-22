@@ -21,4 +21,4 @@ Location.prototype.getLatLng = function()
 Location.getVideoTitles = function()
 {
 	return this._json["Video-Titles"].split("|");
-}
+};
