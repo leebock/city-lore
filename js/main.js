@@ -11,6 +11,7 @@
 
 	var _map;
 	var _layerMarkers;
+	var _table;
 
 	var _locations;
 	var _videos;	
@@ -22,7 +23,12 @@
 		
 		_map = new L.Map(
 			"map", 
-			{zoomControl: !L.Browser.mobile, attributionControl: false, maxZoom: 12, minZoom: 2, worldCopyJump: true}
+			{
+				zoomControl: false, 
+				attributionControl: false, 
+				maxZoom: 12, minZoom: 2, 
+				worldCopyJump: true
+			}
 		)
 			.addLayer(L.esri.basemapLayer("NationalGeographic"))
 			.addControl(L.control.attribution({position: 'bottomleft'}))
@@ -32,6 +38,10 @@
 		_layerMarkers = L.featureGroup()
 			.addTo(_map)
 			.on("click", onMarkerClick);
+			
+		if (!L.Browser.mobile) {
+			_map.addControl(L.control.zoom({position: "topright"}));
+		}
 
 		if (!L.Browser.mobile) {
 			L.easyButton({
@@ -41,7 +51,8 @@
 						onClick: function(btn, map){_map.fitBounds(_layerMarkers.getBounds().pad(0.5));},
 						title: "Full extent"
 					}
-				]
+				],
+				position: "topright"
 			}).addTo(_map);			
 		}
 
@@ -103,6 +114,12 @@
 			);
 
 			_map.fitBounds(_layerMarkers.getBounds().pad(0.5));
+						
+			_table = $(new Table($("ul#table").eq(0)))
+				.on("itemSelect", function(event, videoID){console.log(videoID);})
+				.get(0)
+				.load(_videos);
+			
 
 			// one time check to see if touch is being used
 

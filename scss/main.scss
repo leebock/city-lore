@@ -46,6 +46,19 @@ a {
   cursor: pointer;
 }
 
+ul {
+  list-style-type: none;
+  -webkit-margin-before: 0px;
+  -webkit-margin-after: 0px;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-padding-start: 0px;
+  -moz-margin-start: 0px;
+  -moz-margin-end: 0px;
+  -moz-padding-start: 0px;
+  -moz-padding-end: 0px;
+}
+
 @import "Banner";
 
 .banner {
@@ -67,5 +80,40 @@ a {
   .leaflet-popup-content {
     text-align: center;
   }  
+
+}
+
+#container {
+  
+  position: absolute;
+  background: white;
+  height: 100%;
+  width: 400px;
+  z-index: 1000;
+  left: 20px;
+  top: 90px;
+  max-height: calc(100% - 150px);
+  display: flex;
+  flex-direction: column;
+
+  ul {
+    overflow: hidden;
+    overflow-y: auto;
+    li {
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      &:nth-of-type(even) {
+        background-color: silver;
+      }
+      button {
+        cursor: pointer;
+        align-self: flex-start;
+        * {
+          pointer-events: none;
+        }
+      }
+    }
+  }
 
 }
