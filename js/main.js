@@ -49,7 +49,9 @@
 				states:[
 					{
 						icon: "fa fa-home",
-						onClick: function(btn, map){_map.fitBounds(_layerMarkers.getBounds().pad(0.5));},
+						onClick: function(btn, map) {
+							_map.fitBounds(_layerMarkers.getBounds().pad(0.5));
+						},
 						title: "Full extent"
 					}
 				],
@@ -63,7 +65,10 @@
 				header: true,
 				download: true,
 				complete: function(data) {
-					_locations = $.grep(data.data, function(value){return value.X && value.Y;});
+					_locations = $.grep(
+						data.data, 
+						function(value){return value.X && value.Y;}
+					);
 					_locations = $.map(
 						_locations, 
 						function(value, index){return new Location(value);}
@@ -79,7 +84,10 @@
 				header: true,
 				download: true,
 				complete: function(data) {
-					_videos = $.grep(data.data, function(value){return value.X && value.Y;});
+					_videos = $.grep(
+						data.data, 
+						function(value){return value.X && value.Y;}
+					);
 					_videos = $.map(
 						_videos, 
 						function(value, index){return new Video(value);}
@@ -124,7 +132,10 @@
 
 			// one time check to see if touch is being used
 
-			$(document).one("touchstart", function(){$("html body").addClass(GLOBAL_CLASS_USETOUCH);});
+			$(document).one(
+				"touchstart", 
+				function(){$("html body").addClass(GLOBAL_CLASS_USETOUCH);}
+			);
 
 		}
 
