@@ -10,35 +10,28 @@
 	var VIDEOS_SPREADSHEET_URL = "data/videos.csv";
 
 	var _map;
-	var _layerMarkers;
 	var _table;
 
 	var _locations;
 	var _videos;	
-	var _selected;
 
 	$(document).ready(function() {
 
 		new SocialButtonBar();
 		
-		_map = new L.CustomMap(
+		_map = new L.CLMap(
 			"map", 
 			{
 				zoomControl: false, 
 				attributionControl: false, 
-				maxZoom: 12, minZoom: 2, 
+				maxZoom: 16, minZoom: 8, 
 				worldCopyJump: true
 			},
 			getExtentPadding
 		)
 			.addLayer(L.esri.basemapLayer("NationalGeographic"))
 			.addControl(L.control.attribution({position: 'bottomleft'}))
-			.on("click", onMapClick)
-			.on("moveend", onExtentChange);
-
-		_layerMarkers = L.featureGroup()
-			.addTo(_map)
-			.on("click", onMarkerClick);
+			.on("markerSelect", function(location){console.log(location.getName());});
 			
 		if (!L.Browser.mobile) {
 			_map.addControl(L.control.zoom({position: "topright"}));
@@ -49,9 +42,7 @@
 				states:[
 					{
 						icon: "fa fa-home",
-						onClick: function(btn, map) {
-							_map.fitBounds(_layerMarkers.getBounds().pad(0.5));
-						},
+						onClick: function(btn, map) {_map.zoomToMarkers();},
 						title: "Full extent"
 					}
 				],
@@ -104,26 +95,8 @@
 				return;
 			}
 
-			$.each(
-				_locations, 
-				function(index, location) {
-
-					L.marker(
-						location.getLatLng(), 
-						{
-							riseOnHover: true
-						}
-					)
-						.bindPopup(location.getName(), {closeButton: false})
-						.bindTooltip(location.getName())
-						.addTo(_layerMarkers)
-						.key = location.getName();
-
-				}
-			);
-
-			_map.fitBounds(_layerMarkers.getBounds().pad(0.1));
-						
+			_map.loadData(_locations);
+				
 			_table = $(new Table($("ul#table").eq(0)))
 				.on("itemSelect", onTableItemSelect)
 				.get(0)
@@ -142,23 +115,9 @@
 	});
 
 	/***************************************************************************
-	********************** EVENTS that affect selection ************************
+	********************************** EVENTS  *********************************
 	***************************************************************************/
 
-	function onMapClick(e)
-	{
-		_selected = null;
-	}
-
-	function onMarkerClick(e)
-	{
-		$(".leaflet-tooltip").remove();
-		_selected = $.grep(
-			_locations, 
-			function(value){return value.getName() === e.layer.key;}
-		).shift();
-	}
-	
 	function onTableItemSelect(e, videoID)
 	{
 		var vid = $.grep(
@@ -173,14 +132,6 @@
 	}
 
 	/***************************************************************************
-	**************************** EVENTS (other) ********************************
-	***************************************************************************/
-
-	function onExtentChange()
-	{
-	}
-
-	/***************************************************************************
 	******************************** FUNCTIONS *********************************
 	***************************************************************************/
 
@@ -191,5 +142,33 @@
 			paddingBottomRight: [0,0]
 		};
 	}
+
+	
+	  /*
+	  _createContentHTML: function(provider, ingredients)
+	  {  
+	      return $("<div>")
+	      .append($("<span>").html("<b>"+provider.getName()+"</b>"))
+	      .append($("<br>"))
+	      .append($("<span>").html(provider.getCity()+", "+provider.getState()))
+	      .append($("<br>"))
+	      .append(
+	          $("<span>").html(
+	              $.map(
+	                $.grep(
+	                  ingredients, 
+	                  function(ingredient) {
+	                    return $.inArray(provider.getName(), ingredient.getProviders()) > -1;
+	                  }
+	                ),
+	                function(value){return value.getName();}
+	            ).join(",")
+	          )
+	      )
+	      .html();      
+	  },
+	  */
+	
+
 
 })();
