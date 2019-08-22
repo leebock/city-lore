@@ -95,12 +95,15 @@ ul {
   max-height: calc(100% - 150px);
   display: flex;
   flex-direction: column;
+  padding: 20px;
 
   ul {
     overflow: hidden;
     overflow-y: auto;
     li {
       padding: 10px;
+      padding-right: 20px;
+      min-height: 80px;
       display: flex;
       justify-content: space-between;
       &:nth-of-type(even) {

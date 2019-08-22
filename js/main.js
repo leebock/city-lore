@@ -21,14 +21,15 @@
 
 		new SocialButtonBar();
 		
-		_map = new L.Map(
+		_map = new L.CustomMap(
 			"map", 
 			{
 				zoomControl: false, 
 				attributionControl: false, 
 				maxZoom: 12, minZoom: 2, 
 				worldCopyJump: true
-			}
+			},
+			getExtentPadding
 		)
 			.addLayer(L.esri.basemapLayer("NationalGeographic"))
 			.addControl(L.control.attribution({position: 'bottomleft'}))
@@ -113,10 +114,10 @@
 				}
 			);
 
-			_map.fitBounds(_layerMarkers.getBounds().pad(0.5));
+			_map.fitBounds(_layerMarkers.getBounds().pad(0.1));
 						
 			_table = $(new Table($("ul#table").eq(0)))
-				.on("itemSelect", function(event, videoID){console.log(videoID);})
+				.on("itemSelect", onTableItemSelect)
 				.get(0)
 				.load(_videos);
 			
@@ -146,6 +147,19 @@
 			function(value){return value.getName() === e.layer.key;}
 		).shift();
 	}
+	
+	function onTableItemSelect(e, videoID)
+	{
+		var vid = $.grep(
+			_videos, 
+			function(value, index){return value.getID() === videoID;}
+		).shift();
+		_map.panTo(vid.getLatLng());
+		L.popup({closeButton: false, offset: L.point(0, -25)})
+          .setLatLng(vid.getLatLng())
+          .setContent(vid.getTitle())
+          .openOn(_map);
+	}
 
 	/***************************************************************************
 	**************************** EVENTS (other) ********************************
@@ -158,5 +172,13 @@
 	/***************************************************************************
 	******************************** FUNCTIONS *********************************
 	***************************************************************************/
+
+	function getExtentPadding()
+	{
+		return {
+			paddingTopLeft: [$("#container").offset().left+$("#container").outerWidth(),0],
+			paddingBottomRight: [0,0]
+		};
+	}
 
 })();
