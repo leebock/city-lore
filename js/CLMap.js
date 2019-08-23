@@ -1,6 +1,6 @@
 L.CLMap = L.CustomMap.extend({
 
-  initialize: function(div, options, paddingQueryFunction)
+  initialize: function(div, options, paddingQueryFunction, popupHTMLCreator)
   {
 
     L.CustomMap.prototype.initialize.call(this, div, options, paddingQueryFunction);
@@ -12,6 +12,8 @@ L.CLMap = L.CustomMap.extend({
       "Other": L.AwesomeMarkers.icon({markerColor: 'darkred'})
     };
     */
+
+    this._popupHTMLCreator = popupHTMLCreator;
 
     this._layerMarkers = L.featureGroup()
       .addTo(this)
@@ -28,7 +30,7 @@ L.CLMap = L.CustomMap.extend({
 
         L.popup({closeButton: false, offset: L.point(0, -25)})
             .setLatLng(record.getLatLng())
-            .setContent(record.getName())
+            .setContent(self._popupHTMLCreator(record))
             .openOn(self);
 
         self.panTo(record.getLatLng());
@@ -58,7 +60,7 @@ L.CLMap = L.CustomMap.extend({
     {
         L.popup({closeButton: false, offset: L.point(0, -25)})
             .setLatLng(record.getLatLng())
-            .setContent(record.getName())
+            .setContent(this._popupHTMLCreator(record))
             .openOn(this);      
         this.panTo(record.getLatLng());
     },

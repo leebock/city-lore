@@ -27,7 +27,8 @@
 				maxZoom: 16, minZoom: 8, 
 				worldCopyJump: true
 			},
-			getExtentPadding
+			getExtentPadding,
+			createPopupHTML
 		)
 			.addLayer(L.esri.basemapLayer("NationalGeographic"))
 			.addControl(L.control.attribution({position: 'bottomleft'}))
@@ -159,32 +160,13 @@
 		};
 	}
 
-	
-	  /*
-	  _createContentHTML: function(provider, ingredients)
-	  {  
-	      return $("<div>")
-	      .append($("<span>").html("<b>"+provider.getName()+"</b>"))
-	      .append($("<br>"))
-	      .append($("<span>").html(provider.getCity()+", "+provider.getState()))
-	      .append($("<br>"))
-	      .append(
-	          $("<span>").html(
-	              $.map(
-	                $.grep(
-	                  ingredients, 
-	                  function(ingredient) {
-	                    return $.inArray(provider.getName(), ingredient.getProviders()) > -1;
-	                  }
-	                ),
-	                function(value){return value.getName();}
-	            ).join(",")
-	          )
-	      )
-	      .html();      
-	  },
-	  */
-	
-
+	function createPopupHTML(location)
+	{  
+		return $("<div>")
+			.append($("<span>").html("<b>"+location.getName()+"</b>"))
+			.append($("<br>"))
+			.append($("<span>").html(location.getAddress()))
+			.html();      
+	}
 
 })();
