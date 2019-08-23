@@ -39,19 +39,6 @@ a {
   cursor: pointer;
 }
 
-ul {
-  list-style-type: none;
-  -webkit-margin-before: 0px;
-  -webkit-margin-after: 0px;
-  -webkit-margin-start: 0px;
-  -webkit-margin-end: 0px;
-  -webkit-padding-start: 0px;
-  -moz-margin-start: 0px;
-  -moz-margin-end: 0px;
-  -moz-padding-start: 0px;
-  -moz-padding-end: 0px;
-}
-
 .banner {
   background-color: #404040;
   color: white;
@@ -141,36 +128,48 @@ ul {
   flex-direction: column;
   padding: 20px;
 }
-#container ul {
+#container ul#table {
+  list-style-type: none;
+  -webkit-margin-before: 0px;
+  -webkit-margin-after: 0px;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-padding-start: 0px;
+  -moz-margin-start: 0px;
+  -moz-margin-end: 0px;
+  -moz-padding-start: 0px;
+  -moz-padding-end: 0px;
   overflow: hidden;
   overflow-y: auto;
-  height: 100%;
 }
-#container ul li {
+#container ul#table li {
   padding: 10px;
   padding-right: 20px;
   min-height: 80px;
   display: flex;
   justify-content: space-between;
 }
-#container ul li:nth-of-type(even) {
+#container ul#table li:nth-of-type(even) {
   background-color: silver;
 }
-#container ul li.active {
+#container ul#table li.active {
   background-color: yellow;
 }
-#container ul li button {
+#container ul#table li button {
   cursor: pointer;
   align-self: flex-start;
 }
-#container ul li button * {
+#container ul#table li button * {
   pointer-events: none;
 }
-#container ul.filtered li {
+#container ul#table.filtered li {
   display: none;
 }
-#container ul.filtered li.selected {
+#container ul#table.filtered li.selected {
   display: flex;
+}
+#container ul#table {
+  height: 100%;
 }
 
 /*# sourceMappingURL=main.css.map */

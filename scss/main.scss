@@ -46,19 +46,6 @@ a {
   cursor: pointer;
 }
 
-ul {
-  list-style-type: none;
-  -webkit-margin-before: 0px;
-  -webkit-margin-after: 0px;
-  -webkit-margin-start: 0px;
-  -webkit-margin-end: 0px;
-  -webkit-padding-start: 0px;
-  -moz-margin-start: 0px;
-  -moz-margin-end: 0px;
-  -moz-padding-start: 0px;
-  -moz-padding-end: 0px;
-}
-
 @import "Banner";
 
 .banner {
@@ -97,38 +84,10 @@ ul {
   flex-direction: column;
   padding: 20px;
 
-  ul {
-    overflow: hidden;
-    overflow-y: auto;
-    height: 100%;
-    li {
-      padding: 10px;
-      padding-right: 20px;
-      min-height: 80px;
-      display: flex;
-      justify-content: space-between;
-      &:nth-of-type(even) {
-        background-color: silver;
-      }
-      &.active {
-        background-color: yellow;
-      }
-      button {
-        cursor: pointer;
-        align-self: flex-start;
-        * {
-          pointer-events: none;
-        }
-      }
-    }
-    &.filtered {
-      li {
-        display: none;
-        &.selected {
-          display: flex;
-        }
-      }
-    }
+  @import "Table";
+  ul#table {
+    height: 100%;    
   }
+
 
 }
