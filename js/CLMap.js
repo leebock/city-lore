@@ -25,7 +25,7 @@ L.CLMap = L.PaddingAwareMap.extend({
     {
 
         var record = e.layer.key;
-        self.fire("markerSelect", record);
+        self.fire("markerActivate", record);
         $(".leaflet-tooltip").remove();
 
         L.popup({closeButton: false, offset: L.point(0, -25)})
@@ -56,7 +56,7 @@ L.CLMap = L.PaddingAwareMap.extend({
         this.fitBounds(this._layerMarkers.getBounds().pad(0.1));    
     },
     
-    selectMarker: function(record)
+    activateMarker: function(record)
     {
         L.popup({closeButton: false, offset: L.point(0, -25)})
             .setLatLng(record.getLatLng())

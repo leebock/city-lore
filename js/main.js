@@ -33,7 +33,7 @@
 			.addLayer(L.esri.basemapLayer("NationalGeographic"))
 			.addControl(L.control.attribution({position: 'bottomleft'}))
 			.on("click", map_onClick)
-			.on("markerSelect", map_onMarkerSelect);
+			.on("markerActivate", map_onMarkerActivate);
 			
 		if (!L.Browser.mobile) {
 			_map.addControl(L.control.zoom({position: "topright"}));
@@ -127,7 +127,7 @@
 		_table.clearActive();
 	}
 
-	function map_onMarkerSelect(location)
+	function map_onMarkerActivate(location)
 	{
 		_table.clearActive();
 		_table.clearFilter();
@@ -141,7 +141,7 @@
 
 	function table_onItemActivate(e, videoID)
 	{
-		_map.selectMarker(
+		_map.activateMarker(
 			SelectionMachine.selectLocationForVideo(
 				_locations, SelectionMachine.selectVideoByID(_videos, videoID)
 			)
