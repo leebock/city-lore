@@ -110,11 +110,22 @@ ul {
       &:nth-of-type(even) {
         background-color: silver;
       }
+      &.active {
+        background-color: yellow;
+      }
       button {
         cursor: pointer;
         align-self: flex-start;
         * {
           pointer-events: none;
+        }
+      }
+    }
+    &.filtered {
+      li {
+        display: none;
+        &.selected {
+          display: flex;
         }
       }
     }

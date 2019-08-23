@@ -15,3 +15,11 @@ SelectionMachine.selectLocationForVideo = function(locations, video)
         function(location, index){return location.getName() === video.getLocation();}
     ).shift();
 };
+
+SelectionMachine.selectVideosForLocation = function(videos, location)
+{
+    return $.grep(
+        videos,
+        function(video){return video.getLocation() === location.getName();}
+    );
+};

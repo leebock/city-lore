@@ -156,12 +156,21 @@ ul {
 #container ul li:nth-of-type(even) {
   background-color: silver;
 }
+#container ul li.active {
+  background-color: yellow;
+}
 #container ul li button {
   cursor: pointer;
   align-self: flex-start;
 }
 #container ul li button * {
   pointer-events: none;
+}
+#container ul.filtered li {
+  display: none;
+}
+#container ul.filtered li.selected {
+  display: flex;
 }
 
 /*# sourceMappingURL=main.css.map */

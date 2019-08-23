@@ -25,9 +25,9 @@ Table.prototype.load = function(items) {
     $(ul).animate({scrollTop: 0}, 'slow');
 
     function onButtonClick(event) {
-        $(ul).children("li").removeClass("selected");
-        $(this).parent().addClass("selected");
-        $(self).trigger("itemSelect", [$(event.target).data("storymaps-id")]);
+        $(ul).children("li").removeClass("active");
+        $(this).parent().addClass("active");
+        $(self).trigger("itemActivate", [$(event.target).data("storymaps-id")]);
         $(ul).animate(
             {scrollTop: $(this).parent().offset().top - $(ul).offset().top + $(ul).scrollTop()}, 
             'slow'
@@ -36,34 +36,46 @@ Table.prototype.load = function(items) {
 
 };
 
-Table.prototype.clearSelected = function()
+Table.prototype.activateItem = function(video)
 {
-    $(this._ul).children("li").removeClass("selected");
+    this.clearActive();
+    var ul = this._ul;
+    var selected = $.grep(
+        ul.children("li"),
+        function(li){
+            return $(li).children("button").data("storymaps-id") === video.getID();
+        }
+    );
+    $(selected).addClass("active");
+    $(ul).animate(
+        {scrollTop: $(selected).offset().top - $(ul).offset().top + $(ul).scrollTop()}, 
+        'slow'
+    );    
 };
 
-Table.prototype.selectItem = function(ingredients)
+Table.prototype.clearActive = function()
 {
-    this.clearSelected();
-    /*
+    $(this._ul).children("li").removeClass("active");
+};
+
+Table.prototype.filter = function(videos)
+{
+    this.clearFilter();
+
     var ul = this._ul;
-    var li = $.grep(
-        $(ul).children("li"),
-        function(li) {
-            return $.inArray(
-                $(li).children("button").data("ingredient").getName(), 			
-                $.map(
-                    ingredients,
-                    function(value){return value.getName();}
-                )
-            ) > -1;
+    videos = $.map(videos, function(video){return video.getID();});
+    var selected = $.grep(
+        ul.children("li"),
+        function(li){
+            return $.inArray($(li).children("button").data("storymaps-id"), videos) > -1;
         }
-    ).shift();
-    if (li) {
-        $(li).addClass("selected");
-        $(ul).animate(
-            {scrollTop: $(li).offset().top - $(ul).offset().top + $(ul).scrollTop()}, 
-            'slow'
-        );        
-    }
-    */
+    );
+    $(selected).addClass("selected");
+    $(ul).addClass("filtered");
+};
+
+Table.prototype.clearFilter = function()
+{
+    $(this._ul).removeClass("filtered");
+    $(this._ul).children("li").removeClass("selected");
 };

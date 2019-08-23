@@ -31,7 +31,8 @@
 		)
 			.addLayer(L.esri.basemapLayer("NationalGeographic"))
 			.addControl(L.control.attribution({position: 'bottomleft'}))
-			.on("markerSelect", function(location){console.log(location.getName());});
+			.on("click", map_onClick)
+			.on("markerSelect", map_onMarkerSelect);
 			
 		if (!L.Browser.mobile) {
 			_map.addControl(L.control.zoom({position: "topright"}));
@@ -98,9 +99,10 @@
 			_map.loadData(_locations);
 				
 			_table = $(new Table($("ul#table").eq(0)))
-				.on("itemSelect", onTableItemSelect)
-				.get(0)
-				.load(_videos);
+				.on("itemActivate", table_onItemActivate)
+				.get(0);
+				
+			_table.load(_videos);
 			
 
 			// one time check to see if touch is being used
@@ -118,7 +120,25 @@
 	********************************** EVENTS  *********************************
 	***************************************************************************/
 
-	function onTableItemSelect(e, videoID)
+	function map_onClick()
+	{
+		_table.clearFilter();
+		_table.clearActive();
+	}
+
+	function map_onMarkerSelect(location)
+	{
+		_table.clearActive();
+		_table.clearFilter();
+		var videos = SelectionMachine.selectVideosForLocation(_videos, location);
+		if (videos.length > 1) {
+			_table.filter(videos);
+		} else {
+			_table.activateItem(videos.shift());
+		}
+	}
+
+	function table_onItemActivate(e, videoID)
 	{
 		_map.selectMarker(
 			SelectionMachine.selectLocationForVideo(
