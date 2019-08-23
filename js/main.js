@@ -31,7 +31,7 @@
 			createPopupHTML
 		)
 			.addLayer(L.esri.basemapLayer("NationalGeographic"))
-			.addControl(L.control.attribution({position: 'bottomleft'}))
+			.addControl(L.control.attribution({position: 'bottomright'}))
 			.on("click", map_onClick)
 			.on("markerActivate", map_onMarkerActivate);
 			
@@ -156,12 +156,9 @@
 		var small = $(window).width() < WIDTH_THRESHOLD;
 		var top = 0;
 		var right = 0;
-		var bottom = small ? $("#container").position().top - $(".banner").outerHeight() : 0;
-		var left = small ? 0 : $("#container").position().left+$("#container").outerWidth();
-		return {
-			paddingTopLeft: [left,top],
-			paddingBottomRight: [right,bottom]
-		};
+		var bottom = small ? $("#container").position().top : 0;
+		var left = small ? 0 : $("#container").outerWidth();
+		return {paddingTopLeft: [left,top], paddingBottomRight: [right,bottom]};
 	}
 
 	function createPopupHTML(location)

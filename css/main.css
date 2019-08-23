@@ -101,43 +101,44 @@ a {
   flex-shrink: 0;
 }
 
-#map {
-  background-color: white;
-  flex-grow: 1;
-  flex-shrink: 1;
-  order: 1;
+#main {
+  flex: 1;
+  display: flex;
+  position: relative;
 }
-#map .easy-button-button {
+#main #map {
+  flex: 1;
+  background-color: white;
+}
+#main #map .easy-button-button {
   font-size: 18px;
   cursor: pointer;
 }
-#map .leaflet-popup-content {
+#main #map .leaflet-popup-content {
   text-align: center;
 }
-
-#container {
+#main #container {
   position: absolute;
   background: white;
   height: 100%;
   width: 400px;
   z-index: 2000;
-  left: 20px;
-  top: 90px;
-  max-height: calc(100% - 150px);
+  left: 0px;
+  top: 0px;
   display: flex;
   flex-direction: column;
   padding: 20px;
 }
 @media (max-width: 768px) {
-  #container {
+  #main #container {
     width: 100%;
-    max-height: 45%;
+    max-height: 50%;
     left: auto;
     top: auto;
     bottom: 0px;
   }
 }
-#container ul#table {
+#main #container ul#table {
   list-style-type: none;
   -webkit-margin-before: 0px;
   -webkit-margin-after: 0px;
@@ -151,33 +152,33 @@ a {
   overflow: hidden;
   overflow-y: auto;
 }
-#container ul#table li {
+#main #container ul#table li {
   padding: 10px;
   padding-right: 20px;
   min-height: 80px;
   display: flex;
   justify-content: space-between;
 }
-#container ul#table li:nth-of-type(even) {
+#main #container ul#table li:nth-of-type(even) {
   background-color: silver;
 }
-#container ul#table li.active {
+#main #container ul#table li.active {
   background-color: yellow;
 }
-#container ul#table li button {
+#main #container ul#table li button {
   cursor: pointer;
   align-self: flex-start;
 }
-#container ul#table li button * {
+#main #container ul#table li button * {
   pointer-events: none;
 }
-#container ul#table.filtered li {
+#main #container ul#table.filtered li {
   display: none;
 }
-#container ul#table.filtered li.selected {
+#main #container ul#table.filtered li.selected {
   display: flex;
 }
-#container ul#table {
+#main #container ul#table {
   height: 100%;
 }
 
