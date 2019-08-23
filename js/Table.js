@@ -11,11 +11,19 @@ Table.prototype.load = function(items) {
         items,
         function(index, item) {
             $("<li>")
-                .append($("<span>").html(item.getTitle()))
                 .append(
                     $("<button>")
                         .data("storymaps-id", item.getID())
-                        .append($("<span>").html("Play"))
+                        .append($("<h3>").html(item.getTitle()))
+                        .append($("<br>"))
+                        .append($("<span>").html(item.getLocation()))
+                        .append($("<br>"))
+                        .append($("<a>").text("Video").attr(
+                            {
+                                "href": item.getVideo(),
+                                "target": "_blank"
+                            })
+                        )
                         .click(onButtonClick)
                 )
                 .appendTo($(ul));

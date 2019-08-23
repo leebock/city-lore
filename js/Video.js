@@ -17,3 +17,8 @@ Video.prototype.getLocation = function()
 {
 	return this._json.Location;
 };
+
+Video.prototype.getVideo = function()
+{
+	return this._json.Video;
+};
