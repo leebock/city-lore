@@ -1,9 +1,9 @@
-L.CLMap = L.CustomMap.extend({
+L.CLMap = L.PaddingAwareMap.extend({
 
   initialize: function(div, options, paddingQueryFunction, popupHTMLCreator)
   {
 
-    L.CustomMap.prototype.initialize.call(this, div, options, paddingQueryFunction);
+    L.PaddingAwareMap.prototype.initialize.call(this, div, options, paddingQueryFunction);
     
     /*
     this._ICONS = {

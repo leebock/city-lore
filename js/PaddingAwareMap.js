@@ -1,4 +1,4 @@
-L.CustomMap = L.Map.extend({
+L.PaddingAwareMap = L.Map.extend({
 
   initialize: function(div, options, paddingQueryFunction)
   {
