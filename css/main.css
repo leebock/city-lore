@@ -151,6 +151,7 @@ a {
   -moz-padding-end: 0px;
   overflow: hidden;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 #main #container ul#table li {
   padding: 10px;
