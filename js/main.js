@@ -120,10 +120,7 @@
 
 	function onTableItemSelect(e, videoID)
 	{
-		var vid = $.grep(
-			_videos, 
-			function(value, index){return value.getID() === videoID;}
-		).shift();
+		var vid = SelectionMachine.selectVideoByID(_videos, videoID);
 		_map.panTo(vid.getLatLng());
 		L.popup({closeButton: false, offset: L.point(0, -25)})
           .setLatLng(vid.getLatLng())
