@@ -144,6 +144,7 @@ ul {
 #container ul {
   overflow: hidden;
   overflow-y: auto;
+  height: 100%;
 }
 #container ul li {
   padding: 10px;
