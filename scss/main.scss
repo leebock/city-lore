@@ -76,7 +76,7 @@ a {
   background: white;
   height: 100%;
   width: 400px;
-  z-index: 1000;
+  z-index: 2000;
   left: 20px;
   top: 90px;
   max-height: calc(100% - 150px);
@@ -84,10 +84,17 @@ a {
   flex-direction: column;
   padding: 20px;
 
+  @media (max-width: $WIDTH-THRESHOLD) {
+    width: 100%;
+    max-height: 45%;
+    left: auto;
+    top: auto;
+    bottom: 0px;
+  }
+
   @import "Table";
   ul#table {
     height: 100%;    
   }
-
 
 }

@@ -120,13 +120,22 @@ a {
   background: white;
   height: 100%;
   width: 400px;
-  z-index: 1000;
+  z-index: 2000;
   left: 20px;
   top: 90px;
   max-height: calc(100% - 150px);
   display: flex;
   flex-direction: column;
   padding: 20px;
+}
+@media (max-width: 768px) {
+  #container {
+    width: 100%;
+    max-height: 45%;
+    left: auto;
+    top: auto;
+    bottom: 0px;
+  }
 }
 #container ul#table {
   list-style-type: none;

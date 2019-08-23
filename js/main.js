@@ -2,7 +2,7 @@
 
 	"use strict";
 
-	//var WIDTH_THRESHOLD = 768;
+	var WIDTH_THRESHOLD = 768;
 
 	var GLOBAL_CLASS_USETOUCH = "touch";
 
@@ -105,7 +105,6 @@
 				
 			_table.load(_videos);
 			
-
 			// one time check to see if touch is being used
 
 			$(document).one(
@@ -154,9 +153,14 @@
 
 	function getExtentPadding()
 	{
+		var small = $(window).width() < WIDTH_THRESHOLD;
+		var top = 0;
+		var right = 0;
+		var bottom = small ? $("#container").position().top - $(".banner").outerHeight() : 0;
+		var left = small ? 0 : $("#container").position().left+$("#container").outerWidth();
 		return {
-			paddingTopLeft: [$("#container").offset().left+$("#container").outerWidth(),0],
-			paddingBottomRight: [0,0]
+			paddingTopLeft: [left,top],
+			paddingBottomRight: [right,bottom]
 		};
 	}
 
