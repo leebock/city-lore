@@ -120,12 +120,11 @@
 
 	function onTableItemSelect(e, videoID)
 	{
-		var vid = SelectionMachine.selectVideoByID(_videos, videoID);
-		_map.panTo(vid.getLatLng());
-		L.popup({closeButton: false, offset: L.point(0, -25)})
-          .setLatLng(vid.getLatLng())
-          .setContent(vid.getTitle())
-          .openOn(_map);
+		_map.selectMarker(
+			SelectionMachine.selectLocationForVideo(
+				_locations, SelectionMachine.selectVideoByID(_videos, videoID)
+			)
+		);
 	}
 
 	/***************************************************************************
