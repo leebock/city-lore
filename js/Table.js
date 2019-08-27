@@ -10,19 +10,27 @@ Table.prototype.load = function(items) {
     $.each(
         items,
         function(index, item) {
+            var id = item
+                .getVideo()
+                .split("?").pop()
+                .split("&").shift()
+                .split("=").pop();
+
             $("<li>")
                 .append(
                     $("<button>")
                         .data("storymaps-id", item.getID())
+                        .css("background-image", "url('"+"https://img.youtube.com/vi/"+id+"/0.jpg"+"')")
                         .append($("<h3>").html(item.getTitle()))
-                        .append($("<br>"))
-                        .append($("<span>").html(item.getLocation()))
-                        .append($("<br>"))
-                        .append($("<a>").text("Video").attr(
-                            {
-                                "href": item.getVideo(),
-                                "target": "_blank"
-                            })
+                        .append($("<h4>").html(item.getLocation()))
+                        .append(
+                            $("<div>").addClass("veil")
+                            .append($("<a>")
+                                .attr({
+                                    "href": item.getVideo(),
+                                    "target": "_blank"
+                                })
+                            )                            
                         )
                         .click(onButtonClick)
                 )
