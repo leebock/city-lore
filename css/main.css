@@ -115,6 +115,7 @@ a {
   flex: 1;
   display: flex;
   position: relative;
+  height: 100%;
 }
 #main #map {
   flex: 1;
@@ -128,10 +129,11 @@ a {
   text-align: center;
 }
 #main #container {
-  position: absolute;
+  flex: 1;
   background: white;
   height: 100%;
-  width: 470px;
+  width: 50%;
+  max-width: 800px;
   z-index: 2000;
   left: 0px;
   top: 0px;
@@ -141,8 +143,10 @@ a {
 }
 @media (max-width: 768px) {
   #main #container {
+    position: absolute;
     padding: 10px;
     width: 100%;
+    max-width: none;
     max-height: 50%;
     left: auto;
     top: auto;

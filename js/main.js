@@ -157,7 +157,7 @@
 		var top = 0;
 		var right = 0;
 		var bottom = small ? $("#container").position().top : 0;
-		var left = small ? 0 : $("#container").outerWidth();
+		var left = 0;
 		return {paddingTopLeft: [left,top], paddingBottomRight: [right,bottom]};
 	}
 
@@ -165,8 +165,6 @@
 	{  
 		return $("<div>")
 			.append($("<span>").html("<b>"+location.getName()+"</b>"))
-			.append($("<br>"))
-			.append($("<span>").html(location.getAddress()))
 			.html();      
 	}
 

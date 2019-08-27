@@ -67,6 +67,7 @@ a {
   flex: 1;
   display: flex;
   position: relative;
+  height: 100%;
 
   #map {
     
@@ -87,10 +88,11 @@ a {
   
   #container {
     
-    position: absolute;
+    flex: 1;
     background: white;
     height: 100%;
-    width: 470px;
+    width: 50%;
+    max-width: 800px;
     z-index: 2000;
     left: 0px;
     top: 0px;
@@ -99,8 +101,10 @@ a {
     padding: 20px;
   
     @media (max-width: $WIDTH-THRESHOLD) {
+      position: absolute;
       padding: 10px;
       width: 100%;
+      max-width: none;
       max-height: 50%;
       left: auto;
       top: auto;
