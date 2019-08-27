@@ -78,13 +78,18 @@ L.CLMap = L.PaddingAwareMap.extend({
       records, 
       function(index, record) {
 
-        L.marker(
-          record.getLatLng(), 
-          {
-            /*icon: self._ICONS[record.getCategory()],*/
-            riseOnHover: true
-          }
-        )
+        var options = {riseOnHover: true};
+        if (record.getVideoTitles().length > 1) {
+            options.icon = L.divIcon({
+                className: "div-icon", 
+                html: record.getVideoTitles().length,
+                iconSize: [25,30],
+                iconAnchor: [12,35]
+            });
+            options.zIndexOffset = 1000;            
+        }
+
+        L.marker(record.getLatLng(), options)
           .bindTooltip(record.getName())
           .addTo(self._layerMarkers)
           .key = record;

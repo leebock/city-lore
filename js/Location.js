@@ -18,7 +18,7 @@ Location.prototype.getLatLng = function()
 	return L.latLng(this._json.Y, this._json.X);
 };
 
-Location.getVideoTitles = function()
+Location.prototype.getVideoTitles = function()
 {
-	return this._json["Video-Titles"].split("|");
+	return this._json["Related-Videos"].split("|");
 };
