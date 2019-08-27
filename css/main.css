@@ -133,7 +133,7 @@ a {
   background: white;
   height: 100%;
   width: 50%;
-  max-width: 800px;
+  max-width: 700px;
   z-index: 2000;
   left: 0px;
   top: 0px;
@@ -151,6 +151,7 @@ a {
     left: auto;
     top: auto;
     bottom: 0px;
+    padding: 10px;
   }
 }
 #main #container ul#table {
@@ -178,26 +179,21 @@ a {
   display: flex;
   justify-content: flex-start;
   background-color: rgba(111, 111, 111, 0.4);
-  width: 200px;
-  height: 200px;
+  width: 45%;
+  height: 180px;
   margin: 5px;
 }
-@media (max-width: 450px) {
+@media (max-width: 400px) {
   #main #container ul#table li {
-    width: 160px;
-    height: 160px;
-    margin: 3px;
-  }
-}
-@media (max-width: 330px) {
-  #main #container ul#table li {
-    width: 140px;
-    height: 140px;
-    margin: 2px;
+    width: 100%;
+    margin: 0px;
   }
 }
 #main #container ul#table li:hover {
   background-color: rgba(111, 111, 111, 0.6);
+}
+#main #container ul#table li:hover button div.veil {
+  background-color: rgba(0, 0, 0, 0);
 }
 #main #container ul#table li:nth-of-type(1) {
   padding-top: 10px;
@@ -249,7 +245,7 @@ a {
   align-self: center;
 }
 #main #container ul#table li button div.veil {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.2);
   position: absolute;
   width: 100%;
   height: 100%;

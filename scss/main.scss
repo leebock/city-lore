@@ -92,7 +92,7 @@ a {
     background: white;
     height: 100%;
     width: 50%;
-    max-width: 800px;
+    max-width: 700px;
     z-index: 2000;
     left: 0px;
     top: 0px;
@@ -109,6 +109,7 @@ a {
       left: auto;
       top: auto;
       bottom: 0px;
+      padding: 10px;
     }
   
     @import "Table";
