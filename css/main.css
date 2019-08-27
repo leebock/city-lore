@@ -236,7 +236,7 @@ a {
 #main #container ul#table li button a {
   display: none;
   margin-top: 0px;
-  background-image: url("../resources/transparent-play-button-icon.jpg");
+  background-image: url("../resources/play-button-icon.png");
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;

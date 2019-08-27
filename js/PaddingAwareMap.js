@@ -21,10 +21,13 @@ L.PaddingAwareMap = L.Map.extend({
 
     flyToBounds: function(bnds)
     {
+        var options = this._paddingQueryFunction();
+        options.animate = true;
+        options.duration = 1;
         L.Map.prototype.flyToBounds.call(
             this, 
             bnds,
-            this._paddingQueryFunction()
+            options
         );
     },
 
@@ -47,7 +50,6 @@ L.PaddingAwareMap = L.Map.extend({
         L.Map.prototype.panTo.call(this, latLng, {animate: true, duration: 1});
 
     },
-
   
     zoomIn: function(zoomDelta, options)
     {

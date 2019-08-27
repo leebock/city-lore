@@ -27,14 +27,7 @@ L.CLMap = L.PaddingAwareMap.extend({
         var record = e.layer.key;
         self.fire("markerActivate", record);
         $(".leaflet-tooltip").remove();
-
-        L.popup({closeButton: false, offset: L.point(0, -25)})
-            .setLatLng(record.getLatLng())
-            .setContent(self._popupHTMLCreator(record))
-            .openOn(self);
-
-        self.panTo(record.getLatLng());
-                    
+        self.activateMarker(record);                    
     }
     
   },
@@ -62,7 +55,7 @@ L.CLMap = L.PaddingAwareMap.extend({
             .setLatLng(record.getLatLng())
             .setContent(this._popupHTMLCreator(record))
             .openOn(this);      
-        this.panTo(record.getLatLng());
+        this.flyToBounds(record.getLatLng().toBounds(5000));
     },
 
     /*************************************************/
