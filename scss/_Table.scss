@@ -26,6 +26,9 @@ ul#table {
     &:nth-of-type(even) {
       background-color: rgba(111,111,111,0.4);
     }
+    &:hover {
+      background-color: rgba(111,111,111,0.6);
+    }
     button {
       padding: 10px;
       cursor: pointer;
