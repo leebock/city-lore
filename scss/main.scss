@@ -80,9 +80,18 @@ a {
       cursor: pointer;  
     }
   
-    .leaflet-popup-content {
-      text-align: center;
+    .leaflet-popup-content, .tooltip-map {
+      div:nth-child(1) {
+        font-weight: bold;
+      }
+      div:nth-child(2) {
+        font-style: italic;
+      }
     }  
+    
+    .leaflet-popup-content {
+      text-align: center;      
+    }
   
   }
   

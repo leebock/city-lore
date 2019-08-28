@@ -175,7 +175,13 @@
 	function createPopupHTML(location)
 	{  
 		return $("<div>")
-			.append($("<span>").html("<b>"+location.getName()+"</b>"))
+			.append($("<div>").html(location.getName()))
+			.append($("<div>").html(
+					location.getVideoTitles().length > 1 ?
+					"multiple videos" : 
+					location.getVideoTitles().shift()
+				)
+			)
 			.html();      
 	}
 

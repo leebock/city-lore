@@ -83,7 +83,7 @@ L.CLMap = L.PaddingAwareMap.extend({
         }
 
         L.marker(record.getLatLng(), options)
-          .bindTooltip(self._popupHTMLCreator(record))
+          .bindTooltip(self._popupHTMLCreator(record), {className: "tooltip-map"})
           .addTo(self._layerMarkers)
           .key = record;
       }

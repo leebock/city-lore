@@ -126,6 +126,12 @@ a {
   font-size: 18px;
   cursor: pointer;
 }
+#main #map .leaflet-popup-content div:nth-child(1), #main #map .tooltip-map div:nth-child(1) {
+  font-weight: bold;
+}
+#main #map .leaflet-popup-content div:nth-child(2), #main #map .tooltip-map div:nth-child(2) {
+  font-style: italic;
+}
 #main #map .leaflet-popup-content {
   text-align: center;
 }
