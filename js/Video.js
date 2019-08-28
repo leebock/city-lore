@@ -29,4 +29,4 @@ Video.prototype.getYouTubeID = function()
 			.split("?").pop()
 			.split("&").shift()
 			.split("=").pop();
-}
+};
