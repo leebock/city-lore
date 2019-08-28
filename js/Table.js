@@ -10,11 +10,6 @@ Table.prototype.load = function(items) {
     $.each(
         items,
         function(index, item) {
-            var youTubeID = item
-                .getVideo()
-                .split("?").pop()
-                .split("&").shift()
-                .split("=").pop();
 
             $("<li>")
                 .append(
@@ -22,7 +17,10 @@ Table.prototype.load = function(items) {
                         .data("storymaps-id", item.getID())
                         .css(
                             "background-image", 
-                            "url('"+"https://img.youtube.com/vi/"+youTubeID+"/0.jpg"+"')"
+                            "url('"+
+                            "https://img.youtube.com/vi/"+
+                            item.getYouTubeID()+"/0.jpg"+
+                            "')"
                         )
                         .append($("<h3>").html(item.getTitle()))
                         .append($("<h4>").html(item.getLocation()))
@@ -33,7 +31,10 @@ Table.prototype.load = function(items) {
                                         .click(
                                             function(event) {
                                                 event.stopPropagation();
-                                                $(self).trigger("itemPresent", [youTubeID]);
+                                                $(self).trigger(
+                                                    "itemPresent", 
+                                                    [item.getYouTubeID()]
+                                                );
                                             }
                                         )
                                 )

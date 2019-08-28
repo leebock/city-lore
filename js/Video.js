@@ -22,3 +22,11 @@ Video.prototype.getVideo = function()
 {
 	return this._json.Video;
 };
+
+Video.prototype.getYouTubeID = function()
+{
+	return this._json.Video
+			.split("?").pop()
+			.split("&").shift()
+			.split("=").pop();
+}
