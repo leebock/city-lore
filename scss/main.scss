@@ -99,6 +99,7 @@ a {
     display: flex;
     flex-direction: column;
     padding: 20px;
+    position: relative;
   
     @media (max-width: $WIDTH-THRESHOLD) {
       position: absolute;
@@ -116,6 +117,49 @@ a {
     ul#table {
       height: 100%;      
       width: 100%;
+    }
+    
+    div#video-display {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 3000;
+      top: 0px;
+      left: 0px;
+      background: white;
+      display: none;
+      &.active {
+        display: flex;
+        flex-direction: column;
+      }
+      div:nth-child(1) {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-start;
+        padding: 10px;
+        background: black;
+        button {
+          &:before {
+            content: "\00d7";
+          }
+          cursor: pointer;
+          background: none;
+          border: none;
+          font-size: 40px;
+          color: white;
+        }
+      }
+      div:nth-child(2) {
+        position: relative;
+        flex: 1;
+        iframe {
+          position: absolute;
+        	top: 0;
+        	left: 0;
+        	width: 100%;
+        	height: 100%;        
+        }
+      }
     }
 
   

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html {
   box-sizing: border-box;
 }
@@ -140,6 +141,7 @@ a {
   display: flex;
   flex-direction: column;
   padding: 20px;
+  position: relative;
 }
 @media (max-width: 768px) {
   #main #container {
@@ -216,6 +218,9 @@ a {
   overflow: hidden;
   position: relative;
 }
+#main #container ul#table li button:focus {
+  outline: 3px solid blue;
+}
 #main #container ul#table li button * {
   pointer-events: none;
 }
@@ -233,7 +238,15 @@ a {
   margin-top: 0px;
   margin-left: 2px;
 }
-#main #container ul#table li button a {
+#main #container ul#table li button div.veil {
+  background-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+}
+#main #container ul#table li button div.veil button {
   display: none;
   margin-top: 0px;
   background-image: url("../resources/play-button-icon.png");
@@ -244,20 +257,12 @@ a {
   height: 80px;
   align-self: center;
 }
-#main #container ul#table li button div.veil {
-  background-color: rgba(0, 0, 0, 0.2);
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0px;
-  left: 0px;
-}
 #main #container ul#table li.active button div.veil {
   background-color: rgba(0, 0, 0, 0);
   display: flex;
   justify-content: center;
 }
-#main #container ul#table li.active button div.veil a {
+#main #container ul#table li.active button div.veil button {
   display: block;
   pointer-events: all;
 }
@@ -270,6 +275,48 @@ a {
 #main #container ul#table {
   height: 100%;
   width: 100%;
+}
+#main #container div#video-display {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 3000;
+  top: 0px;
+  left: 0px;
+  background: white;
+  display: none;
+}
+#main #container div#video-display.active {
+  display: flex;
+  flex-direction: column;
+}
+#main #container div#video-display div:nth-child(1) {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 10px;
+  background: black;
+}
+#main #container div#video-display div:nth-child(1) button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 40px;
+  color: white;
+}
+#main #container div#video-display div:nth-child(1) button:before {
+  content: "×";
+}
+#main #container div#video-display div:nth-child(2) {
+  position: relative;
+  flex: 1;
+}
+#main #container div#video-display div:nth-child(2) iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 /*# sourceMappingURL=main.css.map */

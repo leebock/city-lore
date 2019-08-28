@@ -11,6 +11,7 @@
 
 	var _map;
 	var _table;
+	var _playPanel;
 
 	var _locations;
 	var _videos;	
@@ -101,10 +102,13 @@
 				
 			_table = $(new Table($("ul#table").eq(0)))
 				.on("itemActivate", table_onItemActivate)
+				.on("itemPresent", table_onItemPresent)
 				.get(0);
 				
 			_table.load(_videos);
-			
+
+			_playPanel = new PlayPanel($("#video-display").eq(0));
+						
 			// one time check to see if touch is being used
 
 			$(document).one(
@@ -124,12 +128,14 @@
 	{
 		_table.clearFilter();
 		_table.clearActive();
+		_playPanel.conceal();
 	}
 
 	function map_onMarkerActivate(location)
 	{
 		_table.clearActive();
 		_table.clearFilter();
+		_playPanel.conceal();
 		var videos = SelectionMachine.selectVideosForLocation(_videos, location);
 		if (videos.length > 1) {
 			_table.filter(videos);
@@ -145,6 +151,11 @@
 				_locations, SelectionMachine.selectVideoByID(_videos, videoID)
 			)
 		);
+	}
+	
+	function table_onItemPresent(e, youTubeID)
+	{
+		_playPanel.present(youTubeID);
 	}
 
 	/***************************************************************************

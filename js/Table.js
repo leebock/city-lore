@@ -10,7 +10,7 @@ Table.prototype.load = function(items) {
     $.each(
         items,
         function(index, item) {
-            var id = item
+            var youTubeID = item
                 .getVideo()
                 .split("?").pop()
                 .split("&").shift()
@@ -20,19 +20,25 @@ Table.prototype.load = function(items) {
                 .append(
                     $("<button>")
                         .data("storymaps-id", item.getID())
-                        .css("background-image", "url('"+"https://img.youtube.com/vi/"+id+"/0.jpg"+"')")
+                        .css(
+                            "background-image", 
+                            "url('"+"https://img.youtube.com/vi/"+youTubeID+"/0.jpg"+"')"
+                        )
                         .append($("<h3>").html(item.getTitle()))
                         .append($("<h4>").html(item.getLocation()))
                         .append(
                             $("<div>").addClass("veil")
-                            .append($("<a>")
-                                .attr({
-                                    "href": item.getVideo(),
-                                    "target": "_blank"
-                                })
-                            )                            
+                                .append(
+                                    $("<button>")
+                                        .click(
+                                            function(event) {
+                                                event.stopPropagation();
+                                                $(self).trigger("itemPresent", [youTubeID]);
+                                            }
+                                        )
+                                )
                         )
-                        .click(onButtonClick)
+                        .click(onItemButtonClick)
                 )
                 .appendTo($(ul));
         }
@@ -40,7 +46,7 @@ Table.prototype.load = function(items) {
 
     $(ul).animate({scrollTop: 0}, 'slow');
 
-    function onButtonClick(event) {
+    function onItemButtonClick(event) {
         $(ul).children("li").removeClass("active");
         $(this).parent().addClass("active");
         $(self).trigger("itemActivate", [$(event.target).data("storymaps-id")]);
