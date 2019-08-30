@@ -32,7 +32,7 @@ L.CLMap = L.PaddingAwareMap.extend({
     {
         this.closePopup();
         this._records = records;
-        this._loadMarkers(this._records, selectionMachine);
+        this._loadMarkers(this._records);
         this.zoomToMarkers();
     },
 
@@ -54,7 +54,7 @@ L.CLMap = L.PaddingAwareMap.extend({
     /************* "PRIVATE" FUNCTIONS ***************/
     /*************************************************/
 
-  _loadMarkers: function(records, selectionMachine)
+  _loadMarkers: function(records)
   {
       
     var ICONS = {
@@ -72,17 +72,16 @@ L.CLMap = L.PaddingAwareMap.extend({
       function(index, record) {
 
         var options = {riseOnHover: true};
-        if (record.getVideoTitles().length > 1) {
+        if (record.getVideos().length > 1) {
             options.icon = L.divIcon({
                 className: "div-icon", 
-                html: record.getVideoTitles().length,
+                html: record.getVideos().length,
                 iconSize: [25,30],
                 iconAnchor: [12,35]
             });
             options.zIndexOffset = 1000;            
         } else {
-            var title = record.getVideoTitles().shift();
-            var video = selectionMachine.selectVideoByTitle(title);
+            var video = record.getVideos().shift();
             options.icon = ICONS[video.getCategories().shift()];
         }
 

@@ -1,6 +1,7 @@
-function Location(json)
+function Location(json, videos)
 {
 	this._json = json;
+	this._videos = videos;
 }
 
 Location.prototype.getName = function()
@@ -18,7 +19,7 @@ Location.prototype.getLatLng = function()
 	return L.latLng(this._json.Y, this._json.X);
 };
 
-Location.prototype.getVideoTitles = function()
+Location.prototype.getVideos = function()
 {
-	return this._json["Related-Videos"].split("|");
+	return $.map(this._videos, function(value){return value;});
 };

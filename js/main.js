@@ -94,7 +94,7 @@
 
 			_selectionMachine = new SelectionMachine(jsonLocations, jsonVideos);
 
-			_map.loadData(_selectionMachine.getLocations(), _selectionMachine);
+			_map.loadData(_selectionMachine.getLocations());
 				
 			_table = $(new Table($("ul#table").eq(0)))
 				.on("itemActivate", table_onItemActivate)
@@ -173,9 +173,9 @@
 		return $("<div>")
 			.append($("<div>").html(location.getName()))
 			.append($("<div>").html(
-					location.getVideoTitles().length > 1 ?
+					location.getVideos().length > 1 ?
 					"multiple videos" : 
-					location.getVideoTitles().shift()
+					location.getVideos().shift().getTitle()
 				)
 			)
 			.html();      

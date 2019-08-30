@@ -1,14 +1,27 @@
-function SelectionMachine(locations, videos)
+function SelectionMachine(jsonLocations, jsonVideos)
 {
-    this._locations = $.map(
-        locations, 
-        function(value, index){return new Location(value);}
-    );    
+    var self = this;
 
     this._videos = $.map(
-        videos, 
-        function(value, index){return new Video(value);}
+        jsonVideos, 
+        function(json, index) {
+            return new Video(json);
+        }
     );    
+
+    this._locations = $.map(
+        jsonLocations, 
+        function(json, index) {
+            return new Location(
+                json, 
+                $.grep(
+                    self._videos,
+                    function(video){return video.getLocation() === json.Name;}
+                )                
+            );
+        }
+    );    
+
 
 }
 
