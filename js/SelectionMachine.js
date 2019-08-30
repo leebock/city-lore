@@ -1,8 +1,26 @@
 function SelectionMachine(locations, videos)
 {
-    this._locations = locations;
-    this._videos = videos;
+    this._locations = $.map(
+        locations, 
+        function(value, index){return new Location(value);}
+    );    
+
+    this._videos = $.map(
+        videos, 
+        function(value, index){return new Video(value);}
+    );    
+
 }
+
+SelectionMachine.prototype.getVideos = function()
+{
+    return this._videos;
+};
+
+SelectionMachine.prototype.getLocations = function()
+{
+    return this._locations;
+};
 
 SelectionMachine.prototype.selectVideoByID = function(id)
 {

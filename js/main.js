@@ -14,10 +14,11 @@
 	var _playPanel;
 	var _selectionMachine;
 
-	var _locations;
-	var _videos;	
-
 	$(document).ready(function() {
+
+
+		var jsonVideos;		
+		var jsonLocations;
 
 		new SocialButtonBar();
 		
@@ -60,13 +61,9 @@
 				header: true,
 				download: true,
 				complete: function(data) {
-					_locations = $.grep(
+					jsonLocations = $.grep(
 						data.data, 
 						function(value){return value.X && value.Y;}
-					);
-					_locations = $.map(
-						_locations, 
-						function(value, index){return new Location(value);}
 					);
 					finish();
 				}
@@ -79,13 +76,9 @@
 				header: true,
 				download: true,
 				complete: function(data) {
-					_videos = $.grep(
+					jsonVideos = $.grep(
 						data.data, 
 						function(value){return value.X && value.Y;}
-					);
-					_videos = $.map(
-						_videos, 
-						function(value, index){return new Video(value);}
 					);
 					finish();
 				}
@@ -95,20 +88,20 @@
 		function finish()
 		{
 
-			if (!_locations || !_videos) {
+			if (!jsonLocations || !jsonVideos) {
 				return;
 			}
 
-			_selectionMachine = new SelectionMachine(_locations, _videos);
+			_selectionMachine = new SelectionMachine(jsonLocations, jsonVideos);
 
-			_map.loadData(_locations, _selectionMachine);
+			_map.loadData(_selectionMachine.getLocations(), _selectionMachine);
 				
 			_table = $(new Table($("ul#table").eq(0)))
 				.on("itemActivate", table_onItemActivate)
 				.on("itemPresent", table_onItemPresent)
 				.get(0);
 				
-			_table.load(_videos);
+			_table.load(_selectionMachine.getVideos());
 
 			_playPanel = new PlayPanel($("#video-display").eq(0));
 						
