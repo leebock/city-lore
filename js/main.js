@@ -12,6 +12,7 @@
 	var _map;
 	var _table;
 	var _playPanel;
+	var _selectionMachine;
 
 	var _locations;
 	var _videos;	
@@ -98,6 +99,8 @@
 				return;
 			}
 
+			_selectionMachine = new SelectionMachine(_locations, _videos);
+
 			_map.loadData(_locations);
 				
 			_table = $(new Table($("ul#table").eq(0)))
@@ -136,7 +139,7 @@
 		_table.clearActive();
 		_table.clearFilter();
 		_playPanel.conceal();
-		var videos = SelectionMachine.selectVideosForLocation(_videos, location);
+		var videos = _selectionMachine.selectVideosForLocation(location);
 		if (videos.length > 1) {
 			_table.filter(videos);
 		} else {
@@ -147,8 +150,8 @@
 	function table_onItemActivate(e, videoID)
 	{
 		_map.activateMarker(
-			SelectionMachine.selectLocationForVideo(
-				_locations, SelectionMachine.selectVideoByID(_videos, videoID)
+			_selectionMachine.selectLocationForVideo(
+				_selectionMachine.selectVideoByID(videoID)
 			)
 		);
 	}

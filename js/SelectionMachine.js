@@ -1,25 +1,29 @@
-function SelectionMachine(){}
+function SelectionMachine(locations, videos)
+{
+    this._locations = locations;
+    this._videos = videos;
+}
 
-SelectionMachine.selectVideoByID = function(videos, id)
+SelectionMachine.prototype.selectVideoByID = function(id)
 {
     return $.grep(
-        videos, 
+        this._videos, 
         function(video, index){return video.getID() === id;}
     ).shift();
 };
 
-SelectionMachine.selectLocationForVideo = function(locations, video)
+SelectionMachine.prototype.selectLocationForVideo = function(video)
 {
     return $.grep(
-        locations,
+        this._locations,
         function(location, index){return location.getName() === video.getLocation();}
     ).shift();
 };
 
-SelectionMachine.selectVideosForLocation = function(videos, location)
+SelectionMachine.prototype.selectVideosForLocation = function(location)
 {
     return $.grep(
-        videos,
+        this._videos,
         function(video){return video.getLocation() === location.getName();}
     );
 };
