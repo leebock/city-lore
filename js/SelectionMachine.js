@@ -27,3 +27,11 @@ SelectionMachine.prototype.selectVideosForLocation = function(location)
         function(video){return video.getLocation() === location.getName();}
     );
 };
+
+SelectionMachine.prototype.selectVideoByTitle = function(title)
+{
+    return $.grep(
+        this._videos,
+        function(video){return video.getTitle() === title;}
+    ).shift();
+};

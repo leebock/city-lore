@@ -101,7 +101,7 @@
 
 			_selectionMachine = new SelectionMachine(_locations, _videos);
 
-			_map.loadData(_locations);
+			_map.loadData(_locations, _selectionMachine);
 				
 			_table = $(new Table($("ul#table").eq(0)))
 				.on("itemActivate", table_onItemActivate)

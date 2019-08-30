@@ -5,14 +5,6 @@ L.CLMap = L.PaddingAwareMap.extend({
 
     L.PaddingAwareMap.prototype.initialize.call(this, div, options, paddingQueryFunction);
     
-    /*
-    this._ICONS = {
-      "Fruit/Vegetable": L.AwesomeMarkers.icon({markerColor: 'green'}),
-      "Dairy": L.AwesomeMarkers.icon({markerColor: 'orange'}),
-      "Other": L.AwesomeMarkers.icon({markerColor: 'darkred'})
-    };
-    */
-
     this._popupHTMLCreator = popupHTMLCreator;
 
     this._layerMarkers = L.featureGroup()
@@ -36,11 +28,11 @@ L.CLMap = L.PaddingAwareMap.extend({
     /******************* METHODS *********************/
     /*************************************************/
 
-    loadData: function(records)
+    loadData: function(records, selectionMachine)
     {
         this.closePopup();
         this._records = records;
-        this._loadMarkers(this._records);
+        this._loadMarkers(this._records, selectionMachine);
         this.zoomToMarkers();
     },
 
@@ -62,8 +54,16 @@ L.CLMap = L.PaddingAwareMap.extend({
     /************* "PRIVATE" FUNCTIONS ***************/
     /*************************************************/
 
-  _loadMarkers: function(records)
+  _loadMarkers: function(records, selectionMachine)
   {
+      
+    var ICONS = {
+        "Urban Folklore": L.AwesomeMarkers.icon({markerColor: 'cadetblue'}),
+        "Treasured Places": L.AwesomeMarkers.icon({markerColor: 'orange'}),
+        "Grassroots Poetry": L.AwesomeMarkers.icon({markerColor: 'red'}),
+        "Education": L.AwesomeMarkers.icon({markerColor: 'yellow'}),
+        "Neighborhood Tours": L.AwesomeMarkers.icon({markerColor: 'purple'})
+    };
 
     this._layerMarkers.clearLayers();
     var self = this;
@@ -80,6 +80,10 @@ L.CLMap = L.PaddingAwareMap.extend({
                 iconAnchor: [12,35]
             });
             options.zIndexOffset = 1000;            
+        } else {
+            var title = record.getVideoTitles().shift();
+            var video = selectionMachine.selectVideoByTitle(title);
+            options.icon = ICONS[video.getCategories().shift()];
         }
 
         L.marker(record.getLatLng(), options)

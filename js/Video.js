@@ -30,3 +30,8 @@ Video.prototype.getYouTubeID = function()
 			.split("&").shift()
 			.split("=").pop();
 };
+
+Video.prototype.getCategories = function()
+{
+	return this._json.Category.split(",");
+};
