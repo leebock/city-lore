@@ -43,6 +43,11 @@ Table.prototype.load = function(items) {
                                                 );
                                             }
                                         )
+                                        .hover(
+                                            function(event) {
+                                                event.stopPropagation();
+                                            }
+                                        )
                                 )
                         )
                         .click(onItemButtonClick)
