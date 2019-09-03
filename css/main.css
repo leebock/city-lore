@@ -135,6 +135,53 @@ a {
 #main #map .leaflet-popup-content {
   text-align: center;
 }
+#main #map #legend {
+  list-style-type: none;
+  -webkit-margin-before: 0px;
+  -webkit-margin-after: 0px;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-padding-start: 0px;
+  -moz-margin-start: 0px;
+  -moz-margin-end: 0px;
+  -moz-padding-start: 0px;
+  -moz-padding-end: 0px;
+  position: absolute;
+  z-index: 5000;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  max-width: 70%;
+  top: 10px;
+  left: 10px;
+  overflow: hidden;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+#main #map #legend li {
+  display: flex;
+  width: 160px;
+  padding: 5px;
+}
+#main #map #legend li div.swatch {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+}
+#main #map #legend li:nth-of-type(1) div.swatch {
+  background-color: #426877;
+}
+#main #map #legend li:nth-of-type(2) div.swatch {
+  background-color: #f69730;
+}
+#main #map #legend li:nth-of-type(3) div.swatch {
+  background-color: #d63e2a;
+}
+#main #map #legend li:nth-of-type(4) div.swatch {
+  background-color: #ffcb92;
+}
+#main #map #legend li:nth-of-type(5) div.swatch {
+  background-color: #d152b8;
+}
 #main #container {
   flex: 1;
   background: white;

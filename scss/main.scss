@@ -92,8 +92,69 @@ a {
     .leaflet-popup-content {
       text-align: center;      
     }
+
+    #legend {
+      list-style-type: none;
+      -webkit-margin-before: 0px;
+      -webkit-margin-after: 0px;
+      -webkit-margin-start: 0px;
+      -webkit-margin-end: 0px;
+      -webkit-padding-start: 0px;
+      -moz-margin-start: 0px;
+      -moz-margin-end: 0px;
+      -moz-padding-start: 0px;
+      -moz-padding-end: 0px;
+      position: absolute;
+      z-index: 5000;
+      background-color: rgba(255,255,255,0.7);
+      display: flex;
+      max-width: 70%;
+      top: 10px;
+      left: 10px;
+      overflow: hidden;
+      flex-wrap: wrap;
+      padding: 10px;
+      
+      li {
+        display: flex;
+        width: 160px;
+        padding: 5px;
+        div.swatch {
+          width: 25px;
+          height: 25px;
+          margin-right: 10px;
+        }    
+        &:nth-of-type(1) {
+          div.swatch {
+            background-color: rgba(66,104,119,1);
+          }
+        }
+        &:nth-of-type(2) {
+          div.swatch {
+            background-color: rgba(246, 151, 48, 1);
+          }
+        }
+        &:nth-of-type(3) {
+          div.swatch {
+            background-color: rgba(214, 62, 42, 1);
+          }
+        }
+        &:nth-of-type(4) {
+          div.swatch {
+            background-color: rgba(255, 203, 146, 1);
+          }
+        }
+        &:nth-of-type(5) {
+          div.swatch {
+            background-color: rgba(209, 82, 184, 1);
+          }
+        }
+      }
+    }
+
   
   }
+  
   
   #container {
     
