@@ -117,10 +117,12 @@ a {
   display: flex;
   position: relative;
   height: 100%;
+  /*map*/
 }
 #main #map {
   flex: 1;
   background-color: white;
+  /*#legend-container*/
 }
 #main #map .easy-button-button {
   font-size: 18px;
@@ -135,7 +137,14 @@ a {
 #main #map .leaflet-popup-content {
   text-align: center;
 }
-#main #map #legend {
+#main #map #legend-container {
+  padding: 10px;
+  position: absolute;
+  z-index: 5000;
+  max-width: 70%;
+  /*legend*/
+}
+#main #map #legend-container #legend {
   list-style-type: none;
   -webkit-margin-before: 0px;
   -webkit-margin-after: 0px;
@@ -146,41 +155,83 @@ a {
   -moz-margin-end: 0px;
   -moz-padding-start: 0px;
   -moz-padding-end: 0px;
-  position: absolute;
-  z-index: 5000;
   background-color: rgba(255, 255, 255, 0.7);
-  display: flex;
-  max-width: 70%;
+  display: none;
   top: 10px;
   left: 10px;
   overflow: hidden;
   flex-wrap: wrap;
   padding: 10px;
+  justify-content: space-around;
 }
-#main #map #legend li {
+#main #map #legend-container #legend li {
   display: flex;
   width: 160px;
-  padding: 5px;
+  padding: 2px;
+  align-items: center;
 }
-#main #map #legend li div.swatch {
-  width: 25px;
-  height: 25px;
-  margin-right: 10px;
+#main #map #legend-container #legend li div.swatch {
+  width: 35px;
+  height: 45px;
+  margin-right: 6px;
+  background: url("https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/images/markers-soft.png") no-repeat 0 0;
 }
-#main #map #legend li:nth-of-type(1) div.swatch {
-  background-color: #426877;
+#main #map #legend-container #legend li:nth-of-type(1) div.swatch {
+  background-position: -324px 0;
+  /*background-color: rgba(66,104,119,1);*/
 }
-#main #map #legend li:nth-of-type(2) div.swatch {
-  background-color: #f69730;
+#main #map #legend-container #legend li:nth-of-type(2) div.swatch {
+  background-position: -36px 0;
+  /*background-color: rgba(246, 151, 48, 1);*/
 }
-#main #map #legend li:nth-of-type(3) div.swatch {
-  background-color: #d63e2a;
+#main #map #legend-container #legend li:nth-of-type(3) div.swatch {
+  background-position: 0 0;
+  /*background-color: rgba(214, 62, 42, 1);*/
 }
-#main #map #legend li:nth-of-type(4) div.swatch {
-  background-color: #ffcb92;
+#main #map #legend-container #legend li:nth-of-type(4) div.swatch {
+  background-position: -144px 0;
+  /*background-color: rgba(255, 203, 146, 1);*/
 }
-#main #map #legend li:nth-of-type(5) div.swatch {
-  background-color: #d152b8;
+#main #map #legend-container #legend li:nth-of-type(5) div.swatch {
+  background: none;
+  border-style: solid;
+  border-width: 2px;
+  width: 30px;
+  height: 40px;
+  margin-left: 3px;
+  margin-right: 12px;
+  font-size: 22px;
+  padding-left: 7px;
+  background-color: white;
+}
+#main #map #legend-container #legend li:nth-of-type(5) div.swatch:before {
+  content: "3";
+}
+#main #map #legend-container button {
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  border-style: solid;
+  border-width: 1px;
+  border-color: silver;
+  cursor: pointer;
+  font-family: "FontAwesome";
+}
+#main #map #legend-container button:before {
+  content: "";
+}
+#main #map #legend-container.expanded button {
+  position: absolute;
+}
+#main #map #legend-container.expanded button:before {
+  content: "";
+}
+#main #map #legend-container.expanded #legend {
+  display: flex;
 }
 #main #container {
   flex: 1;

@@ -104,6 +104,12 @@
 			_table.load(_selectionMachine.getVideos());
 
 			_playPanel = new PlayPanel($("#video-display").eq(0));
+			
+			$("#legend-container button#legend-retract").click(
+				function() {
+					$("#legend-container").toggleClass("expanded");
+				}
+			);
 						
 			// one time check to see if touch is being used
 
