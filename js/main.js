@@ -110,6 +110,10 @@
 					$("#legend-container").toggleClass("expanded");
 				}
 			);
+
+			if ($("#map").width() > 550) {
+				$("#legend-container").addClass("expanded");
+			}
 						
 			// one time check to see if touch is being used
 
@@ -167,7 +171,7 @@
 	function getExtentPadding()
 	{
 		var small = $(window).width() < WIDTH_THRESHOLD;
-		var top = 0;
+		var top = $("#legend-container").height();
 		var right = 0;
 		var bottom = small ? $("#container").position().top : 0;
 		var left = 0;
