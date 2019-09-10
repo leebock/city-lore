@@ -1,0 +1,64 @@
+#legend {
+
+  list-style-type: none;
+  -webkit-margin-before: 0px;
+  -webkit-margin-after: 0px;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-padding-start: 0px;
+  -moz-margin-start: 0px;
+  -moz-margin-end: 0px;
+  -moz-padding-start: 0px;
+  -moz-padding-end: 0px;
+  background-color: rgba(255,255,255,0.7);
+  overflow: hidden;
+  flex-wrap: wrap;
+  padding: 10px;
+  justify-content: space-around;
+  
+  li {
+  
+    display: flex;
+    width: 160px;
+    padding: 2px;
+    align-items: center;
+    div.swatch {
+      width: 35px;
+      height: 45px;
+      margin-right: 6px;
+      background: url("https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/images/markers-soft.png") no-repeat 0 0;
+    }    
+    &:nth-of-type(1) {
+      div.swatch {
+        background-position: -324px 0;
+      }
+    }
+    &:nth-of-type(2) {
+      div.swatch {
+        background-position: -36px 0;
+      }
+    }
+    &:nth-of-type(3) {
+      div.swatch {
+        background-position: 0 0;
+      }
+    }
+    &:nth-of-type(4) {
+      div.swatch {
+        background-position: -144px 0;
+      }
+    }
+    &:nth-of-type(5) {
+      div.swatch {
+        background-position: -288px 0;
+        i {
+          color: white;
+          margin-left: 2px;
+          margin-top: 10px;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+  
+}

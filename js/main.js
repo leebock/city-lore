@@ -105,6 +105,8 @@
 
 			_playPanel = new PlayPanel($("#video-display").eq(0));
 			
+			new Legend($("#legend").get(0));
+			
 			$("#legend-container button#legend-retract").click(
 				function() {
 					$("#legend-container").toggleClass("expanded");

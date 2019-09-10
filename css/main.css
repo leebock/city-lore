@@ -142,7 +142,6 @@ a {
   position: absolute;
   z-index: 5000;
   max-width: 70%;
-  /*legend*/
 }
 #main #map #legend-container #legend {
   list-style-type: none;
@@ -156,9 +155,6 @@ a {
   -moz-padding-start: 0px;
   -moz-padding-end: 0px;
   background-color: rgba(255, 255, 255, 0.7);
-  display: none;
-  top: 10px;
-  left: 10px;
   overflow: hidden;
   flex-wrap: wrap;
   padding: 10px;
@@ -178,30 +174,31 @@ a {
 }
 #main #map #legend-container #legend li:nth-of-type(1) div.swatch {
   background-position: -324px 0;
-  /*background-color: rgba(66,104,119,1);*/
 }
 #main #map #legend-container #legend li:nth-of-type(2) div.swatch {
   background-position: -36px 0;
-  /*background-color: rgba(246, 151, 48, 1);*/
 }
 #main #map #legend-container #legend li:nth-of-type(3) div.swatch {
   background-position: 0 0;
-  /*background-color: rgba(214, 62, 42, 1);*/
 }
 #main #map #legend-container #legend li:nth-of-type(4) div.swatch {
   background-position: -144px 0;
-  /*background-color: rgba(255, 203, 146, 1);*/
 }
 #main #map #legend-container #legend li:nth-of-type(5) div.swatch {
   background-position: -288px 0;
 }
 #main #map #legend-container #legend li:nth-of-type(5) div.swatch i {
   color: white;
-  margin-left: 11px;
+  margin-left: 2px;
   margin-top: 10px;
   font-size: 14px;
 }
-#main #map #legend-container button {
+#main #map #legend-container #legend {
+  top: 10px;
+  left: 10px;
+  display: none;
+}
+#main #map #legend-container button#legend-retract {
   top: 10px;
   right: 10px;
   width: 40px;
@@ -215,13 +212,13 @@ a {
   cursor: pointer;
   font-family: "FontAwesome";
 }
-#main #map #legend-container button:before {
+#main #map #legend-container button#legend-retract:before {
   content: "";
 }
-#main #map #legend-container.expanded button {
+#main #map #legend-container.expanded button#legend-retract {
   position: absolute;
 }
-#main #map #legend-container.expanded button:before {
+#main #map #legend-container.expanded button#legend-retract:before {
   content: "";
 }
 #main #map #legend-container.expanded #legend {
