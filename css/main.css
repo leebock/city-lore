@@ -138,10 +138,11 @@ a {
   text-align: center;
 }
 #main #map #legend-container {
-  padding: 10px;
+  padding-right: 30px;
   position: absolute;
   z-index: 5000;
   max-width: 70%;
+  background-color: rgba(255, 255, 255, 0.7);
 }
 #main #map #legend-container #legend {
   list-style-type: none;
@@ -154,23 +155,34 @@ a {
   -moz-margin-end: 0px;
   -moz-padding-start: 0px;
   -moz-padding-end: 0px;
-  background-color: rgba(255, 255, 255, 0.7);
   overflow: hidden;
   flex-wrap: wrap;
   padding: 10px;
   justify-content: space-around;
 }
-#main #map #legend-container #legend li {
+#main #map #legend-container #legend li button {
   display: flex;
-  width: 160px;
-  padding: 2px;
   align-items: center;
+  width: 150px;
+  margin: 0px;
+  cursor: pointer;
 }
-#main #map #legend-container #legend li div.swatch {
+#main #map #legend-container #legend li button * {
+  pointer-events: none;
+}
+#main #map #legend-container #legend li button div.swatch {
   width: 35px;
   height: 45px;
   margin-right: 6px;
   background: url("https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/images/markers-soft.png") no-repeat 0 0;
+}
+#main #map #legend-container #legend li button span {
+  text-align: left;
+  width: 60px;
+}
+#main #map #legend-container #legend li button.inactive {
+  background: gray;
+  color: silver;
 }
 #main #map #legend-container #legend li:nth-of-type(1) div.swatch {
   background-position: -324px 0;
@@ -199,8 +211,8 @@ a {
   display: none;
 }
 #main #map #legend-container button#legend-retract {
-  top: 10px;
-  right: 10px;
+  top: 0px;
+  right: 0px;
   width: 40px;
   height: 40px;
   font-size: 20px;

@@ -105,7 +105,13 @@
 
 			_playPanel = new PlayPanel($("#video-display").eq(0));
 			
-			new Legend($("#legend").get(0));
+			$(new Legend($("#legend").get(0))).on(
+				"itemClick", 
+				function(event, categories)
+				{
+					console.log(categories);
+				}
+			);
 			
 			$("#legend-container button#legend-retract").click(
 				function() {

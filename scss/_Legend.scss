@@ -10,24 +10,36 @@
   -moz-margin-end: 0px;
   -moz-padding-start: 0px;
   -moz-padding-end: 0px;
-  background-color: rgba(255,255,255,0.7);
   overflow: hidden;
   flex-wrap: wrap;
   padding: 10px;
   justify-content: space-around;
   
   li {
-  
-    display: flex;
-    width: 160px;
-    padding: 2px;
-    align-items: center;
-    div.swatch {
-      width: 35px;
-      height: 45px;
-      margin-right: 6px;
-      background: url("https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/images/markers-soft.png") no-repeat 0 0;
-    }    
+    button {
+      display: flex;
+      align-items: center;
+      width: 150px;
+      margin: 0px;
+      cursor: pointer;
+      * {
+        pointer-events: none;
+      }      
+      div.swatch {
+        width: 35px;
+        height: 45px;
+        margin-right: 6px;
+        background: url("https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/images/markers-soft.png") no-repeat 0 0;
+      }
+      span {
+        text-align: left;
+        width: 60px;
+      }    
+      &.inactive {
+        background: gray;
+        color: silver;
+      }
+    }
     &:nth-of-type(1) {
       div.swatch {
         background-position: -324px 0;
