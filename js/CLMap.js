@@ -73,12 +73,9 @@ L.CLMap = L.PaddingAwareMap.extend({
 
         var options = {riseOnHover: true};
         if (record.getVideos().length > 1) {
-            options.icon = L.divIcon({
-                className: "div-icon", 
-                html: record.getVideos().length,
-                iconSize: [25,30],
-                iconAnchor: [12,35]
-            });
+            options.icon = L.AwesomeMarkers.icon(
+                {icon: 'star', markerColor: 'darkpurple', prefix: "fa"}
+            );
             options.zIndexOffset = 1000;            
         } else {
             var video = record.getVideos().shift();

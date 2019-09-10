@@ -193,19 +193,13 @@ a {
   /*background-color: rgba(255, 203, 146, 1);*/
 }
 #main #map #legend-container #legend li:nth-of-type(5) div.swatch {
-  background: none;
-  border-style: solid;
-  border-width: 2px;
-  width: 30px;
-  height: 40px;
-  margin-left: 3px;
-  margin-right: 12px;
-  font-size: 22px;
-  padding-left: 7px;
-  background-color: white;
+  background-position: -288px 0;
 }
-#main #map #legend-container #legend li:nth-of-type(5) div.swatch:before {
-  content: "3";
+#main #map #legend-container #legend li:nth-of-type(5) div.swatch i {
+  color: white;
+  margin-left: 11px;
+  margin-top: 10px;
+  font-size: 14px;
 }
 #main #map #legend-container button {
   top: 10px;
