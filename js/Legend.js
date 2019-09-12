@@ -36,26 +36,25 @@ function Legend(ul)
         
     function onItemClick(event)
     {
+        event.stopPropagation();        
         $(event.target).toggleClass("inactive");
-        $(self).trigger(
-            "itemClick", 
-            [
-                $.map(
-                    $.grep(
-                        $(self._ul).children(),
-                        function(li) {
-                            return !$(li).children("button").hasClass("inactive");
-                        }
-                    ),
-                    function(li) {
-                        return $(li).children("button").text();
-                    }
-                )
-            ]
-        );
+        $(self).trigger("itemClick");
     }            
 
 }
 
 
-Legend.prototype = {};
+Legend.prototype.getActiveCategories = function()
+{
+    return $.map(
+        $.grep(
+            $(this._ul).children(),
+            function(li) {
+                return !$(li).children("button").hasClass("inactive");
+            }
+        ),
+        function(li) {
+            return $(li).children("button").text();
+        }
+    );
+};

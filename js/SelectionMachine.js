@@ -43,12 +43,45 @@ SelectionMachine.prototype.selectVideoByID = function(id)
     ).shift();
 };
 
-SelectionMachine.prototype.selectLocationForVideo = function(video)
+SelectionMachine.prototype.selectLocationsForVideos = function(videos)
 {
     return $.grep(
         this._locations,
-        function(location, index){return location.getName() === video.getLocation();}
-    ).shift();
+        function(location) {
+            var flag = false;
+            $.each(
+                videos,
+                function(index, video) {
+                    if (location.getName() === video.getLocation()) {
+                        flag = true;
+                    }
+                }
+            );
+            return flag;
+        }
+    );
+};
+
+SelectionMachine.prototype.selectVideosForCategories = function(categories, videos)
+{
+    if (!videos) {
+        videos = this._videos;
+    }
+    return $.grep(
+        videos,
+        function(video) {
+            var flag = false;
+            $.each(
+                video.getCategories(),
+                function(index, value) {
+                    if ($.inArray(value, categories) > -1) {
+                        flag = true;
+                    }
+                }
+            );
+            return flag;
+        }
+    );
 };
 
 SelectionMachine.prototype.selectVideosForLocation = function(location)

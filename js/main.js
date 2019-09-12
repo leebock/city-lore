@@ -11,6 +11,7 @@
 
 	var _map;
 	var _table;
+	var _legend;
 	var _playPanel;
 	var _selectionMachine;
 
@@ -105,13 +106,10 @@
 
 			_playPanel = new PlayPanel($("#video-display").eq(0));
 			
-			$(new Legend($("#legend").get(0))).on(
+			_legend = $(new Legend($("#legend").get(0))).on(
 				"itemClick", 
-				function(event, categories)
-				{
-					console.log(categories);
-				}
-			);
+				legend_onActivationChange
+			).get(0);
 			
 			$("#legend-container button#legend-retract").click(
 				function() {
@@ -135,7 +133,7 @@
 	});
 
 	/***************************************************************************
-	********************************** EVENTS  *********************************
+	***************************** SELECTION EVENTS  ****************************
 	***************************************************************************/
 
 	function map_onClick()
@@ -143,27 +141,48 @@
 		_table.clearFilter();
 		_table.clearActive();
 		_playPanel.conceal();
+		var categories = _legend.getActiveCategories();
+		var videos = _selectionMachine.selectVideosForCategories(categories);
+		_table.filter(videos);
 	}
 
 	function map_onMarkerActivate(location)
 	{
 		_table.clearActive();
-		_table.clearFilter();
 		_playPanel.conceal();
 		var videos = _selectionMachine.selectVideosForLocation(location);
 		if (videos.length > 1) {
+			videos = _selectionMachine.selectVideosForCategories(
+				_legend.getActiveCategories(), 
+				videos
+			);
 			_table.filter(videos);
 		} else {
+			var categories = _legend.getActiveCategories();
+			_table.filter(_selectionMachine.selectVideosForCategories(categories));
 			_table.activateItem(videos.shift());
 		}
 	}
+	
+	function legend_onActivationChange(event)
+	{
+		var categories = _legend.getActiveCategories();
+		var videos = _selectionMachine.selectVideosForCategories(categories);
+		_table.filter(videos);
+		_map.loadData(_selectionMachine.selectLocationsForVideos(videos));
+	}
+
+	
+	/***************************************************************************
+	****************************** OTHER EVENTS  *******************************
+	***************************************************************************/
 
 	function table_onItemActivate(e, videoID)
 	{
 		_map.activateMarker(
-			_selectionMachine.selectLocationForVideo(
-				_selectionMachine.selectVideoByID(videoID)
-			)
+			_selectionMachine.selectLocationsForVideos(
+				[_selectionMachine.selectVideoByID(videoID)]
+			).shift()
 		);
 	}
 	
