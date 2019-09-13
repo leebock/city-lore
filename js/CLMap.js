@@ -58,14 +58,6 @@ L.CLMap = L.PaddingAwareMap.extend({
 
   _loadMarkers: function(records)
   {
-      
-    var ICONS = {
-        "Urban Folklore": L.AwesomeMarkers.icon({markerColor: 'cadetblue'}),
-        "Treasured Places": L.AwesomeMarkers.icon({markerColor: 'orange'}),
-        "Grassroots Poetry": L.AwesomeMarkers.icon({markerColor: 'red'}),
-        "Education": L.AwesomeMarkers.icon({markerColor: 'yellow'}),
-        "Neighborhood Tours": L.AwesomeMarkers.icon({markerColor: 'purple'})
-    };
 
     this._layerMarkers.clearLayers();
     var self = this;
@@ -80,8 +72,7 @@ L.CLMap = L.PaddingAwareMap.extend({
             );
             options.zIndexOffset = 1000;            
         } else {
-            var video = record.getVideos().shift();
-            options.icon = ICONS[video.getCategories().shift()];
+            options.icon = L.AwesomeMarkers.icon({markerColor: 'purple'});
         }
 
         L.marker(record.getLatLng(), options)
