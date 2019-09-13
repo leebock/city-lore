@@ -93,50 +93,6 @@ a {
       text-align: center;      
     }
 
-    #legend-container {
-
-      padding-right: 30px;
-      position: absolute;
-      z-index: 5000;
-      max-width: 70%;
-      background-color: rgba(255,255,255,0.7);
-
-      @import "CategoryCheckList";
-            
-      #categoryCheckList {
-        top: 10px;
-        left: 10px;        
-        display: none;
-      }
-      
-      button#legend-retract {
-        top: 0px;
-        right: 0px;
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
-        background: rgba(255,255,255,0.5);
-        border: none;
-        border-style: solid;
-        border-width: 1px;
-        border-color: silver;
-        cursor: pointer;
-        font-family: "FontAwesome";
-        &:before{content:"\f129"}
-      }
-      
-      &.expanded {
-        button#legend-retract {
-          position: absolute;
-          &:before{content:"\f066"}
-        }
-        #categoryCheckList {
-          display: flex;
-        }
-      }
-        
-    } /*#legend-container*/
-  
   } /*map*/
   
   
@@ -167,6 +123,8 @@ a {
       padding: 10px;
     }
   
+    @import "CategoryCheckList";
+      
     @import "Table";
     ul#table {
       height: 100%;      

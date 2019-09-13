@@ -11,13 +11,13 @@
   -moz-padding-start: 0px;
   -moz-padding-end: 0px;
   overflow: hidden;
+  display: flex;
   flex-wrap: wrap;
   padding: 10px;
   justify-content: space-around;
   
   li {
     button {
-      width: 150px;
       margin: 0px;
       text-align: left;
       cursor: pointer;

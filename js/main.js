@@ -110,16 +110,6 @@
 				"itemClick", 
 				legend_onActivationChange
 			).get(0);
-			
-			$("#legend-container button#legend-retract").click(
-				function() {
-					$("#legend-container").toggleClass("expanded");
-				}
-			);
-
-			if ($("#map").width() > 550) {
-				$("#legend-container").addClass("expanded");
-			}
 						
 			// one time check to see if touch is being used
 
@@ -212,7 +202,7 @@
 	function getExtentPadding()
 	{
 		var small = $(window).width() < WIDTH_THRESHOLD;
-		var top = $("#legend-container").height();
+		var top = 0;
 		var right = 0;
 		var bottom = small ? $("#container").position().top : 0;
 		var left = 0;
