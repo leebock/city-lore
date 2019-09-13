@@ -201,7 +201,7 @@
 
 	function getExtentPadding()
 	{
-		var small = $(window).width() < WIDTH_THRESHOLD;
+		var small = $(window).width() <= WIDTH_THRESHOLD;
 		var top = 0;
 		var right = 0;
 		var bottom = small ? $("#container").position().top : 0;
