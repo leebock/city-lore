@@ -1,12 +1,6 @@
 function Table(ul)
 {
     this._ul = ul;
-    this._usingTouch = false;
-    var self = this;
-    $(ul).one(
-        "touchstart", 
-        function(){self._usingTouch = true;}
-    );
 }
 
 Table.prototype.load = function(items) {
@@ -43,15 +37,9 @@ Table.prototype.load = function(items) {
                                                 );
                                             }
                                         )
-                                        .hover(
-                                            function(event) {
-                                                event.stopPropagation();
-                                            }
-                                        )
                                 )
                         )
                         .click(onItemButtonClick)
-                        .hover(onItemButtonHover)
                 )
                 .appendTo($(ul));
         }
@@ -60,27 +48,13 @@ Table.prototype.load = function(items) {
     $(ul).animate({scrollTop: 0}, 'slow');
 
     function onItemButtonClick(event) {
-        $(ul).children("li").removeClass("active pinned");
+        $(ul).children("li").removeClass("active");
         $(this).parent().addClass("active");
         $(self).trigger("itemActivate", [$(event.target).data("storymaps-id")]);
-        /*
         $(ul).animate(
             {scrollTop: $(this).parent().offset().top - $(ul).offset().top + $(ul).scrollTop()}, 
             'slow'
         );
-        */
-    }
-    
-    function onItemButtonHover(event) {
-        if (self._usingTouch) {
-            return;
-        }
-        if ($(ul).children("li.pinned").length) {
-            return;
-        }
-        $(ul).children("li").removeClass("active");
-        $(this).parent().addClass("active");
-        $(self).trigger("itemActivate", [$(event.target).data("storymaps-id")]);
     }
 
 };
@@ -95,7 +69,7 @@ Table.prototype.activateItem = function(video)
             return $(li).children("button").data("storymaps-id") === video.getID();
         }
     );
-    $(selected).addClass("active pinned");
+    $(selected).addClass("active");
     $(ul).animate(
         {scrollTop: $(selected).offset().top - $(ul).offset().top + $(ul).scrollTop()}, 
         'slow'
