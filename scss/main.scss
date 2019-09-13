@@ -101,9 +101,9 @@ a {
       max-width: 70%;
       background-color: rgba(255,255,255,0.7);
 
-      @import "Legend";
+      @import "CategoryCheckList";
             
-      #legend {
+      #categoryCheckList {
         top: 10px;
         left: 10px;        
         display: none;
@@ -130,7 +130,7 @@ a {
           position: absolute;
           &:before{content:"\f066"}
         }
-        #legend {
+        #categoryCheckList {
           display: flex;
         }
       }

@@ -11,7 +11,7 @@
 
 	var _map;
 	var _table;
-	var _legend;
+	var _categoryCheckList;
 	var _playPanel;
 	var _selectionMachine;
 
@@ -106,7 +106,7 @@
 
 			_playPanel = new PlayPanel($("#video-display").eq(0));
 			
-			_legend = $(new Legend($("#legend").get(0))).on(
+			_categoryCheckList = $(new CategoryCheckList($("#categoryCheckList").get(0))).on(
 				"itemClick", 
 				legend_onActivationChange
 			).get(0);
@@ -141,8 +141,13 @@
 		_table.clearFilter();
 		_table.clearActive();
 		_playPanel.conceal();
-		var categories = _legend.getActiveCategories();
-		var videos = _selectionMachine.selectVideosForCategories(categories);
+		var categories = _categoryCheckList.getActiveCategories();
+		var videos;
+		if (categories.length === 0) {
+			videos = _selectionMachine.getVideos();
+		} else {
+			videos = _selectionMachine.selectVideosForCategories(categories);
+		}
 		_table.filter(videos);
 	}
 
@@ -151,23 +156,32 @@
 		_table.clearActive();
 		_playPanel.conceal();
 		var videos = _selectionMachine.selectVideosForLocation(location);
+		var categories = _categoryCheckList.getActiveCategories();
 		if (videos.length > 1) {
-			videos = _selectionMachine.selectVideosForCategories(
-				_legend.getActiveCategories(), 
-				videos
-			);
+			if (categories.length > 0) {
+				videos = _selectionMachine.selectVideosForCategories(
+					categories, 
+					videos
+				);
+			}
 			_table.filter(videos);
 		} else {
-			var categories = _legend.getActiveCategories();
-			_table.filter(_selectionMachine.selectVideosForCategories(categories));
+			if (categories.length > 0) {
+				_table.filter(_selectionMachine.selectVideosForCategories(categories));
+			}
 			_table.activateItem(videos.shift());
 		}
 	}
 	
 	function legend_onActivationChange(event)
 	{
-		var categories = _legend.getActiveCategories();
-		var videos = _selectionMachine.selectVideosForCategories(categories);
+		var categories = _categoryCheckList.getActiveCategories();
+		var videos;
+		if (categories.length === 0) {
+			videos = _selectionMachine.getVideos();
+		} else {
+			videos = _selectionMachine.selectVideosForCategories(categories);
+		}
 		_table.filter(videos);
 		_map.loadData(_selectionMachine.selectLocationsForVideos(videos));
 	}

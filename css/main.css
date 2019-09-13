@@ -144,7 +144,7 @@ a {
   max-width: 70%;
   background-color: rgba(255, 255, 255, 0.7);
 }
-#main #map #legend-container #legend {
+#main #map #legend-container #categoryCheckList {
   list-style-type: none;
   -webkit-margin-before: 0px;
   -webkit-margin-after: 0px;
@@ -160,52 +160,20 @@ a {
   padding: 10px;
   justify-content: space-around;
 }
-#main #map #legend-container #legend li button {
-  display: flex;
-  align-items: center;
+#main #map #legend-container #categoryCheckList li button {
   width: 150px;
   margin: 0px;
+  text-align: left;
   cursor: pointer;
 }
-#main #map #legend-container #legend li button * {
+#main #map #legend-container #categoryCheckList li button * {
   pointer-events: none;
 }
-#main #map #legend-container #legend li button div.swatch {
-  width: 35px;
-  height: 45px;
-  margin-right: 6px;
-  background: url("https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/images/markers-soft.png") no-repeat 0 0;
-}
-#main #map #legend-container #legend li button span {
-  text-align: left;
-  width: 60px;
-}
-#main #map #legend-container #legend li button.inactive {
+#main #map #legend-container #categoryCheckList li button.active {
   background: gray;
   color: silver;
 }
-#main #map #legend-container #legend li:nth-of-type(1) div.swatch {
-  background-position: -324px 0;
-}
-#main #map #legend-container #legend li:nth-of-type(2) div.swatch {
-  background-position: -36px 0;
-}
-#main #map #legend-container #legend li:nth-of-type(3) div.swatch {
-  background-position: 0 0;
-}
-#main #map #legend-container #legend li:nth-of-type(4) div.swatch {
-  background-position: -144px 0;
-}
-#main #map #legend-container #legend li:nth-of-type(5) div.swatch {
-  background-position: -288px 0;
-}
-#main #map #legend-container #legend li:nth-of-type(5) div.swatch i {
-  color: white;
-  margin-left: 2px;
-  margin-top: 10px;
-  font-size: 14px;
-}
-#main #map #legend-container #legend {
+#main #map #legend-container #categoryCheckList {
   top: 10px;
   left: 10px;
   display: none;
@@ -233,7 +201,7 @@ a {
 #main #map #legend-container.expanded button#legend-retract:before {
   content: "";
 }
-#main #map #legend-container.expanded #legend {
+#main #map #legend-container.expanded #categoryCheckList {
   display: flex;
 }
 #main #container {
