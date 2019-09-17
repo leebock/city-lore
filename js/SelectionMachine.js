@@ -70,14 +70,6 @@ SelectionMachine.prototype.selectVideosForCategories = function(categories, vide
     );
 };
 
-SelectionMachine.prototype.selectVideosForLocation = function(location)
-{
-    return $.grep(
-        this._videos,
-        function(video){return video.getLocation() === location.getName();}
-    );
-};
-
 SelectionMachine.prototype.selectVideoByTitle = function(title)
 {
     return $.grep(

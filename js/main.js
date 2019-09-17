@@ -122,7 +122,7 @@
 	{
 		_table.clearActive();
 		_playPanel.conceal();
-		var videos = _selectionMachine.selectVideosForLocation(location);
+		var videos = location.getVideos();
 		var categories = _categoryCheckList.getActiveCategories();
 		if (videos.length > 1) {
 			if (categories.length > 0) {
