@@ -1,5 +1,6 @@
 function SelectionMachine(jsonVideos)
 {
+    this._categories = [];
     this._videos = $.map(
         jsonVideos, 
         function(json, index) {
@@ -8,9 +9,33 @@ function SelectionMachine(jsonVideos)
     );
 }
 
+SelectionMachine.prototype.setCategories = function(categories)
+{
+    this._categories = categories;
+};
+
 SelectionMachine.prototype.getVideos = function()
 {
-    return this._videos;
+    var videos = $.map(this._videos, function(video){return video;});
+    var categories = this._categories; // variable necessary because of this scope...
+    if (categories.length) {
+        videos = $.grep(
+            videos,
+            function(video) {
+                var flag = false;
+                $.each(
+                    video.getCategories(),
+                    function(index, value) {
+                        if ($.inArray(value, categories) > -1) {
+                            flag = true;
+                        }
+                    }
+                );
+                return flag;
+            }
+        );
+    }
+    return videos;
 };
 
 SelectionMachine.prototype.selectVideoByID = function(id)
@@ -21,28 +46,6 @@ SelectionMachine.prototype.selectVideoByID = function(id)
     ).shift();
 };
 
-SelectionMachine.prototype.selectVideosForCategories = function(categories, videos)
-{
-    if (!videos) {
-        videos = this._videos;
-    }
-    return $.grep(
-        videos,
-        function(video) {
-            var flag = false;
-            $.each(
-                video.getCategories(),
-                function(index, value) {
-                    if ($.inArray(value, categories) > -1) {
-                        flag = true;
-                    }
-                }
-            );
-            return flag;
-        }
-    );
-};
-
 SelectionMachine.prototype.selectVideoByTitle = function(title)
 {
     return $.grep(
@@ -50,6 +53,7 @@ SelectionMachine.prototype.selectVideoByTitle = function(title)
         function(video){return video.getTitle() === title;}
     ).shift();
 };
+
 SelectionMachine.prototype.summarizeLocations = function(videos)
 {
     return videos.reduce(

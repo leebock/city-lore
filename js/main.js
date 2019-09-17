@@ -109,14 +109,7 @@
 		_table.clearFilter();
 		_table.clearActive();
 		_playPanel.conceal();
-		var categories = _categoryCheckList.getActiveCategories();
-		var videos;
-		if (categories.length === 0) {
-			videos = _selectionMachine.getVideos();
-		} else {
-			videos = _selectionMachine.selectVideosForCategories(categories);
-		}
-		_table.filter(videos);
+		_table.filter(_selectionMachine.getVideos());
 	}
 
 	function map_onMarkerActivate(location)
@@ -124,32 +117,17 @@
 		_table.clearActive();
 		_playPanel.conceal();
 		var videos = location.getVideos();
-		var categories = _categoryCheckList.getActiveCategories();
 		if (videos.length > 1) {
-			if (categories.length > 0) {
-				videos = _selectionMachine.selectVideosForCategories(
-					categories, 
-					videos
-				);
-			}
 			_table.filter(videos);
 		} else {
-			if (categories.length > 0) {
-				_table.filter(_selectionMachine.selectVideosForCategories(categories));
-			}
 			_table.activateItem(videos.shift());
 		}
 	}
 	
 	function legend_onActivationChange(event)
 	{
-		var categories = _categoryCheckList.getActiveCategories();
-		var videos;
-		if (categories.length === 0) {
-			videos = _selectionMachine.getVideos();
-		} else {
-			videos = _selectionMachine.selectVideosForCategories(categories);
-		}
+		_selectionMachine.setCategories(_categoryCheckList.getActiveCategories());
+		var videos = _selectionMachine.getVideos();
 		_table.filter(videos);
 		_map.loadData(_selectionMachine.summarizeLocations(videos));
 	}
