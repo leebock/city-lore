@@ -71,7 +71,7 @@
 
 			_selectionMachine = new SelectionMachine(data);
 			_map.loadData(
-				_selectionMachine.selectLocationsForVideos(_selectionMachine.getVideos())
+				_selectionMachine.summarizeLocations(_selectionMachine.getVideos())
 			);
 			_map.zoomToMarkers();
 				
@@ -151,7 +151,7 @@
 			videos = _selectionMachine.selectVideosForCategories(categories);
 		}
 		_table.filter(videos);
-		_map.loadData(_selectionMachine.selectLocationsForVideos(videos));
+		_map.loadData(_selectionMachine.summarizeLocations(videos));
 	}
 
 	
@@ -162,7 +162,7 @@
 	function table_onItemActivate(e, videoID)
 	{
 		_map.activateMarker(
-			_selectionMachine.selectLocationsForVideos(
+			_selectionMachine.summarizeLocations(
 				[_selectionMachine.selectVideoByID(videoID)]
 			).shift()
 		);
