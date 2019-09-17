@@ -73,6 +73,7 @@
 			_map.loadData(
 				_selectionMachine.selectLocationsForVideos(_selectionMachine.getVideos())
 			);
+			_map.zoomToMarkers();
 				
 			_table = $(new Table($("ul#table").eq(0)))
 				.on("itemActivate", table_onItemActivate)

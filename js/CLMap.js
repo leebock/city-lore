@@ -33,9 +33,6 @@ L.CLMap = L.PaddingAwareMap.extend({
         this.closePopup();
         this._records = records;
         this._loadMarkers(this._records);
-        if (this._records.length) {
-            this.zoomToMarkers();
-        }
     },
 
     zoomToMarkers: function()
