@@ -83,8 +83,6 @@ L.PaddingAwareMap = L.Map.extend({
   
     _calcNewCenter: function(center, targetZoom, paddingOptions)
     {
-        console.log("pass auf", targetZoom, this.getZoom());
-        console.log(paddingOptions);
         var targetPoint = this.project(center, targetZoom);
         if (targetZoom < this.getZoom()) {
             targetPoint = targetPoint.subtract([
