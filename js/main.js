@@ -15,9 +15,6 @@
 
 	$(document).ready(function() {
 
-
-		var jsonVideos;		
-
 		new SocialButtonBar();
 		
 		_map = new L.CLMap(
@@ -59,19 +56,20 @@
 				header: true,
 				download: true,
 				complete: function(data) {
-					jsonVideos = $.grep(
-						data.data, 
-						function(value){return value.X && value.Y;}
+					finish(
+						$.grep(
+							data.data, 
+							function(value){return value.X && value.Y;}
+						)
 					);
-					finish();
 				}
 			}
 		);
 
-		function finish()
+		function finish(data)
 		{
 
-			_selectionMachine = new SelectionMachine(jsonVideos);
+			_selectionMachine = new SelectionMachine(data);
 			_map.loadData(
 				_selectionMachine.selectLocationsForVideos(_selectionMachine.getVideos())
 			);
