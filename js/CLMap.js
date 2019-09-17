@@ -28,7 +28,7 @@ L.CLMap = L.PaddingAwareMap.extend({
     /******************* METHODS *********************/
     /*************************************************/
 
-    loadData: function(records, selectionMachine)
+    loadData: function(records)
     {
         this.closePopup();
         this._records = records;
