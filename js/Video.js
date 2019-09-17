@@ -18,6 +18,11 @@ Video.prototype.getLocation = function()
 	return this._json.Location;
 };
 
+Video.prototype.getLatLng = function()
+{
+	return L.latLng(this._json.Y, this._json.X);
+};
+
 Video.prototype.getVideo = function()
 {
 	return this._json.Video;

@@ -5,8 +5,6 @@
 	var WIDTH_THRESHOLD = 768;
 
 	var GLOBAL_CLASS_USETOUCH = "touch";
-
-	var LOCATIONS_SPREADSHEET_URL =  "data/locations.csv";
 	var VIDEOS_SPREADSHEET_URL = "data/videos.csv";
 
 	var _map;
@@ -19,7 +17,6 @@
 
 
 		var jsonVideos;		
-		var jsonLocations;
 
 		new SocialButtonBar();
 		
@@ -55,21 +52,6 @@
 				position: "topright"
 			}).addTo(_map);			
 		}
-
-		Papa.parse(
-			LOCATIONS_SPREADSHEET_URL, 
-			{
-				header: true,
-				download: true,
-				complete: function(data) {
-					jsonLocations = $.grep(
-						data.data, 
-						function(value){return value.X && value.Y;}
-					);
-					finish();
-				}
-			}
-		);
 		
 		Papa.parse(
 			VIDEOS_SPREADSHEET_URL,
@@ -89,13 +71,10 @@
 		function finish()
 		{
 
-			if (!jsonLocations || !jsonVideos) {
-				return;
-			}
-
-			_selectionMachine = new SelectionMachine(jsonLocations, jsonVideos);
-
-			_map.loadData(_selectionMachine.getLocations());
+			_selectionMachine = new SelectionMachine(jsonVideos);
+			_map.loadData(
+				_selectionMachine.selectLocationsForVideos(_selectionMachine.getVideos())
+			);
 				
 			_table = $(new Table($("ul#table").eq(0)))
 				.on("itemActivate", table_onItemActivate)

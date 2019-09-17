@@ -1,38 +1,16 @@
-function SelectionMachine(jsonLocations, jsonVideos)
+function SelectionMachine(jsonVideos)
 {
-    var self = this;
-
     this._videos = $.map(
         jsonVideos, 
         function(json, index) {
             return new Video(json);
         }
-    );    
-
-    this._locations = $.map(
-        jsonLocations, 
-        function(json, index) {
-            return new Location(
-                json, 
-                $.grep(
-                    self._videos,
-                    function(video){return video.getLocation() === json.Name;}
-                )                
-            );
-        }
-    );    
-
-
+    );
 }
 
 SelectionMachine.prototype.getVideos = function()
 {
     return this._videos;
-};
-
-SelectionMachine.prototype.getLocations = function()
-{
-    return this._locations;
 };
 
 SelectionMachine.prototype.selectVideoByID = function(id)
@@ -45,20 +23,28 @@ SelectionMachine.prototype.selectVideoByID = function(id)
 
 SelectionMachine.prototype.selectLocationsForVideos = function(videos)
 {
-    return $.grep(
-        this._locations,
-        function(location) {
-            var flag = false;
-            $.each(
-                videos,
-                function(index, video) {
-                    if (location.getName() === video.getLocation()) {
-                        flag = true;
-                    }
+    return videos.reduce(
+        function(accumulator, currentVideo) {
+            var location = $.grep(
+                accumulator, 
+                function(location) 
+                {
+                    return location.getName() === currentVideo.getLocation();
                 }
-            );
-            return flag;
-        }
+            ).shift();
+            if (!location) {
+                location = new Location(
+                    currentVideo.getLocation(), 
+                    currentVideo.getLatLng()
+                );
+                location.addVideo(currentVideo);
+                accumulator.push(location);
+            } else {
+                location.addVideo(currentVideo);
+            }
+            return accumulator;
+        },
+        []
     );
 };
 
