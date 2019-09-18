@@ -30,6 +30,31 @@ L.PaddingAwareMap = L.Map.extend({
             options
         );
     },
+    
+    getUsableBounds: function()
+    {
+        
+        var pBR = this._paddingQueryFunction().paddingBottomRight;
+        var pTL = this._paddingQueryFunction().paddingTopLeft;
+    
+        var ll = L.point({
+            x: pTL[0],
+            y: this.getSize().y - pBR[1]	
+        });							
+    
+        var ur = L.point({
+            x: this.getSize().x - pBR[0],
+            y: pTL[1]	
+        });
+    
+        var bounds = L.latLngBounds(
+            this.containerPointToLatLng(ll),
+            this.containerPointToLatLng(ur)
+        );
+        
+        return bounds;
+        
+    },
 
     panTo: function(latLng)
     {
@@ -96,6 +121,7 @@ L.PaddingAwareMap = L.Map.extend({
             ]);
         }
         return this.unproject(targetPoint, targetZoom);
-    }
+    },
+
 
 });

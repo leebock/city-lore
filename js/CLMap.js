@@ -42,11 +42,23 @@ L.CLMap = L.PaddingAwareMap.extend({
     
     activateMarker: function(record)
     {
-        L.popup({closeButton: false, offset: L.point(0, -25)})
+        L.popup({autoPan: false, closeButton: false, offset: L.point(0, -25)})
             .setLatLng(record.getLatLng())
             .setContent(this._popupHTMLCreator(record))
-            .openOn(this);      
-        this.flyToBounds(record.getLatLng().toBounds(5000));
+            .openOn(this);
+            
+        var bounds = record.getLatLng().toBounds(5000);
+        if (!this.getUsableBounds().contains(record.getLatLng())) {
+            this.flyToBounds(bounds);
+        } else {
+            if (this.getBoundsZoom(bounds) > this.getZoom())
+            {
+                this.flyToBounds(bounds);
+            } else {
+                this.panTo(record.getLatLng());
+            }
+        }
+                        
     },
 
     /*************************************************/
