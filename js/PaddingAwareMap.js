@@ -23,7 +23,6 @@ L.PaddingAwareMap = L.Map.extend({
     {
         var options = this._paddingQueryFunction();
         options.animate = true;
-        options.duration = 1;
         L.Map.prototype.flyToBounds.call(
             this, 
             bnds,
