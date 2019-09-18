@@ -9,7 +9,7 @@
 
 	var _map;
 	var _table;
-	var _categoryCheckList;
+	var _categorySelect;
 	var _playPanel;
 	var _selectionMachine;
 	var _activeLocation;
@@ -85,10 +85,9 @@
 
 			_playPanel = new PlayPanel($("#video-display").eq(0));
 			
-			_categoryCheckList = $(new CategoryCheckList($("#categoryCheckList").get(0))).on(
-				"itemClick", 
-				legend_onActivationChange
-			).get(0);
+			_categorySelect = $(new CategorySelect($("select#categories").get(0)))
+				.on("categoryChange", categorySelect_onCategoryChange)
+				.get(0);
 
 			$("div#filterByMap input").change(checkbox_onChange);
 			
@@ -141,10 +140,10 @@
 		}
 	}
 	
-	function legend_onActivationChange(event)
+	function categorySelect_onCategoryChange(event)
 	{
 		_activeLocation = null;
-		_selectionMachine.setCategories(_categoryCheckList.getActiveCategories());
+		_selectionMachine.setCategories(_categorySelect.getActiveCategories());
 		var videos = _selectionMachine.getVideos();
 		_table.filter(extentFilter(videos));
 		_map.loadData(_selectionMachine.summarizeLocations(videos));

@@ -163,38 +163,17 @@ a {
     padding: 10px;
   }
 }
-#main #container #categoryCheckList {
-  list-style-type: none;
-  -webkit-margin-before: 0px;
-  -webkit-margin-after: 0px;
-  -webkit-margin-start: 0px;
-  -webkit-margin-end: 0px;
-  -webkit-padding-start: 0px;
-  -moz-margin-start: 0px;
-  -moz-margin-end: 0px;
-  -moz-padding-start: 0px;
-  -moz-padding-end: 0px;
-  overflow: hidden;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 10px;
-  justify-content: space-around;
-}
-#main #container #categoryCheckList li button {
-  margin: 0px;
-  text-align: left;
-  cursor: pointer;
-}
-#main #container #categoryCheckList li button * {
-  pointer-events: none;
-}
-#main #container #categoryCheckList li button.active {
-  background: gray;
-  color: silver;
+#main #container #categories {
+  font-size: 20px;
+  padding: 5px;
 }
 #main #container div#filterByMap {
-  padding-left: 10px;
+  font-size: 20px;
+  padding-top: 15px;
   padding-bottom: 15px;
+}
+#main #container div#filterByMap input {
+  cursor: pointer;
 }
 #main #container ul#table {
   list-style-type: none;
