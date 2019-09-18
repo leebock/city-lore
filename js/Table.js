@@ -95,6 +95,13 @@ Table.prototype.filter = function(videos)
     );
     $(selected).addClass("selected");
     $(ul).addClass("filtered");
+    var active = $(ul.children("li.active")).eq(0);
+    if (active.length) {
+        $(ul).animate(
+            {scrollTop: $(active).offset().top - $(ul).offset().top + $(ul).scrollTop()}, 
+            'slow'
+        );    
+    }
 };
 
 Table.prototype.clearFilter = function()
