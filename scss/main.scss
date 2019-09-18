@@ -124,6 +124,11 @@ a {
     }
   
     @import "CategoryCheckList";
+
+    div#filterByMap {
+      padding-left: 10px;
+      padding-bottom: 15px;
+    }
       
     @import "Table";
     ul#table {

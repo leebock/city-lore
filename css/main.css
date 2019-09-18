@@ -192,6 +192,10 @@ a {
   background: gray;
   color: silver;
 }
+#main #container div#filterByMap {
+  padding-left: 10px;
+  padding-bottom: 15px;
+}
 #main #container ul#table {
   list-style-type: none;
   -webkit-margin-before: 0px;

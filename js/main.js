@@ -12,6 +12,7 @@
 	var _categoryCheckList;
 	var _playPanel;
 	var _selectionMachine;
+	var _activeLocation;
 
 	$(document).ready(function() {
 
@@ -88,7 +89,11 @@
 				"itemClick", 
 				legend_onActivationChange
 			).get(0);
-						
+
+			$("div#filterByMap input").change(checkbox_onChange);
+			
+			_map.on("moveend", map_onExtentChange);
+
 			// one time check to see if touch is being used
 
 			$(document).one(
@@ -104,16 +109,28 @@
 	***************************** SELECTION EVENTS  ****************************
 	***************************************************************************/
 
+	function checkbox_onChange(event)
+	{
+		_table.filter(extentFilter(_selectionMachine.getVideos()));
+	}
+
 	function map_onClick()
 	{
+		_activeLocation = null;
 		_table.clearFilter();
 		_table.clearActive();
 		_playPanel.conceal();
-		_table.filter(_selectionMachine.getVideos());
+		_table.filter(extentFilter(_selectionMachine.getVideos()));
+	}
+	
+	function map_onExtentChange()
+	{
+		_table.filter(extentFilter(_selectionMachine.getVideos()));
 	}
 
 	function map_onMarkerActivate(location)
 	{
+		_activeLocation = location;
 		_table.clearActive();
 		_playPanel.conceal();
 		var videos = location.getVideos();
@@ -126,10 +143,25 @@
 	
 	function legend_onActivationChange(event)
 	{
+		_activeLocation = null;
 		_selectionMachine.setCategories(_categoryCheckList.getActiveCategories());
 		var videos = _selectionMachine.getVideos();
-		_table.filter(videos);
+		_table.filter(extentFilter(videos));
 		_map.loadData(_selectionMachine.summarizeLocations(videos));
+	}
+	
+	function extentFilter(videos)
+	{
+		if (_activeLocation && _activeLocation.getVideos().length > 1) {
+			return _activeLocation.getVideos();
+		}
+		if ($("div#filterByMap input").prop("checked")) {
+			videos = $.grep(
+				videos,
+				function(video){return _map.getUsableBounds().contains(video.getLatLng());}
+			);
+		}
+		return videos;
 	}
 
 	
