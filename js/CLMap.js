@@ -37,7 +37,9 @@ L.CLMap = L.PaddingAwareMap.extend({
 
     zoomToMarkers: function()
     {
-        this.fitBounds(this._layerMarkers.getBounds().pad(0.1));    
+        if (this._layerMarkers.getLayers().length) {
+            this.fitBounds(this._layerMarkers.getBounds().pad(0.1));    
+        }
     },
     
     activateMarker: function(record)
