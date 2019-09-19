@@ -40,3 +40,8 @@ Video.prototype.getCategories = function()
 {
 	return this._json.Category.split(",");
 };
+
+Video.prototype.getBorough = function()
+{
+	return this._json.Borough;
+};

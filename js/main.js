@@ -10,6 +10,7 @@
 	var _map;
 	var _table;
 	var _categorySelect;
+	var _boroughSelect;
 	var _playPanel;
 	var _selectionMachine;
 	var _activeLocation;
@@ -88,6 +89,10 @@
 			_categorySelect = $(new CategorySelect($("select#categories").get(0)))
 				.on("categoryChange", categorySelect_onCategoryChange)
 				.get(0);
+				
+			_boroughSelect = $(new BoroughSelect($("select#boroughs").get(0)))
+				.on("boroughChange", boroughSelect_onBoroughChange)
+				.get(0);
 
 			$("div#filterByMap input").change(checkbox_onChange);
 			
@@ -147,6 +152,16 @@
 		var videos = _selectionMachine.getVideos();
 		_table.filter(extentFilter(videos));
 		_map.loadData(_selectionMachine.summarizeLocations(videos));
+	}
+	
+	function boroughSelect_onBoroughChange(event)
+	{
+		_activeLocation = null;
+		_selectionMachine.setBorough(_boroughSelect.getActiveBorough());
+		var videos = _selectionMachine.getVideos();
+		_table.filter(extentFilter(videos));
+		_map.loadData(_selectionMachine.summarizeLocations(videos));
+		_map.zoomToMarkers();
 	}
 	
 	function extentFilter(videos)

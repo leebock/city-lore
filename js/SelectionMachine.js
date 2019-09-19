@@ -1,6 +1,7 @@
 function SelectionMachine(jsonVideos)
 {
     this._categories = [];
+    this._borough = null;
     this._videos = $.map(
         jsonVideos, 
         function(json, index) {
@@ -12,6 +13,11 @@ function SelectionMachine(jsonVideos)
 SelectionMachine.prototype.setCategories = function(categories)
 {
     this._categories = categories;
+};
+
+SelectionMachine.prototype.setBorough = function(borough)
+{
+    this._borough = borough;
 };
 
 SelectionMachine.prototype.getVideos = function()
@@ -34,6 +40,15 @@ SelectionMachine.prototype.getVideos = function()
                 return flag;
             }
         );
+    }
+    var borough = this._borough;
+    if (borough) {
+        videos = $.grep(
+            videos, 
+            function(video) {
+                return video.getBorough() === borough;
+            }
+        );        
     }
     return videos;
 };

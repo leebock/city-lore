@@ -122,9 +122,24 @@ a {
       bottom: 0px;
       padding: 10px;
     }
+    div:nth-of-type(1)
+    {
+      display: flex;
+      select {
+        font-size: 20px;
+        padding: 5px;
+        flex-basis: 50%;
+      }
+      select:nth-of-type(1)
+      {
+        margin-right: 5px;
+      }
+      select:nth-of-type(2)
+      {
+        margin-left: 5px;
+      }
+    }
   
-    @import "CategorySelect";
-
     div#filterByMap {
       font-size: 20px;
       padding-top: 15px;

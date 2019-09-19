@@ -163,9 +163,19 @@ a {
     padding: 10px;
   }
 }
-#main #container #categories {
+#main #container div:nth-of-type(1) {
+  display: flex;
+}
+#main #container div:nth-of-type(1) select {
   font-size: 20px;
   padding: 5px;
+  flex-basis: 50%;
+}
+#main #container div:nth-of-type(1) select:nth-of-type(1) {
+  margin-right: 5px;
+}
+#main #container div:nth-of-type(1) select:nth-of-type(2) {
+  margin-left: 5px;
 }
 #main #container div#filterByMap {
   font-size: 20px;
