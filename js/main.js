@@ -6,6 +6,34 @@
 
 	var GLOBAL_CLASS_USETOUCH = "touch";
 	var VIDEOS_SPREADSHEET_URL = "data/videos.csv";
+	
+	var BOUNDS_LOOKUP = {
+		"Manhattan": L.latLngBounds(
+			L.latLng(40.700916, -74.022634), 
+			L.latLng(40.878994, -73.901843)
+		),
+		"Brooklyn": L.latLngBounds(
+			L.latLng(40.568647, -74.039938), 
+			L.latLng(40.741717, -73.859058)
+		),
+		"Bronx": L.latLngBounds(
+			L.latLng(40.784114, -73.936697), 
+			L.latLng(40.904799, -73.773865)
+		),
+		"Queens": L.latLngBounds(
+			L.latLng(40.540710, -73.947643), 
+			L.latLng(40.798580, -73.698802)
+		),
+		"Staten Island": L.latLngBounds(
+			L.latLng(40.492531, -74.256720), 
+			L.latLng(40.649321, -74.053802)
+		)				
+	};
+	
+	var BOUNDS_NYC = L.latLngBounds(
+		L.latLng(40.492531, -74.256720), 
+		L.latLng(40.914166, -73.708355)
+	);
 
 	var _map;
 	var _table;
@@ -161,7 +189,11 @@
 		var videos = _selectionMachine.getVideos();
 		_table.filter(extentFilter(videos));
 		_map.loadData(_selectionMachine.summarizeLocations(videos));
-		_map.zoomToMarkers();
+		_map.flyToBounds(
+			_boroughSelect.getActiveBorough() ? 
+			BOUNDS_LOOKUP[_boroughSelect.getActiveBorough()] :
+			BOUNDS_NYC
+		);
 	}
 	
 	function extentFilter(videos)
