@@ -163,39 +163,40 @@ a {
     padding: 10px;
   }
 }
-#main #container div:nth-of-type(1) {
+#main #container > div:nth-of-type(1) {
   display: flex;
+  padding: 10px;
 }
-#main #container div:nth-of-type(1) select {
+#main #container > div:nth-of-type(1) select {
   font-size: 20px;
   padding: 5px;
   flex-basis: 50%;
 }
-#main #container div:nth-of-type(1) select:nth-of-type(1) {
+#main #container > div:nth-of-type(1) select:nth-of-type(1) {
   margin-right: 5px;
 }
-#main #container div:nth-of-type(1) select:nth-of-type(2) {
+#main #container > div:nth-of-type(1) select:nth-of-type(2) {
   margin-left: 5px;
 }
 @media (max-width: 450px) {
-  #main #container div:nth-of-type(1) {
+  #main #container > div:nth-of-type(1) {
     flex-direction: column;
   }
-  #main #container div:nth-of-type(1) select {
+  #main #container > div:nth-of-type(1) select {
     font-size: 16px;
   }
-  #main #container div:nth-of-type(1) select:nth-of-type(1) {
+  #main #container > div:nth-of-type(1) select:nth-of-type(1) {
     margin-right: 0px;
     margin-bottom: 5px;
   }
-  #main #container div:nth-of-type(1) select:nth-of-type(2) {
+  #main #container > div:nth-of-type(1) select:nth-of-type(2) {
     margin-left: 0px;
   }
 }
 #main #container div#filterByMap {
   font-size: 20px;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding: 10px;
+  padding-bottom: 10px;
 }
 #main #container div#filterByMap input {
   cursor: pointer;
@@ -205,6 +206,48 @@ a {
     font-size: 16px;
     padding-top: 5px;
     padding-bottom: 5px;
+  }
+}
+#main #container div#locationFilterBadge {
+  padding: 10px;
+  margin-bottom: 10px;
+}
+#main #container div#locationFilterBadge > span:nth-of-type(1):before {
+  content: "Showing only videos for...";
+}
+#main #container div#locationFilterBadge div:nth-child(2) {
+  margin-top: 5px;
+  padding: 10px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: darkgrey;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+#main #container div#locationFilterBadge div:nth-child(2) span {
+  flex-basis: 100%;
+  flex-grow: 1;
+}
+#main #container div#locationFilterBadge div:nth-child(2) button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  padding-left: 2px;
+  padding-right: 2px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+#main #container div#locationFilterBadge div:nth-child(2) button:before {
+  content: "X";
+}
+@media (max-width: 450px) {
+  #main #container div#locationFilterBadge {
+    font-size: 16px;
+    padding-top: 2px;
+    padding-bottom: 2px;
   }
 }
 #main #container ul#table {

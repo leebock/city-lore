@@ -39,6 +39,7 @@
 	var _table;
 	var _categorySelect;
 	var _boroughSelect;
+	var _locationFilterBadge;
 	var _playPanel;
 	var _selectionMachine;
 	var _activeLocation;
@@ -124,6 +125,12 @@
 
 			$("div#filterByMap input").change(checkbox_onChange);
 			
+			_locationFilterBadge = $(
+					new LocationFilterBadge($("#locationFilterBadge").get(0))
+				)
+				.on("cancelLocationFilter", locationFilterBadge_onCancelLocationFilter)
+				.get(0);
+			
 			_map.on("moveend", map_onExtentChange);
 
 			// one time check to see if touch is being used
@@ -146,9 +153,19 @@
 		_table.filter(extentFilter(_selectionMachine.getVideos()));
 	}
 
+	function locationFilterBadge_onCancelLocationFilter(event)
+	{
+		_activeLocation = null;
+		_locationFilterBadge.hide();
+		_map.closePopup();
+		_table.clearActive();
+		_table.filter(extentFilter(_selectionMachine.getVideos()));
+	}
+
 	function map_onClick()
 	{
 		_activeLocation = null;
+		_locationFilterBadge.hide();
 		_table.clearFilter();
 		_table.clearActive();
 		_playPanel.conceal();
@@ -168,14 +185,18 @@
 		var videos = location.getVideos();
 		if (videos.length > 1) {
 			_table.filter(videos);
+			_locationFilterBadge.show(location.getName());
 		} else {
+			_table.filter(extentFilter(_selectionMachine.getVideos()));
 			_table.activateItem(videos.shift());
+			_locationFilterBadge.hide();
 		}
 	}
 	
 	function categorySelect_onCategoryChange(event)
 	{
 		_activeLocation = null;
+		_locationFilterBadge.hide();
 		_selectionMachine.setCategories(_categorySelect.getActiveCategories());
 		var videos = _selectionMachine.getVideos();
 		_table.filter(extentFilter(videos));
@@ -185,6 +206,7 @@
 	function boroughSelect_onBoroughChange(event)
 	{
 		_activeLocation = null;
+		_locationFilterBadge.hide();
 		_selectionMachine.setBorough(_boroughSelect.getActiveBorough());
 		var videos = _selectionMachine.getVideos();
 		_table.filter(extentFilter(videos));
