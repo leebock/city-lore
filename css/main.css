@@ -177,6 +177,21 @@ a {
 #main #container div:nth-of-type(1) select:nth-of-type(2) {
   margin-left: 5px;
 }
+@media (max-width: 450px) {
+  #main #container div:nth-of-type(1) {
+    flex-direction: column;
+  }
+  #main #container div:nth-of-type(1) select {
+    font-size: 16px;
+  }
+  #main #container div:nth-of-type(1) select:nth-of-type(1) {
+    margin-right: 0px;
+    margin-bottom: 5px;
+  }
+  #main #container div:nth-of-type(1) select:nth-of-type(2) {
+    margin-left: 0px;
+  }
+}
 #main #container div#filterByMap {
   font-size: 20px;
   padding-top: 15px;
@@ -184,6 +199,13 @@ a {
 }
 #main #container div#filterByMap input {
   cursor: pointer;
+}
+@media (max-width: 450px) {
+  #main #container div#filterByMap {
+    font-size: 16px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
 }
 #main #container ul#table {
   list-style-type: none;
