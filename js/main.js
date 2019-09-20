@@ -73,7 +73,7 @@
 				states:[
 					{
 						icon: "fa fa-home",
-						onClick: function(btn, map) {_map.zoomToMarkers();},
+						onClick: function(btn, map) {_map.flyToBounds(BOUNDS_NYC);},
 						title: "Full extent"
 					}
 				],
