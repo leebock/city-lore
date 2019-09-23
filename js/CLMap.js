@@ -44,7 +44,7 @@ L.CLMap = L.PaddingAwareMap.extend({
     
     activateMarker: function(record)
     {
-        L.popup({autoPan: false, closeButton: false, offset: L.point(0, -25)})
+        L.popup({autoPan: false, closeButton: false, offset: L.point(30, -35)})
             .setLatLng(record.getLatLng())
             .setContent(this._popupHTMLCreator(record))
             .openOn(this);
@@ -78,16 +78,26 @@ L.CLMap = L.PaddingAwareMap.extend({
 
         var options = {riseOnHover: true};
         if (record.getVideos().length > 1) {
-            options.icon = L.AwesomeMarkers.icon(
-                {icon: 'star', markerColor: 'darkpurple', prefix: "fa"}
+            options.icon = L.icon(
+                {
+                    iconUrl: "resources/Pushpin2.png",
+                    iconSize: [42, 45],
+                    iconAnchor: [-2, 45]
+                }
             );
             options.zIndexOffset = 1000;            
         } else {
-            options.icon = L.AwesomeMarkers.icon({markerColor: 'purple'});
+            options.icon = L.icon(
+                {
+                    iconUrl: "resources/Pushpin1.png",
+                    iconSize: [42, 45],
+                    iconAnchor: [-2, 45]
+                }
+            );
         }
 
         L.marker(record.getLatLng(), options)
-          .bindTooltip(self._popupHTMLCreator(record), {className: "tooltip-map"})
+          .bindTooltip(self._popupHTMLCreator(record), {offset: [20, -20], className: "tooltip-map"})
           .addTo(self._layerMarkers)
           .key = record;
       }
