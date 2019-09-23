@@ -264,9 +264,9 @@
 	function getExtentPadding()
 	{
 		var small = $(window).width() <= WIDTH_THRESHOLD;
-		var top = 0;
+		var top = 70;
 		var right = 0;
-		var bottom = small ? $("#container").position().top : 0;
+		var bottom = small ? $("#container").outerHeight() : 0;
 		var left = 0;
 		return {paddingTopLeft: [left,top], paddingBottomRight: [right,bottom]};
 	}
