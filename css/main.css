@@ -385,33 +385,26 @@ a {
   display: flex;
   flex-direction: column;
 }
-#main #container div#video-display div:nth-child(1) {
+#main #container div#video-display > div:nth-child(1) {
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
   padding: 10px;
   background: black;
 }
-#main #container div#video-display div:nth-child(1) button {
+#main #container div#video-display > div:nth-child(1) button {
   cursor: pointer;
   background: none;
   border: none;
   font-size: 40px;
   color: white;
 }
-#main #container div#video-display div:nth-child(1) button:before {
+#main #container div#video-display > div:nth-child(1) button:before {
   content: "×";
 }
-#main #container div#video-display div:nth-child(2) {
+#main #container div#video-display > iframe:nth-child(2) {
   position: relative;
   flex: 1;
-}
-#main #container div#video-display div:nth-child(2) iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
 }
 
 /*# sourceMappingURL=main.css.map */

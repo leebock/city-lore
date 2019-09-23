@@ -232,7 +232,7 @@ a {
         display: flex;
         flex-direction: column;
       }
-      div:nth-child(1) {
+      & > div:nth-child(1) {
         display: flex;
         justify-content: flex-end;
         align-items: flex-start;
@@ -249,16 +249,9 @@ a {
           color: white;
         }
       }
-      div:nth-child(2) {
+      & > iframe:nth-child(2) {
         position: relative;
         flex: 1;
-        iframe {
-          position: absolute;
-        	top: 0;
-        	left: 0;
-        	width: 100%;
-        	height: 100%;        
-        }
       }
     }
 

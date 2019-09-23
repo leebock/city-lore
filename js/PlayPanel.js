@@ -9,27 +9,37 @@ function PlayPanel(div)
                     $("<button>").click(function(){self.conceal();})
                 )
         )
-        .append($("<div>"));
+        .append($("<div>").attr("id", "player"));
+        
+    this._player = new YT.Player(
+        "player",
+        {
+            width: "100%",
+            events: {
+              'onReady': onPlayerReady,
+              'onStateChange': onPlayerStateChange
+            }
+        }
+    );
     
+    // when video ends
+    function onPlayerStateChange(event) {        
+        if(event.data === 0) {            
+            self.conceal();
+        }
+    }
+    function onPlayerReady(event) {
+        console.log("player is ready.");
+    }
+
 }
 
 PlayPanel.prototype.present = function(youTubeID) {
     $(this._div).addClass("active");
-    $(this._div).children("div:nth-child(2)").empty();
-    $(this._div).children("div:nth-child(2)").append(
-        $("<iframe>")
-        .attr("src", "https://www.youtube.com/embed/"+youTubeID+"?autoplay=1")
-        .attr("frameborder", "0")
-        .attr("allowfullscreen", "")
-        .attr("allow", "autoplay")
-    );    
-    
-    /*
-    $("#video-stage iframe").focus();
-    */
+    this._player.loadVideoById(youTubeID);
 };
 
 PlayPanel.prototype.conceal = function() {
     $(this._div).removeClass("active");
-    $(this._div).children("div:nth-child(2)").empty();
+    this._player.stopVideo();
 };
