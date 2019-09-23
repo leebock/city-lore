@@ -27,7 +27,6 @@ ul#table {
     padding-top: 5px;
     display: flex;
     justify-content: flex-start;
-    background-color: rgba(111,111,111,0.4);
     width: 45%;
     height: 180px;
     margin: 5px;
@@ -36,7 +35,6 @@ ul#table {
       margin: 0px;
     }
     &:hover {
-      background-color: rgba(111,111,111,0.6);
       button {
         div.veil {
           background-color: rgba(0,0,0,0);
@@ -46,7 +44,7 @@ ul#table {
     &:nth-of-type(1) {
       padding-top: 10px;
     }
-    button {
+    & > button {
       padding: 5px;
       cursor: pointer;
       flex: 1;
@@ -93,6 +91,9 @@ ul#table {
         button {
           display: none;
           margin-top: 0px;
+          background: none;
+          border: none;
+          cursor: pointer;
           background-image: url("../resources/play-button-icon.png");
           background-position: center;
           background-size: contain;
