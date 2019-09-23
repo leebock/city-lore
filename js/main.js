@@ -31,8 +31,8 @@
 	};
 	
 	var BOUNDS_NYC = L.latLngBounds(
-		L.latLng(40.492531, -74.256720), 
-		L.latLng(40.914166, -73.708355)
+		L.latLng(40.616643, -74.146981), 
+		L.latLng(40.882684, -73.771086)
 	);
 
 	var _map;
@@ -104,7 +104,7 @@
 			_map.loadData(
 				_selectionMachine.summarizeLocations(_selectionMachine.getVideos())
 			);
-			_map.zoomToMarkers();
+			_map.fitBounds(BOUNDS_NYC);
 				
 			_table = $(new Table($("ul#table").eq(0)))
 				.on("itemActivate", table_onItemActivate)
