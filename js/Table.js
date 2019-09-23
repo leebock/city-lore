@@ -15,17 +15,15 @@ Table.prototype.load = function(items) {
                 .append(
                     $("<button>")
                         .data("storymaps-id", item.getID())
-                        .css(
-                            "background-image", 
-                            "url('"+
-                            "https://img.youtube.com/vi/"+
-                            item.getYouTubeID()+"/0.jpg"+
-                            "')"
-                        )
-                        .append($("<h3>").html(item.getTitle()))
-                        .append($("<h4>").html(item.getLocation()))
                         .append(
-                            $("<div>").addClass("veil")
+                            $("<div>")
+                                .css(
+                                    "background-image", 
+                                    "url('"+
+                                    "https://img.youtube.com/vi/"+
+                                    item.getYouTubeID()+"/0.jpg"+
+                                    "')"
+                                )                            
                                 .append(
                                     $("<button>")
                                         .click(
@@ -37,7 +35,16 @@ Table.prototype.load = function(items) {
                                                 );
                                             }
                                         )
-                                )
+                            )
+                        )
+                        .append(
+                            $("<div>")
+                            .append($("<h3>").html(item.getTitle()))
+                            .append($("<h4>").html(item.getLocation()))
+                            .append($("<div>").html(item.getDescription()))
+                        )
+                        .append(
+                            $("<div>").addClass("veil")
                         )
                         .click(onItemButtonClick)
                 )

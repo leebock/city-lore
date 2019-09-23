@@ -17,33 +17,24 @@ ul#table {
   -webkit-overflow-scrolling: touch;
   
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-content: flex-start;
+  flex-direction: column;
   
   li {
+    
     padding: 10px;
     padding-bottom: 5px;
     padding-top: 5px;
+    flex-basis: 200px;
+    flex-shrink: 0;
     display: flex;
     justify-content: flex-start;
-    width: 45%;
-    height: 180px;
-    margin: 5px;
-    @media (max-width: 400px) {
-      width: 100%;
-      margin: 0px;
-    }
-    &:hover {
-      button {
-        div.veil {
-          background-color: rgba(0,0,0,0);
-        }
-      }
-    }
+    margin-top: 1px;
+    
     &:nth-of-type(1) {
+      margin-top: 0px;
       padding-top: 10px;
     }
+    
     & > button {
       padding: 5px;
       cursor: pointer;
@@ -51,14 +42,7 @@ ul#table {
       background: none;
       border: none;
       text-align: left;
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-color: rgba(0,0,0,0.5);
       display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: stretch;
       overflow: hidden;
       position: relative;
       &:focus {
@@ -67,28 +51,19 @@ ul#table {
       * {
         pointer-events: none;
       }
-      h3, h4 {
-        background-color: rgba(0,0,0,0.5);
-        color: white;
-      }
-      h3 {
-        margin-top: -3px;
-        margin-bottom: 0px;
-        margin-left: -2px;
-        padding: 5px;
-      }
-      h4 {
-        margin-top: 0px;
-        margin-left: 2px;
-      }
-      div.veil {
-        background-color: rgba(0,0,0,0.2);
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0px;
-        left: 0px;
-        button {
+      & > div:nth-of-type(1) {
+        width: 240px;
+        height: 180px;
+        @media (max-width: 400px) {
+          width: 140px;
+          height: 90px;
+        }
+        background-size: contain;
+        background-position: center;
+        flex-shrink: 0;
+        display: flex;
+        justify-content: center;
+        & > button {
           display: none;
           margin-top: 0px;
           background: none;
@@ -101,19 +76,59 @@ ul#table {
           width: 80px;
           height: 80px;
           align-self: center;
+          pointer-events: all;
+        }
+      }
+      & > div:nth-of-type(2) {
+        padding: 7px;
+        overflow: hidden;
+        height: 180px;
+
+        h3, h4 {
+          color: black;
+        }
+        h3 {
+          margin-top: -3px;
+          margin-bottom: 0px;
+          margin-left: -2px;
+          padding: 5px;
+        }
+        h4 {
+          margin-top: 0px;
+          margin-left: 2px;
+        }
+        & > div {
+          flex-grow: 0;
+        }
+      }
+      div.veil {
+        background-color: rgba(0,0,0,0.2);
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0px;
+        left: 0px;
+      }
+    }
+    &:hover {
+      button {
+        div.veil {
+          background-color: rgba(0,0,0,0.1);
         }
       }
     }
     &.active {
       button {
-        div.veil {
-          background-color: rgba(0,0,0,0);
-          display: flex;
-          justify-content: center;
+        & > div:nth-of-type(1) {
           button {
             display: block;
-            pointer-events: all;
           }
+        }
+        & > div:nth-of-type(2) {
+          height: inherit;
+        }
+        div.veil {
+          display: none;
         }
       }
     }

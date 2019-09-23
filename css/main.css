@@ -156,7 +156,7 @@ a {
     padding: 10px;
     width: 100%;
     max-width: none;
-    max-height: 50%;
+    max-height: 70%;
     left: auto;
     top: auto;
     bottom: 0px;
@@ -265,30 +265,20 @@ a {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-content: flex-start;
+  flex-direction: column;
 }
 #main #container ul#table li {
   padding: 10px;
   padding-bottom: 5px;
   padding-top: 5px;
+  flex-basis: 200px;
+  flex-shrink: 0;
   display: flex;
   justify-content: flex-start;
-  width: 45%;
-  height: 180px;
-  margin: 5px;
-}
-@media (max-width: 400px) {
-  #main #container ul#table li {
-    width: 100%;
-    margin: 0px;
-  }
-}
-#main #container ul#table li:hover button div.veil {
-  background-color: rgba(0, 0, 0, 0);
+  margin-top: 1px;
 }
 #main #container ul#table li:nth-of-type(1) {
+  margin-top: 0px;
   padding-top: 10px;
 }
 #main #container ul#table li > button {
@@ -298,14 +288,7 @@ a {
   background: none;
   border: none;
   text-align: left;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
   overflow: hidden;
   position: relative;
 }
@@ -315,29 +298,22 @@ a {
 #main #container ul#table li > button * {
   pointer-events: none;
 }
-#main #container ul#table li > button h3, #main #container ul#table li > button h4 {
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
+#main #container ul#table li > button > div:nth-of-type(1) {
+  width: 240px;
+  height: 180px;
+  background-size: contain;
+  background-position: center;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
 }
-#main #container ul#table li > button h3 {
-  margin-top: -3px;
-  margin-bottom: 0px;
-  margin-left: -2px;
-  padding: 5px;
+@media (max-width: 400px) {
+  #main #container ul#table li > button > div:nth-of-type(1) {
+    width: 140px;
+    height: 90px;
+  }
 }
-#main #container ul#table li > button h4 {
-  margin-top: 0px;
-  margin-left: 2px;
-}
-#main #container ul#table li > button div.veil {
-  background-color: rgba(0, 0, 0, 0.2);
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0px;
-  left: 0px;
-}
-#main #container ul#table li > button div.veil button {
+#main #container ul#table li > button > div:nth-of-type(1) > button {
   display: none;
   margin-top: 0px;
   background: none;
@@ -350,15 +326,48 @@ a {
   width: 80px;
   height: 80px;
   align-self: center;
+  pointer-events: all;
+}
+#main #container ul#table li > button > div:nth-of-type(2) {
+  padding: 7px;
+  overflow: hidden;
+  height: 180px;
+}
+#main #container ul#table li > button > div:nth-of-type(2) h3, #main #container ul#table li > button > div:nth-of-type(2) h4 {
+  color: black;
+}
+#main #container ul#table li > button > div:nth-of-type(2) h3 {
+  margin-top: -3px;
+  margin-bottom: 0px;
+  margin-left: -2px;
+  padding: 5px;
+}
+#main #container ul#table li > button > div:nth-of-type(2) h4 {
+  margin-top: 0px;
+  margin-left: 2px;
+}
+#main #container ul#table li > button > div:nth-of-type(2) > div {
+  flex-grow: 0;
+}
+#main #container ul#table li > button div.veil {
+  background-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+}
+#main #container ul#table li:hover button div.veil {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+#main #container ul#table li.active button > div:nth-of-type(1) button {
+  display: block;
+}
+#main #container ul#table li.active button > div:nth-of-type(2) {
+  height: inherit;
 }
 #main #container ul#table li.active button div.veil {
-  background-color: rgba(0, 0, 0, 0);
-  display: flex;
-  justify-content: center;
-}
-#main #container ul#table li.active button div.veil button {
-  display: block;
-  pointer-events: all;
+  display: none;
 }
 #main #container ul#table.filtered li {
   display: none;
