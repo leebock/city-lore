@@ -157,6 +157,7 @@
 	{
 		_activeLocation = null;
 		_locationFilterBadge.hide();
+		$("div#filterByMap").show();
 		_map.closePopup();
 		_table.clearActive();
 		_table.filter(extentFilter(_selectionMachine.getVideos()));
@@ -166,6 +167,7 @@
 	{
 		_activeLocation = null;
 		_locationFilterBadge.hide();
+		$("div#filterByMap").show();		
 		_table.clearFilter();
 		_table.clearActive();
 		_playPanel.conceal();
@@ -186,10 +188,12 @@
 		if (videos.length > 1) {
 			_table.filter(videos);
 			_locationFilterBadge.show(location.getName());
+			$("div#filterByMap").hide();
 		} else {
 			_table.filter(extentFilter(_selectionMachine.getVideos()));
 			_table.activateItem(videos.shift());
 			_locationFilterBadge.hide();
+			$("div#filterByMap").show();
 		}
 	}
 	
@@ -197,6 +201,7 @@
 	{
 		_activeLocation = null;
 		_locationFilterBadge.hide();
+		$("div#filterByMap").show();		
 		_selectionMachine.setCategories(_categorySelect.getActiveCategories());
 		var videos = _selectionMachine.getVideos();
 		_table.filter(extentFilter(videos));
@@ -207,6 +212,7 @@
 	{
 		_activeLocation = null;
 		_locationFilterBadge.hide();
+		$("div#filterByMap").show();		
 		_selectionMachine.setBorough(_boroughSelect.getActiveBorough());
 		var videos = _selectionMachine.getVideos();
 		_table.filter(extentFilter(videos));
