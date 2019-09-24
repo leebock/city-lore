@@ -16,26 +16,18 @@ ul#table {
   
   -webkit-overflow-scrolling: touch;
   
-  display: flex;
-  flex-direction: column;
-  
-  li {
+  & > li {
     
     padding: 10px;
     padding-bottom: 5px;
     padding-top: 5px;
-    flex-basis: 200px;
-    flex-shrink: 0;
+    margin-top: 1px;
+
     display: flex;
     justify-content: flex-start;
-    margin-top: 1px;
-    
-    &:nth-of-type(1) {
-      margin-top: 0px;
-      padding-top: 10px;
-    }
     
     & > button {
+      
       padding: 5px;
       cursor: pointer;
       flex: 1;
@@ -51,7 +43,8 @@ ul#table {
       * {
         pointer-events: none;
       }
-      & > div:nth-of-type(1) {
+      
+      & > div:nth-of-type(1) { /*thumbnail*/
         width: 240px;
         height: 180px;
         @media (max-width: 400px) {
@@ -65,7 +58,6 @@ ul#table {
         justify-content: center;
         & > button {
           display: none;
-          margin-top: 0px;
           background: none;
           border: none;
           cursor: pointer;
@@ -79,10 +71,10 @@ ul#table {
           pointer-events: all;
         }
       }
-      & > div:nth-of-type(2) {
+      
+      & > div:nth-of-type(2) { /*text*/
         padding: 7px;
         overflow: hidden;
-        height: 180px;
 
         h3, h4 {
           color: black;
@@ -96,12 +88,19 @@ ul#table {
         h4 {
           margin-top: 0px;
           margin-left: 2px;
+          font-size: 14px;
         }
         & > div {
+          font-size: 14px;
           flex-grow: 0;
+          display: -webkit-box;
+          -webkit-line-clamp: 6;
+          -webkit-box-orient: vertical;  
+          overflow: hidden;        
         }
       }
-      div.veil {
+      
+      div.veil { /*veil (duh)*/
         background-color: rgba(0,0,0,0.2);
         position: absolute;
         width: 100%;
@@ -109,7 +108,9 @@ ul#table {
         top: 0px;
         left: 0px;
       }
+      
     }
+    
     &:hover {
       button {
         div.veil {
@@ -117,6 +118,7 @@ ul#table {
         }
       }
     }
+    
     &.active {
       button {
         & > div:nth-of-type(1) {
@@ -126,13 +128,18 @@ ul#table {
         }
         & > div:nth-of-type(2) {
           height: inherit;
+          & > div {
+            display: block;
+          }
         }
         div.veil {
           display: none;
         }
       }
     }
-  }
+    
+  } /* li */
+  
   &.filtered {
     li {
       display: none;

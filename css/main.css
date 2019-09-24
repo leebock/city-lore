@@ -264,24 +264,17 @@ a {
   overflow: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  display: flex;
-  flex-direction: column;
+  /* li */
 }
-#main #container ul#table li {
+#main #container ul#table > li {
   padding: 10px;
   padding-bottom: 5px;
   padding-top: 5px;
-  flex-basis: 200px;
-  flex-shrink: 0;
+  margin-top: 1px;
   display: flex;
   justify-content: flex-start;
-  margin-top: 1px;
 }
-#main #container ul#table li:nth-of-type(1) {
-  margin-top: 0px;
-  padding-top: 10px;
-}
-#main #container ul#table li > button {
+#main #container ul#table > li > button {
   padding: 5px;
   cursor: pointer;
   flex: 1;
@@ -292,13 +285,14 @@ a {
   overflow: hidden;
   position: relative;
 }
-#main #container ul#table li > button:focus {
+#main #container ul#table > li > button:focus {
   outline: 3px solid blue;
 }
-#main #container ul#table li > button * {
+#main #container ul#table > li > button * {
   pointer-events: none;
 }
-#main #container ul#table li > button > div:nth-of-type(1) {
+#main #container ul#table > li > button > div:nth-of-type(1) {
+  /*thumbnail*/
   width: 240px;
   height: 180px;
   background-size: contain;
@@ -308,14 +302,13 @@ a {
   justify-content: center;
 }
 @media (max-width: 400px) {
-  #main #container ul#table li > button > div:nth-of-type(1) {
+  #main #container ul#table > li > button > div:nth-of-type(1) {
     width: 140px;
     height: 90px;
   }
 }
-#main #container ul#table li > button > div:nth-of-type(1) > button {
+#main #container ul#table > li > button > div:nth-of-type(1) > button {
   display: none;
-  margin-top: 0px;
   background: none;
   border: none;
   cursor: pointer;
@@ -328,28 +321,35 @@ a {
   align-self: center;
   pointer-events: all;
 }
-#main #container ul#table li > button > div:nth-of-type(2) {
+#main #container ul#table > li > button > div:nth-of-type(2) {
+  /*text*/
   padding: 7px;
   overflow: hidden;
-  height: 180px;
 }
-#main #container ul#table li > button > div:nth-of-type(2) h3, #main #container ul#table li > button > div:nth-of-type(2) h4 {
+#main #container ul#table > li > button > div:nth-of-type(2) h3, #main #container ul#table > li > button > div:nth-of-type(2) h4 {
   color: black;
 }
-#main #container ul#table li > button > div:nth-of-type(2) h3 {
+#main #container ul#table > li > button > div:nth-of-type(2) h3 {
   margin-top: -3px;
   margin-bottom: 0px;
   margin-left: -2px;
   padding: 5px;
 }
-#main #container ul#table li > button > div:nth-of-type(2) h4 {
+#main #container ul#table > li > button > div:nth-of-type(2) h4 {
   margin-top: 0px;
   margin-left: 2px;
+  font-size: 14px;
 }
-#main #container ul#table li > button > div:nth-of-type(2) > div {
+#main #container ul#table > li > button > div:nth-of-type(2) > div {
+  font-size: 14px;
   flex-grow: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
-#main #container ul#table li > button div.veil {
+#main #container ul#table > li > button div.veil {
+  /*veil (duh)*/
   background-color: rgba(0, 0, 0, 0.2);
   position: absolute;
   width: 100%;
@@ -357,16 +357,19 @@ a {
   top: 0px;
   left: 0px;
 }
-#main #container ul#table li:hover button div.veil {
+#main #container ul#table > li:hover button div.veil {
   background-color: rgba(0, 0, 0, 0.1);
 }
-#main #container ul#table li.active button > div:nth-of-type(1) button {
+#main #container ul#table > li.active button > div:nth-of-type(1) button {
   display: block;
 }
-#main #container ul#table li.active button > div:nth-of-type(2) {
+#main #container ul#table > li.active button > div:nth-of-type(2) {
   height: inherit;
 }
-#main #container ul#table li.active button div.veil {
+#main #container ul#table > li.active button > div:nth-of-type(2) > div {
+  display: block;
+}
+#main #container ul#table > li.active button div.veil {
   display: none;
 }
 #main #container ul#table.filtered li {
