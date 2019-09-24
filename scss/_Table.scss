@@ -18,10 +18,9 @@ ul#table {
   
   & > li {
     
-    padding: 10px;
-    padding-bottom: 5px;
-    padding-top: 5px;
-    margin-top: 1px;
+    padding: 5px;
+    margin-top: 10px;
+    background-color: rgba(215, 229, 230, 0.7);
 
     display: flex;
     justify-content: flex-start;
@@ -38,7 +37,7 @@ ul#table {
       overflow: hidden;
       position: relative;
       &:focus {
-        outline: 3px solid blue;
+        outline: 2px solid gray;
       }
       * {
         pointer-events: none;
@@ -84,42 +83,32 @@ ul#table {
           margin-bottom: 0px;
           margin-left: -2px;
           padding: 5px;
+          font-size: 20px;
         }
         h4 {
           margin-top: 0px;
           margin-left: 2px;
-          font-size: 14px;
+          font-size: 18px;
         }
         & > div {
-          font-size: 14px;
+          font-size: 18px;
           flex-grow: 0;
+          font-weight: 200;
           display: -webkit-box;
-          -webkit-line-clamp: 6;
+          -webkit-line-clamp: 3;
           -webkit-box-orient: vertical;  
           overflow: hidden;        
         }
       }
       
-      div.veil { /*veil (duh)*/
-        background-color: rgba(0,0,0,0.2);
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0px;
-        left: 0px;
-      }
-      
     }
     
     &:hover {
-      button {
-        div.veil {
-          background-color: rgba(0,0,0,0.1);
-        }
-      }
+      background-color: rgba(215, 229, 230, 0.9);      
     }
     
     &.active {
+      background-color: rgba(215, 229, 230, 1);      
       button {
         & > div:nth-of-type(1) {
           button {
@@ -127,13 +116,9 @@ ul#table {
           }
         }
         & > div:nth-of-type(2) {
-          height: inherit;
           & > div {
             display: block;
           }
-        }
-        div.veil {
-          display: none;
         }
       }
     }

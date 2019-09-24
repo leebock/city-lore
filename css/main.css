@@ -23,7 +23,6 @@ html, body {
 }
 
 body {
-  background-color: #FFF;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -121,7 +120,6 @@ a {
 }
 #main #map {
   flex: 1;
-  background-color: white;
 }
 #main #map .easy-button-button {
   font-size: 18px;
@@ -138,13 +136,13 @@ a {
 }
 #main #container {
   flex: 1;
-  background: white;
   height: 100%;
   width: 50%;
   max-width: 700px;
   z-index: 2000;
   left: 0px;
   top: 0px;
+  background-color: #7faeb4;
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -171,6 +169,8 @@ a {
   font-size: 20px;
   padding: 5px;
   flex-basis: 50%;
+  background-color: #176f7b;
+  color: white;
 }
 #main #container > div:nth-of-type(1) select:nth-of-type(1) {
   margin-right: 5px;
@@ -267,10 +267,9 @@ a {
   /* li */
 }
 #main #container ul#table > li {
-  padding: 10px;
-  padding-bottom: 5px;
-  padding-top: 5px;
-  margin-top: 1px;
+  padding: 5px;
+  margin-top: 10px;
+  background-color: rgba(215, 229, 230, 0.7);
   display: flex;
   justify-content: flex-start;
 }
@@ -286,7 +285,7 @@ a {
   position: relative;
 }
 #main #container ul#table > li > button:focus {
-  outline: 3px solid blue;
+  outline: 2px solid gray;
 }
 #main #container ul#table > li > button * {
   pointer-events: none;
@@ -334,43 +333,33 @@ a {
   margin-bottom: 0px;
   margin-left: -2px;
   padding: 5px;
+  font-size: 20px;
 }
 #main #container ul#table > li > button > div:nth-of-type(2) h4 {
   margin-top: 0px;
   margin-left: 2px;
-  font-size: 14px;
+  font-size: 18px;
 }
 #main #container ul#table > li > button > div:nth-of-type(2) > div {
-  font-size: 14px;
+  font-size: 18px;
   flex-grow: 0;
+  font-weight: 200;
   display: -webkit-box;
-  -webkit-line-clamp: 6;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-#main #container ul#table > li > button div.veil {
-  /*veil (duh)*/
-  background-color: rgba(0, 0, 0, 0.2);
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0px;
-  left: 0px;
+#main #container ul#table > li:hover {
+  background-color: rgba(215, 229, 230, 0.9);
 }
-#main #container ul#table > li:hover button div.veil {
-  background-color: rgba(0, 0, 0, 0.1);
+#main #container ul#table > li.active {
+  background-color: #d7e5e6;
 }
 #main #container ul#table > li.active button > div:nth-of-type(1) button {
   display: block;
 }
-#main #container ul#table > li.active button > div:nth-of-type(2) {
-  height: inherit;
-}
 #main #container ul#table > li.active button > div:nth-of-type(2) > div {
   display: block;
-}
-#main #container ul#table > li.active button div.veil {
-  display: none;
 }
 #main #container ul#table.filtered li {
   display: none;
@@ -389,7 +378,6 @@ a {
   z-index: 3000;
   top: 0px;
   left: 0px;
-  background: white;
   display: none;
 }
 #main #container div#video-display.active {
