@@ -20,7 +20,7 @@ ul#table {
     
     padding: 5px;
     margin-top: 10px;
-    background-color: rgba(215, 229, 230, 0.7);
+    background-color: rgba(215, 229, 230, 0.5);
 
     display: flex;
     justify-content: flex-start;
@@ -104,7 +104,7 @@ ul#table {
     }
     
     &:hover {
-      background-color: rgba(215, 229, 230, 0.9);      
+      background-color: rgba(215, 229, 230, 0.7);      
     }
     
     &.active {
