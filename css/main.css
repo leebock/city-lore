@@ -138,15 +138,33 @@ a {
   font-style: italic;
 }
 #main #map .leaflet-popup-content {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-#main #map .leaflet-popup-content button {
+#main #map .leaflet-popup-content div:nth-child(3) {
   width: 200px;
   height: 150px;
   background-position: center;
   background-size: contain;
-  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#main #map .leaflet-popup-content div:nth-child(3) button {
+  width: 80px;
+  height: 80px;
+  background-color: inherit;
+  background-image: url("../resources/play-button-icon.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   border: none;
+  cursor: pointer;
+  display: none;
+}
+#main #map .leaflet-popup-content div:nth-child(3):hover button {
+  display: block;
 }
 #main #container {
   flex: 1;

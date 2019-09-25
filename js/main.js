@@ -291,10 +291,13 @@
 				)
 			)
 			.append(
-				$("<button>")
+				$("<div>")
 					.css(
 						"background-image", 
 						"url('https://img.youtube.com/vi/"+location.getVideos().shift().getYouTubeID()+"/0.jpg')"
+					).
+					append(
+						$("<button>")
 					)
 			)
 			.html();		
