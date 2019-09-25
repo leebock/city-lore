@@ -240,7 +240,15 @@
 		return videos;
 	}
 
-	
+	/* this function doesn't impact table filter, but it DOES affect _activeLocation */
+	function table_onItemActivate(e, videoID)
+	{
+		_activeLocation = _selectionMachine.summarizeLocations(
+			[_selectionMachine.selectVideoByID(videoID)]
+		).shift()
+		_map.activateMarker(_activeLocation);
+	}
+		
 	/***************************************************************************
 	****************************** OTHER EVENTS  *******************************
 	***************************************************************************/
@@ -248,15 +256,6 @@
 	function map_onVideoPlay(event)
 	{
 		_playPanel.present(_activeLocation.getVideos().shift().getYouTubeID());
-	}
-
-	function table_onItemActivate(e, videoID)
-	{
-		_map.activateMarker(
-			_selectionMachine.summarizeLocations(
-				[_selectionMachine.selectVideoByID(videoID)]
-			).shift()
-		);
 	}
 	
 	function table_onItemPresent(e, youTubeID)
