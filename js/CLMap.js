@@ -1,11 +1,18 @@
 L.CLMap = L.PaddingAwareMap.extend({
 
-  initialize: function(div, options, paddingQueryFunction, popupHTMLCreator)
+  initialize: function(
+      div, 
+      options, 
+      paddingQueryFunction, 
+      popupHTMLCreator, 
+      tooltipHTMLCreator
+  )
   {
 
     L.PaddingAwareMap.prototype.initialize.call(this, div, options, paddingQueryFunction);
     
     this._popupHTMLCreator = popupHTMLCreator;
+    this._tooltipHTMLCreator = tooltipHTMLCreator;
 
     this._layerMarkers = L.featureGroup()
       .addTo(this)
@@ -15,7 +22,6 @@ L.CLMap = L.PaddingAwareMap.extend({
 
     function onMarkerClick(e)
     {
-
         var record = e.layer.key;
         self.fire("markerActivate", record);
         $(".leaflet-tooltip").remove();
@@ -48,6 +54,10 @@ L.CLMap = L.PaddingAwareMap.extend({
             .setLatLng(record.getLatLng())
             .setContent(this._popupHTMLCreator(record))
             .openOn(this);
+
+        var self = this;
+
+        $(".leaflet-popup-content button").click(function(){self.fire("videoPlay");});
             
         var bounds = record.getLatLng().toBounds(5000);
         if (!this.getUsableBounds().contains(record.getLatLng())) {
@@ -97,7 +107,10 @@ L.CLMap = L.PaddingAwareMap.extend({
         }
 
         L.marker(record.getLatLng(), options)
-          .bindTooltip(self._popupHTMLCreator(record), {offset: [20, -20], className: "tooltip-map"})
+          .bindTooltip(
+              self._tooltipHTMLCreator(record), 
+              {offset: [20, -20], className: "tooltip-map"}
+          )
           .addTo(self._layerMarkers)
           .key = record;
       }

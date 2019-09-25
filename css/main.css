@@ -138,6 +138,14 @@ a {
 #main #map .leaflet-popup-content {
   text-align: center;
 }
+#main #map .leaflet-popup-content button {
+  width: 200px;
+  height: 150px;
+  background-position: center;
+  background-size: contain;
+  cursor: pointer;
+  border: none;
+}
 #main #container {
   flex: 1;
   height: 100%;

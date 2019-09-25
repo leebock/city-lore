@@ -57,12 +57,14 @@
 				worldCopyJump: true
 			},
 			getExtentPadding,
-			createPopupHTML
+			createPopupHTML,
+			createToolTipHTML
 		)
 			.addLayer(L.esri.basemapLayer("NationalGeographic"))
 			.addControl(L.control.attribution({position: 'bottomright'}))
 			.on("click", map_onClick)
-			.on("markerActivate", map_onMarkerActivate);
+			.on("markerActivate", map_onMarkerActivate)
+			.on("videoPlay", map_onVideoPlay);
 			
 		if (!L.Browser.mobile) {
 			_map.addControl(L.control.zoom({position: "topright"}));
@@ -243,6 +245,11 @@
 	****************************** OTHER EVENTS  *******************************
 	***************************************************************************/
 
+	function map_onVideoPlay(event)
+	{
+		_playPanel.present(_activeLocation.getVideos().shift().getYouTubeID());
+	}
+
 	function table_onItemActivate(e, videoID)
 	{
 		_map.activateMarker(
@@ -274,6 +281,29 @@
 	function createPopupHTML(location)
 	{  
 		return $("<div>")
+			.append(
+				$("<div>").html(location.getName())
+			)
+			.append(
+				$("<div>").html(
+					location.getVideos().length > 1 ?
+					"multiple videos" : 
+					location.getVideos().shift().getTitle()
+				)
+			)
+			.append(
+				$("<button>")
+					.css(
+						"background-image", 
+						"url('https://img.youtube.com/vi/"+location.getVideos().shift().getYouTubeID()+"/0.jpg')"
+					)
+			)
+			.html();		
+	}
+	
+	function createToolTipHTML(location)
+	{
+		return $("<div>")
 			.append($("<div>").html(location.getName()))
 			.append($("<div>").html(
 					location.getVideos().length > 1 ?
@@ -281,7 +311,7 @@
 					location.getVideos().shift().getTitle()
 				)
 			)
-			.html();      
+			.html();		
 	}
 
 })();

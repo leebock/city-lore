@@ -87,7 +87,15 @@ a {
     }  
     
     .leaflet-popup-content {
-      text-align: center;      
+      text-align: center;    
+      button {
+        width: 200px;
+        height: 150px;
+        background-position: center;
+        background-size: contain;
+        cursor: pointer;
+        border: none;
+      }  
     }
 
   } /*map*/
