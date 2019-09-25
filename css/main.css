@@ -426,11 +426,10 @@ a {
   margin-top: 2%;
   margin-left: 2%;
   margin-right: 2%;
-  background: black;
 }
 #main div#video-display > div:nth-child(1) button {
   cursor: pointer;
-  background: none;
+  background: black;
   border: none;
   font-size: 40px;
   color: white;

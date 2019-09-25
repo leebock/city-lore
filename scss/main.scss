@@ -271,13 +271,12 @@ a {
       margin-top: 2%;
       margin-left: 2%;
       margin-right: 2%;
-      background: black;
       button {
         &:before {
           content: "\00d7";
         }
         cursor: pointer;
-        background: none;
+        background: black;
         border: none;
         font-size: 40px;
         color: white;
