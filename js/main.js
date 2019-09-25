@@ -226,20 +226,6 @@
 		);
 	}
 	
-	function extentFilter(videos)
-	{
-		if (_activeLocation && _activeLocation.getVideos().length > 1) {
-			return _activeLocation.getVideos();
-		}
-		if ($("div#filterByMap input").prop("checked")) {
-			videos = $.grep(
-				videos,
-				function(video){return _map.getUsableBounds().contains(video.getLatLng());}
-			);
-		}
-		return videos;
-	}
-
 	/* this function doesn't impact table filter, but it DOES affect _activeLocation */
 	function table_onItemActivate(e, videoID)
 	{
@@ -266,6 +252,20 @@
 	/***************************************************************************
 	******************************** FUNCTIONS *********************************
 	***************************************************************************/
+
+	function extentFilter(videos)
+	{
+		if (_activeLocation && _activeLocation.getVideos().length > 1) {
+			return _activeLocation.getVideos();
+		}
+		if ($("div#filterByMap input").prop("checked")) {
+			videos = $.grep(
+				videos,
+				function(video){return _map.getUsableBounds().contains(video.getLatLng());}
+			);
+		}
+		return videos;
+	}
 
 	function getExtentPadding()
 	{
