@@ -231,7 +231,7 @@
 	{
 		_activeLocation = _selectionMachine.summarizeLocations(
 			[_selectionMachine.selectVideoByID(videoID)]
-		).shift()
+		).shift();
 		_map.activateMarker(_activeLocation);
 	}
 		
