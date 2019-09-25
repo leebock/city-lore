@@ -121,6 +121,8 @@ a {
   position: relative;
   height: 100%;
   /*map*/
+  /* container */
+  /*video-display*/
 }
 #main #map {
   flex: 1;
@@ -384,7 +386,7 @@ a {
   height: 100%;
   width: 100%;
 }
-#main #container div#video-display {
+#main div#video-display {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -392,31 +394,41 @@ a {
   top: 0px;
   left: 0px;
   display: none;
+  background-color: rgba(0, 0, 0, 0.6);
 }
-#main #container div#video-display.active {
+#main div#video-display.active {
   display: flex;
   flex-direction: column;
 }
-#main #container div#video-display > div:nth-child(1) {
+#main div#video-display > div:nth-child(1) {
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
   padding: 10px;
+  margin-top: 2%;
+  margin-left: 2%;
+  margin-right: 2%;
   background: black;
 }
-#main #container div#video-display > div:nth-child(1) button {
+#main div#video-display > div:nth-child(1) button {
   cursor: pointer;
   background: none;
   border: none;
   font-size: 40px;
   color: white;
 }
-#main #container div#video-display > div:nth-child(1) button:before {
+#main div#video-display > div:nth-child(1) button:before {
   content: "×";
 }
-#main #container div#video-display > iframe:nth-child(2) {
+#main div#video-display > iframe:nth-child(2) {
   position: relative;
+  margin-bottom: 2%;
+  margin-left: 2%;
+  margin-right: 2%;
+  width: 96%;
   flex: 1;
 }
+
+/*main*/
 
 /*# sourceMappingURL=main.css.map */
