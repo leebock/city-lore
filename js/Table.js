@@ -40,9 +40,6 @@ Table.prototype.load = function(items) {
                         .append($("<h3>").html(item.getTitle()))
                         .append($("<h4>").html(item.getLocation()))
                         .append($("<p>").html(item.getDescription()))
-                        .append(
-                            $("<div>").addClass("veil")
-                        )
                         .click(onItemButtonClick)
                 )
                 .appendTo($(ul));
