@@ -37,12 +37,9 @@ Table.prototype.load = function(items) {
                                         )
                             )
                         )
-                        .append(
-                            $("<div>")
-                            .append($("<h3>").html(item.getTitle()))
-                            .append($("<h4>").html(item.getLocation()))
-                            .append($("<div>").html(item.getDescription()))
-                        )
+                        .append($("<h3>").html(item.getTitle()))
+                        .append($("<h4>").html(item.getLocation()))
+                        .append($("<p>").html(item.getDescription()))
                         .append(
                             $("<div>").addClass("veil")
                         )

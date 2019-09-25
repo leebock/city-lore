@@ -313,7 +313,6 @@ a {
   background: none;
   border: none;
   text-align: left;
-  display: flex;
   overflow: hidden;
   position: relative;
 }
@@ -325,11 +324,13 @@ a {
 }
 #main #container ul#table > li > button > div:nth-of-type(1) {
   /*thumbnail*/
+  float: left;
   width: 240px;
   height: 180px;
+  margin-right: 15px;
+  margin-bottom: 5px;
   background-size: contain;
   background-position: center;
-  flex-shrink: 0;
   display: flex;
   justify-content: center;
 }
@@ -353,29 +354,24 @@ a {
   align-self: center;
   pointer-events: all;
 }
-#main #container ul#table > li > button > div:nth-of-type(2) {
-  /*text*/
-  padding: 7px;
-  overflow: hidden;
-}
-#main #container ul#table > li > button > div:nth-of-type(2) h3, #main #container ul#table > li > button > div:nth-of-type(2) h4 {
+#main #container ul#table > li > button > h3, #main #container ul#table > li > button > h4, #main #container ul#table > li > button > p {
   color: black;
 }
-#main #container ul#table > li > button > div:nth-of-type(2) h3 {
+#main #container ul#table > li > button > h3 {
   margin-top: -3px;
   margin-bottom: 0px;
   margin-left: -2px;
   padding: 5px;
   font-size: 20px;
 }
-#main #container ul#table > li > button > div:nth-of-type(2) h4 {
+#main #container ul#table > li > button > h4 {
   margin-top: 0px;
   margin-left: 2px;
   font-size: 18px;
+  font-weight: normal;
 }
-#main #container ul#table > li > button > div:nth-of-type(2) > div {
+#main #container ul#table > li > button > p {
   font-size: 18px;
-  flex-grow: 0;
   font-weight: 200;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -391,8 +387,11 @@ a {
 #main #container ul#table > li.active button > div:nth-of-type(1) button {
   display: block;
 }
-#main #container ul#table > li.active button > div:nth-of-type(2) > div {
+#main #container ul#table > li.active button > p {
   display: block;
+  -webkit-line-clamp: unset;
+  -webkit-box-orient: unset;
+  overflow: unset;
 }
 #main #container ul#table.filtered li {
   display: none;

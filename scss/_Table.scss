@@ -33,7 +33,6 @@ ul#table {
       background: none;
       border: none;
       text-align: left;
-      display: flex;
       overflow: hidden;
       position: relative;
       &:focus {
@@ -44,15 +43,17 @@ ul#table {
       }
       
       & > div:nth-of-type(1) { /*thumbnail*/
+        float: left;
         width: 240px;
         height: 180px;
+        margin-right: 15px;
+        margin-bottom: 5px;
         @media (max-width: 400px) {
           width: 140px;
           height: 90px;
         }
         background-size: contain;
         background-position: center;
-        flex-shrink: 0;
         display: flex;
         justify-content: center;
         & > button {
@@ -70,37 +71,31 @@ ul#table {
           pointer-events: all;
         }
       }
-      
-      & > div:nth-of-type(2) { /*text*/
-        padding: 7px;
-        overflow: hidden;
 
-        h3, h4 {
-          color: black;
-        }
-        h3 {
-          margin-top: -3px;
-          margin-bottom: 0px;
-          margin-left: -2px;
-          padding: 5px;
-          font-size: 20px;
-        }
-        h4 {
-          margin-top: 0px;
-          margin-left: 2px;
-          font-size: 18px;
-        }
-        & > div {
-          font-size: 18px;
-          flex-grow: 0;
-          font-weight: 200;
-          display: -webkit-box;
-          -webkit-line-clamp: 3;
-          -webkit-box-orient: vertical;  
-          overflow: hidden;        
-        }
+      & > h3, & > h4, & > p {
+        color: black;
       }
-      
+      & > h3 {
+        margin-top: -3px;
+        margin-bottom: 0px;
+        margin-left: -2px;
+        padding: 5px;
+        font-size: 20px;
+      }
+      & > h4 {
+        margin-top: 0px;
+        margin-left: 2px;
+        font-size: 18px;
+        font-weight: normal;
+      }
+      & > p {
+        font-size: 18px;
+        font-weight: 200;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;  
+        overflow: hidden;
+      }
     }
     
     &:hover {
@@ -115,10 +110,11 @@ ul#table {
             display: block;
           }
         }
-        & > div:nth-of-type(2) {
-          & > div {
-            display: block;
-          }
+        & > p {
+          display: block;
+          -webkit-line-clamp: unset;
+          -webkit-box-orient: unset;
+          overflow: unset;
         }
       }
     }
