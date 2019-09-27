@@ -167,10 +167,20 @@ a {
   background-repeat: no-repeat;
   border: none;
   cursor: pointer;
-  display: none;
 }
-#main #map .leaflet-popup-content div:nth-child(3):hover button {
-  display: block;
+@media (max-width: 1023px) {
+  #main #map .leaflet-popup-content div:nth-child(3) button {
+    width: 50px;
+    height: 50px;
+  }
+}
+@media (any-hover: hover) {
+  #main #map .leaflet-popup-content div:nth-child(3) button {
+    display: none;
+  }
+  #main #map .leaflet-popup-content div:nth-child(3):hover button {
+    display: block;
+  }
 }
 #main #container {
   flex: 1;

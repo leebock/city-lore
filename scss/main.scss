@@ -106,6 +106,10 @@ a {
         button {
           width: 80px;
           height: 80px;
+          @media #{$SIZE-COMPACT} {
+            width: 50px;
+            height: 50px;
+          }
           background-color: inherit;
           background-image: url("../resources/play-button-icon.png");
           background-size: contain;
@@ -113,13 +117,18 @@ a {
           background-repeat: no-repeat;
           border: none;
           cursor: pointer;
-          display: none;
         }
-        &:hover {
+        @media (any-hover: hover) {
           button {
-            display: block;
+            display: none;
           }
+          &:hover {
+            button {
+              display: block;
+            }
+          }          
         }
+        
       }  
     }
 
