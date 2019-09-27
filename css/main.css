@@ -367,19 +367,19 @@ a {
   margin-bottom: 0px;
   margin-left: -2px;
   padding: 5px;
-  font-size: 20px;
+  font-size: 18px;
 }
 #main #container ul#table > li > button > h4 {
   margin-top: 0px;
   margin-left: 2px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: normal;
 }
 #main #container ul#table > li > button > p {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 200;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
