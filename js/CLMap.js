@@ -70,6 +70,31 @@ L.CLMap = L.PaddingAwareMap.extend({
                 this.panTo(record.getLatLng());
             }
         }
+        var padding = this._paddingQueryFunction();
+        //{paddingTopLeft: [left,top], paddingBottomRight: [right,bottom]};
+        this.once(
+            "moveend", 
+            function()
+            {
+                var mapSpaceHeight = $("#map").height() -
+                    padding.paddingTopLeft[1] -
+                    padding.paddingBottomRight[1];
+                var popupHeight = $("div.leaflet-popup").height();
+                if (mapSpaceHeight / 2 < popupHeight) {
+                    setTimeout(
+                        function()
+                        {
+                            self.panTo(
+                                self.layerPointToLatLng(
+                                    self.latLngToLayerPoint(record.getLatLng()).subtract([0,100])
+                                )
+                            );
+                        }, 
+                        400
+                    );
+                }
+            }
+        );
                         
     },
 

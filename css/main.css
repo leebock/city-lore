@@ -151,6 +151,12 @@ a {
   justify-content: center;
   align-items: center;
 }
+@media (max-width: 1023px) {
+  #main #map .leaflet-popup-content div:nth-child(3) {
+    width: 150px;
+    height: 100px;
+  }
+}
 #main #map .leaflet-popup-content div:nth-child(3) button {
   width: 80px;
   height: 80px;
@@ -193,7 +199,7 @@ a {
     padding: 10px;
   }
 }
-@media (max-width: 1023px) and (max-height: 800px) {
+@media (max-width: 1023px) and (max-height: 900px) {
   #main #container {
     height: initial;
   }
@@ -408,7 +414,7 @@ a {
   height: 100%;
   width: 100%;
 }
-@media (max-width: 1023px) and (max-height: 800px) {
+@media (max-width: 1023px) and (max-height: 900px) {
   #main #container ul#table {
     display: none;
   }
