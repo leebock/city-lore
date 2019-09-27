@@ -322,7 +322,7 @@ a {
   position: relative;
 }
 #main #container ul#table > li > button:focus {
-  outline: 2px solid gray;
+  background-color: rgba(215, 229, 230, 0.7);
 }
 #main #container ul#table > li > button * {
   pointer-events: none;

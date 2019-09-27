@@ -36,7 +36,7 @@ ul#table {
       overflow: hidden;
       position: relative;
       &:focus {
-        outline: 2px solid gray;
+        background-color: rgba(215, 229, 230, 0.7);
       }
       * {
         pointer-events: none;
