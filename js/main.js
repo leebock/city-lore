@@ -178,7 +178,7 @@
 	
 	function map_onExtentChange()
 	{
-		_table.filter(extentFilter(_selectionMachine.getVideos()));
+		/*_table.filter(extentFilter(_selectionMachine.getVideos()));*/
 	}
 
 	function map_onMarkerActivate(location)
