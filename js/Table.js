@@ -102,6 +102,8 @@ Table.prototype.filter = function(videos)
             {scrollTop: $(active).offset().top - $(ul).offset().top + $(ul).scrollTop()}, 
             'slow'
         );    
+    } else {
+        $(ul).animate({scrollTop: 0}, 'slow');        
     }
 };
 
