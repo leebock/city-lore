@@ -158,11 +158,12 @@
 	function map_onClick()
 	{
 		_activeLocation = null;
-		_locationFilterBadge.hide();
-		_table.clearFilter();
+		if (_locationFilterBadge.isVisible()) {
+			_locationFilterBadge.hide();
+			_table.filter(_selectionMachine.getVideos());
+		}
 		_table.clearActive();
 		_playPanel.conceal();
-		_table.filter(_selectionMachine.getVideos());
 	}
 
 	function map_onMarkerActivate(location)
@@ -175,9 +176,11 @@
 			_table.filter(videos);
 			_locationFilterBadge.show(location.getName());
 		} else {
-			_table.filter(_selectionMachine.getVideos());
+			if (_locationFilterBadge.isVisible()) {
+				_table.filter(_selectionMachine.getVideos());
+				_locationFilterBadge.hide();
+			}
 			_table.activateItem(videos.shift());
-			_locationFilterBadge.hide();
 		}
 	}
 	

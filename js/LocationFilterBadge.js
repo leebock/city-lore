@@ -33,3 +33,8 @@ LocationFilterBadge.prototype.hide = function()
 {
     $(this._div).hide();
 };
+
+LocationFilterBadge.prototype.isVisible = function()
+{
+    return $(this._div).css("display") !== "none";
+};
