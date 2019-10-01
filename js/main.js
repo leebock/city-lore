@@ -42,7 +42,6 @@
 	var _locationFilterBadge;
 	var _playPanel;
 	var _selectionMachine;
-	var _activeLocation;
 
 	$(document).ready(function() {
 
@@ -148,7 +147,6 @@
 
 	function locationFilterBadge_onCancelLocationFilter(event)
 	{
-		_activeLocation = null;
 		_locationFilterBadge.hide();
 		_map.closePopup();
 		_table.clearActive();
@@ -157,7 +155,6 @@
 
 	function map_onClick()
 	{
-		_activeLocation = null;
 		if (_locationFilterBadge.isVisible()) {
 			_locationFilterBadge.hide();
 			_table.filter(_selectionMachine.getVideos());
@@ -168,7 +165,6 @@
 
 	function map_onMarkerActivate(location)
 	{
-		_activeLocation = location;
 		_table.clearActive();
 		_playPanel.conceal();
 		var videos = location.getVideos();
@@ -186,7 +182,6 @@
 	
 	function categorySelect_onCategoryChange(event)
 	{
-		_activeLocation = null;
 		_locationFilterBadge.hide();
 		_table.clearActive();
 		_selectionMachine.setCategories(_categorySelect.getActiveCategories());
@@ -197,7 +192,6 @@
 	
 	function boroughSelect_onBoroughChange(event)
 	{
-		_activeLocation = null;
 		_locationFilterBadge.hide();
 		_table.clearActive();
 		_selectionMachine.setBorough(_boroughSelect.getActiveBorough());
@@ -214,19 +208,20 @@
 	/* this function doesn't impact table filter, but it DOES affect _activeLocation */
 	function table_onItemActivate(e, videoID)
 	{
-		_activeLocation = _selectionMachine.summarizeLocations(
-			[_selectionMachine.selectVideoByID(videoID)]
-		).shift();
-		_map.activateMarker(_activeLocation);
+		_map.activateMarker(
+			_selectionMachine.summarizeLocations(
+				[_selectionMachine.selectVideoByID(videoID)]
+			).shift()			
+		);
 	}
 		
 	/***************************************************************************
 	****************************** OTHER EVENTS  *******************************
 	***************************************************************************/
 
-	function map_onVideoPlay(event)
+	function map_onVideoPlay(obj)
 	{
-		_playPanel.present(_activeLocation.getVideos().shift().getYouTubeID());
+		_playPanel.present(obj.youTubeID);
 	}
 	
 	function table_onItemPresent(e, youTubeID)
@@ -269,6 +264,7 @@
 					).
 					append(
 						$("<button>")
+							.val(location.getVideos().shift().getYouTubeID())
 					)
 			)
 			.html();		

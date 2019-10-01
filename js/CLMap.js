@@ -57,7 +57,12 @@ L.CLMap = L.PaddingAwareMap.extend({
 
         var self = this;
 
-        $(".leaflet-popup-content button").click(function(){self.fire("videoPlay");});
+        $(".leaflet-popup-content button").click(
+            function(event)
+            {
+                self.fire("videoPlay", {youTubeID: event.target.value});
+            }
+        );
             
         var bounds = record.getLatLng().toBounds(5000);
         if (!this.getUsableBounds().contains(record.getLatLng())) {
