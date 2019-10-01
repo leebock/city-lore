@@ -2,8 +2,6 @@
 
 	"use strict";
 
-	var WIDTH_THRESHOLD = 768;
-
 	var VIDEOS_SPREADSHEET_URL = "data/videos.csv";
 	
 	var BOUNDS_LOOKUP = {
@@ -227,10 +225,11 @@
 
 	function getExtentPadding()
 	{
-		var small = $(window).width() <= WIDTH_THRESHOLD;
 		var top = 45;
 		var right = 60;
-		var bottom = small ? $("#container").outerHeight() : 0;
+		var bottom = $("#container").css("position") === "absolute" ? 
+					$("#container").outerHeight() : 
+					0;
 		var left = 0;
 		return {paddingTopLeft: [left,top], paddingBottomRight: [right,bottom]};
 	}
