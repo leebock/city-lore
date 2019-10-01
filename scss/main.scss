@@ -202,20 +202,6 @@ a {
         }
       }
     }
-  
-    div#filterByMap {
-      font-size: 20px;
-      padding: 10px;
-      padding-bottom: 10px;
-      input {
-        cursor: pointer;
-      }
-      @media (max-width: 450px) {
-        font-size: 16px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-      }
-    }
     
     div#locationFilterBadge {
       padding: 10px;

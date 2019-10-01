@@ -124,16 +124,12 @@
 			_boroughSelect = $(new BoroughSelect($("select#boroughs").get(0)))
 				.on("boroughChange", boroughSelect_onBoroughChange)
 				.get(0);
-
-			$("div#filterByMap input").change(checkbox_onChange);
 			
 			_locationFilterBadge = $(
 					new LocationFilterBadge($("#locationFilterBadge").get(0))
 				)
 				.on("cancelLocationFilter", locationFilterBadge_onCancelLocationFilter)
 				.get(0);
-			
-			_map.on("moveend", map_onExtentChange);
 
 			// one time check to see if touch is being used
 
@@ -150,35 +146,23 @@
 	***************************** SELECTION EVENTS  ****************************
 	***************************************************************************/
 
-	function checkbox_onChange(event)
-	{
-		_table.filter(extentFilter(_selectionMachine.getVideos()));
-	}
-
 	function locationFilterBadge_onCancelLocationFilter(event)
 	{
 		_activeLocation = null;
 		_locationFilterBadge.hide();
-		$("div#filterByMap").show();
 		_map.closePopup();
 		_table.clearActive();
-		_table.filter(extentFilter(_selectionMachine.getVideos()));
+		_table.filter(_selectionMachine.getVideos());
 	}
 
 	function map_onClick()
 	{
 		_activeLocation = null;
 		_locationFilterBadge.hide();
-		$("div#filterByMap").show();		
 		_table.clearFilter();
 		_table.clearActive();
 		_playPanel.conceal();
-		_table.filter(extentFilter(_selectionMachine.getVideos()));
-	}
-	
-	function map_onExtentChange()
-	{
-		/*_table.filter(extentFilter(_selectionMachine.getVideos()));*/
+		_table.filter(_selectionMachine.getVideos());
 	}
 
 	function map_onMarkerActivate(location)
@@ -190,12 +174,10 @@
 		if (videos.length > 1) {
 			_table.filter(videos);
 			_locationFilterBadge.show(location.getName());
-			$("div#filterByMap").hide();
 		} else {
-			_table.filter(extentFilter(_selectionMachine.getVideos()));
+			_table.filter(_selectionMachine.getVideos());
 			_table.activateItem(videos.shift());
 			_locationFilterBadge.hide();
-			$("div#filterByMap").show();
 		}
 	}
 	
@@ -203,10 +185,9 @@
 	{
 		_activeLocation = null;
 		_locationFilterBadge.hide();
-		$("div#filterByMap").show();		
 		_selectionMachine.setCategories(_categorySelect.getActiveCategories());
 		var videos = _selectionMachine.getVideos();
-		_table.filter(extentFilter(videos));
+		_table.filter(videos);
 		_map.loadData(_selectionMachine.summarizeLocations(videos));
 	}
 	
@@ -214,10 +195,9 @@
 	{
 		_activeLocation = null;
 		_locationFilterBadge.hide();
-		$("div#filterByMap").show();		
 		_selectionMachine.setBorough(_boroughSelect.getActiveBorough());
 		var videos = _selectionMachine.getVideos();
-		_table.filter(extentFilter(videos));
+		_table.filter(videos);
 		_map.loadData(_selectionMachine.summarizeLocations(videos));
 		_map.flyToBounds(
 			_boroughSelect.getActiveBorough() ? 
@@ -252,20 +232,6 @@
 	/***************************************************************************
 	******************************** FUNCTIONS *********************************
 	***************************************************************************/
-
-	function extentFilter(videos)
-	{
-		if (_activeLocation && _activeLocation.getVideos().length > 1) {
-			return _activeLocation.getVideos();
-		}
-		if ($("div#filterByMap input").prop("checked")) {
-			videos = $.grep(
-				videos,
-				function(video){return _map.getUsableBounds().contains(video.getLatLng());}
-			);
-		}
-		return videos;
-	}
 
 	function getExtentPadding()
 	{

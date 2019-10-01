@@ -247,21 +247,6 @@ a {
     margin-left: 0px;
   }
 }
-#main #container div#filterByMap {
-  font-size: 20px;
-  padding: 10px;
-  padding-bottom: 10px;
-}
-#main #container div#filterByMap input {
-  cursor: pointer;
-}
-@media (max-width: 450px) {
-  #main #container div#filterByMap {
-    font-size: 16px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-  }
-}
 #main #container div#locationFilterBadge {
   padding: 10px;
   margin: 10px;
