@@ -188,6 +188,7 @@
 	{
 		_activeLocation = null;
 		_locationFilterBadge.hide();
+		_table.clearActive();
 		_selectionMachine.setCategories(_categorySelect.getActiveCategories());
 		var videos = _selectionMachine.getVideos();
 		_table.filter(videos);
@@ -198,6 +199,7 @@
 	{
 		_activeLocation = null;
 		_locationFilterBadge.hide();
+		_table.clearActive();
 		_selectionMachine.setBorough(_boroughSelect.getActiveBorough());
 		var videos = _selectionMachine.getVideos();
 		_table.filter(videos);
