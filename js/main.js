@@ -194,17 +194,7 @@
 			BOUNDS_NYC
 		);
 	}
-	
-	/* this function doesn't impact table filter, but it DOES affect _activeLocation */
-	function table_onItemActivate(e, videoID)
-	{
-		_map.activateMarker(
-			_selectionMachine.summarizeLocations(
-				[_selectionMachine.selectVideoByID(videoID)]
-			).shift()			
-		);
-	}
-		
+			
 	/***************************************************************************
 	****************************** OTHER EVENTS  *******************************
 	***************************************************************************/
@@ -212,6 +202,15 @@
 	function map_onVideoPlay(obj)
 	{
 		_playPanel.present(obj.youTubeID);
+	}
+
+	function table_onItemActivate(e, videoID)
+	{
+		_map.activateMarker(
+			_selectionMachine.summarizeLocations(
+				[_selectionMachine.selectVideoByID(videoID)]
+			).shift()			
+		);
 	}
 	
 	function table_onItemPresent(e, youTubeID)
