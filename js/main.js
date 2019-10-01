@@ -4,7 +4,6 @@
 
 	var WIDTH_THRESHOLD = 768;
 
-	var GLOBAL_CLASS_USETOUCH = "touch";
 	var VIDEOS_SPREADSHEET_URL = "data/videos.csv";
 	
 	var BOUNDS_LOOKUP = {
@@ -129,13 +128,6 @@
 				)
 				.on("cancelLocationFilter", locationFilterBadge_onCancelLocationFilter)
 				.get(0);
-
-			// one time check to see if touch is being used
-
-			$(document).one(
-				"touchstart", 
-				function(){$("html body").addClass(GLOBAL_CLASS_USETOUCH);}
-			);
 
 		}
 
