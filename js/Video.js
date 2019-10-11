@@ -5,7 +5,7 @@ function Video(json)
 
 Video.prototype.getID = function()
 {
-	return this._json.ID;
+	return parseInt(this._json.ID);
 };
 
 Video.prototype.getTitle = function()

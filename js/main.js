@@ -127,6 +127,15 @@
 				.on("cancelLocationFilter", locationFilterBadge_onCancelLocationFilter)
 				.get(0);
 
+			/*  if there's an id in the url parameter, then initialize
+				with that video active. */
+
+			var video = _selectionMachine.selectVideoByID(parseID());
+			if (video) {
+				_table.activateItem(video);
+				_map.activateMarker(_selectionMachine.summarizeLocations([video]).shift());
+			}
+
 		}
 
 	});
@@ -272,5 +281,28 @@
 			)
 			.html();		
 	}
+	
+	function parseID()
+	{
+		var parts = decodeURIComponent(document.location.href).split("?");
+		if (parts.length === 1) {
+			return null;
+		}
+
+		var args = parts[1].toLowerCase().split("&");
+		var obj = {};
+		args = $.each(
+			args, 
+			function(index, value){
+				var temp = value.split("=");
+				if (temp.length > 1) {
+					obj[temp[0]] = temp[1];
+				} 
+			}
+		);
+
+		return obj.id === undefined ? null : parseInt(obj.id);
+
+	}	
 
 })();
