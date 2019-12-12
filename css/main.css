@@ -195,6 +195,54 @@ a {
   padding: 20px;
   position: relative;
 }
+#main #container #search {
+  /* div:nth-child(1) */
+}
+#main #container #search div:nth-child(1) {
+  display: flex;
+  height: 40px;
+}
+#main #container #search div:nth-child(1) input {
+  font-weight: bold;
+  width: 100%;
+  height: 100%;
+  border-style: groove;
+  padding-left: 5px;
+  font-size: 16px;
+  color: #5ea7e6;
+  background-color: #faf0e6;
+}
+#main #container #search div:nth-child(1) input::-webkit-input-placeholder {
+  color: #a8a8a8;
+  font-style: italic;
+}
+#main #container #search div:nth-child(1) input:-moz-placeholder {
+  /* Firefox 18- */
+  color: #a8a8a8;
+  font-style: italic;
+}
+#main #container #search div:nth-child(1) input::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #a8a8a8;
+  font-style: italic;
+}
+#main #container #search div:nth-child(1) input:-ms-input-placeholder {
+  color: #a8a8a8;
+  font-style: italic;
+}
+#main #container #search div:nth-child(1) a.x-button {
+  margin-left: -30px;
+  font-size: 30px;
+  visibility: hidden;
+}
+#main #container #search div:nth-child(1) a.x-button:before {
+  content: "×";
+}
+#main #container #search div:nth-child(2) {
+  margin-top: 5px;
+  font-style: italic;
+  font-size: 15px;
+}
 @media (max-width: 1023px) {
   #main #container {
     position: absolute;
@@ -213,11 +261,11 @@ a {
     height: initial;
   }
 }
-#main #container > div:nth-of-type(1) {
+#main #container > div:nth-of-type(2) {
   display: flex;
   padding: 10px;
 }
-#main #container > div:nth-of-type(1) select {
+#main #container > div:nth-of-type(2) select {
   font-size: 20px;
   padding: 5px;
   flex-basis: 50%;
@@ -225,24 +273,24 @@ a {
   color: white;
   border: none;
 }
-#main #container > div:nth-of-type(1) select:nth-of-type(1) {
+#main #container > div:nth-of-type(2) select:nth-of-type(1) {
   margin-right: 5px;
 }
-#main #container > div:nth-of-type(1) select:nth-of-type(2) {
+#main #container > div:nth-of-type(2) select:nth-of-type(2) {
   margin-left: 5px;
 }
 @media (max-width: 450px) {
-  #main #container > div:nth-of-type(1) {
+  #main #container > div:nth-of-type(2) {
     flex-direction: column;
   }
-  #main #container > div:nth-of-type(1) select {
+  #main #container > div:nth-of-type(2) select {
     font-size: 16px;
   }
-  #main #container > div:nth-of-type(1) select:nth-of-type(1) {
+  #main #container > div:nth-of-type(2) select:nth-of-type(1) {
     margin-right: 0px;
     margin-bottom: 5px;
   }
-  #main #container > div:nth-of-type(1) select:nth-of-type(2) {
+  #main #container > div:nth-of-type(2) select:nth-of-type(2) {
     margin-left: 0px;
   }
 }

@@ -39,6 +39,7 @@
 	var _locationFilterBadge;
 	var _playPanel;
 	var _selectionMachine;
+	var _textSearchWidget;
 
 	$(document).ready(function() {
 
@@ -126,6 +127,10 @@
 				)
 				.on("cancelLocationFilter", locationFilterBadge_onCancelLocationFilter)
 				.get(0);
+				
+			_textSearchWidget = $(new TextSearch())
+				.on("change", onTextSearchChange)
+				.on("clear", onTextSearchClear).get(0);
 
 			/*  if there's an id in the url parameter, then initialize
 				with that video active. */
@@ -225,6 +230,16 @@
 	function table_onItemPresent(e, youTubeID)
 	{
 		_playPanel.present(youTubeID);
+	}
+
+	function onTextSearchChange()
+	{
+		
+	}
+	
+	function onTextSearchClear()
+	{
+		
 	}
 
 	/***************************************************************************
