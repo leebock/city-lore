@@ -120,13 +120,5 @@ ul#table {
     }
     
   } /* li */
-  
-  &.filtered {
-    li {
-      display: none;
-      &.selected {
-        display: flex;
-      }
-    }
-  }
+
 }

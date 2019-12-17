@@ -153,17 +153,16 @@
 	{
 		_locationFilterBadge.hide();
 		_map.closePopup();
-		_table.clearActive();
-		_table.filter(_selectionMachine.getVideos());
+		_table.load(_selectionMachine.getVideos());
 	}
 
 	function map_onClick()
 	{
+		_table.clearActive();
 		if (_locationFilterBadge.isVisible()) {
 			_locationFilterBadge.hide();
-			_table.filter(_selectionMachine.getVideos());
+			_table.load(_selectionMachine.getVideos());
 		}
-		_table.clearActive();
 		_playPanel.conceal();
 	}
 
@@ -173,11 +172,11 @@
 		_playPanel.conceal();
 		var videos = location.getVideos();
 		if (videos.length > 1) {
-			_table.filter(videos);
+			_table.load(videos);
 			_locationFilterBadge.show(location.getName());
 		} else {
 			if (_locationFilterBadge.isVisible()) {
-				_table.filter(_selectionMachine.getVideos());
+				_table.load(_selectionMachine.getVideos());
 				_locationFilterBadge.hide();
 			}
 			_table.activateItem(videos.shift());
@@ -187,20 +186,18 @@
 	function categorySelect_onCategoryChange(event)
 	{
 		_locationFilterBadge.hide();
-		_table.clearActive();
 		_selectionMachine.setCategories(_categorySelect.getActiveCategories());
 		var videos = _selectionMachine.getVideos();
-		_table.filter(videos);
+		_table.load(videos);
 		_map.loadData(_selectionMachine.summarizeLocations(videos));
 	}
 	
 	function boroughSelect_onBoroughChange(event)
 	{
 		_locationFilterBadge.hide();
-		_table.clearActive();
 		_selectionMachine.setBorough(_boroughSelect.getActiveBorough());
 		var videos = _selectionMachine.getVideos();
-		_table.filter(videos);
+		_table.load(videos);
 		_map.loadData(_selectionMachine.summarizeLocations(videos));
 		_map.flyToBounds(
 			_boroughSelect.getActiveBorough() ? 

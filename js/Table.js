@@ -81,34 +81,3 @@ Table.prototype.clearActive = function()
 {
     $(this._ul).children("li").removeClass("active");
 };
-
-Table.prototype.filter = function(videos)
-{
-    this.clearFilter();
-
-    var ul = this._ul;
-    videos = $.map(videos, function(video){return video.getID();});
-    var selected = $.grep(
-        ul.children("li"),
-        function(li){
-            return $.inArray($(li).children("button").data("storymaps-id"), videos) > -1;
-        }
-    );
-    $(selected).addClass("selected");
-    $(ul).addClass("filtered");
-    var active = $(ul.children("li.active")).eq(0);
-    if (active.length) {
-        $(ul).animate(
-            {scrollTop: $(active).offset().top - $(ul).offset().top + $(ul).scrollTop()}, 
-            'slow'
-        );    
-    } else {
-        $(ul).animate({scrollTop: 0}, 'slow');        
-    }
-};
-
-Table.prototype.clearFilter = function()
-{
-    $(this._ul).removeClass("filtered");
-    $(this._ul).children("li").removeClass("selected");
-};

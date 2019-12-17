@@ -445,12 +445,6 @@ a {
   -webkit-box-orient: unset;
   overflow: unset;
 }
-#main #container ul#table.filtered li {
-  display: none;
-}
-#main #container ul#table.filtered li.selected {
-  display: flex;
-}
 #main #container ul#table {
   width: 100%;
 }
