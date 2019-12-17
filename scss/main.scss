@@ -67,7 +67,7 @@ a {
   flex: 1;
   display: flex;
   position: relative;
-  height: 100%;
+  overflow: hidden;
 
   #map {
     
@@ -138,7 +138,6 @@ a {
   #container {
     
     flex: 1;
-    height: 100%;
     max-width: 700px;
     z-index: 2000;
     left: 0px;
@@ -251,7 +250,6 @@ a {
       
     @import "Table";
     ul#table {
-      height: 100%;      
       width: 100%;
       @media #{$SIZE-TINY} {
           display: none;
