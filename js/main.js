@@ -153,7 +153,7 @@
 	{
 		_locationFilterBadge.hide();
 		_map.closePopup();
-		_table.load(_selectionMachine.getVideos());
+		_table.load(_selectionMachine.getVideos(), _textSearchWidget.getText());
 	}
 
 	function map_onClick()
@@ -161,7 +161,7 @@
 		_table.clearActive();
 		if (_locationFilterBadge.isVisible()) {
 			_locationFilterBadge.hide();
-			_table.load(_selectionMachine.getVideos());
+			_table.load(_selectionMachine.getVideos(), _textSearchWidget.getText());
 		}
 		_playPanel.conceal();
 	}
@@ -172,11 +172,11 @@
 		_playPanel.conceal();
 		var videos = location.getVideos();
 		if (videos.length > 1) {
-			_table.load(videos);
+			_table.load(videos, _textSearchWidget.getText());
 			_locationFilterBadge.show(location.getName());
 		} else {
 			if (_locationFilterBadge.isVisible()) {
-				_table.load(_selectionMachine.getVideos());
+				_table.load(_selectionMachine.getVideos(), _textSearchWidget.getText());
 				_locationFilterBadge.hide();
 			}
 			_table.activateItem(videos.shift());
@@ -188,7 +188,7 @@
 		_locationFilterBadge.hide();
 		_selectionMachine.setCategories(_categorySelect.getActiveCategories());
 		var videos = _selectionMachine.getVideos();
-		_table.load(videos);
+		_table.load(videos, _textSearchWidget.getText());
 		_map.loadData(_selectionMachine.summarizeLocations(videos));
 	}
 	
@@ -197,13 +197,31 @@
 		_locationFilterBadge.hide();
 		_selectionMachine.setBorough(_boroughSelect.getActiveBorough());
 		var videos = _selectionMachine.getVideos();
-		_table.load(videos);
+		_table.load(videos, _textSearchWidget.getText());
 		_map.loadData(_selectionMachine.summarizeLocations(videos));
 		_map.flyToBounds(
 			_boroughSelect.getActiveBorough() ? 
 			BOUNDS_LOOKUP[_boroughSelect.getActiveBorough()] :
 			BOUNDS_NYC
 		);
+	}
+
+	function onTextSearchChange()
+	{
+		_locationFilterBadge.hide();
+		_selectionMachine.setSearchText(_textSearchWidget.getText());
+		var videos = _selectionMachine.getVideos();
+		_table.load(videos, _textSearchWidget.getText());
+		_map.loadData(_selectionMachine.summarizeLocations(videos));
+	}
+	
+	function onTextSearchClear()
+	{
+		_locationFilterBadge.hide();
+		_selectionMachine.setSearchText(_textSearchWidget.getText());
+		var videos = _selectionMachine.getVideos();
+		_table.load(videos, _textSearchWidget.getText());
+		_map.loadData(_selectionMachine.summarizeLocations(videos));
 	}
 			
 	/***************************************************************************
@@ -227,16 +245,6 @@
 	function table_onItemPresent(e, youTubeID)
 	{
 		_playPanel.present(youTubeID);
-	}
-
-	function onTextSearchChange()
-	{
-		
-	}
-	
-	function onTextSearchClear()
-	{
-		
 	}
 
 	/***************************************************************************

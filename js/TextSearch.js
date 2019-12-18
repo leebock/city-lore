@@ -37,3 +37,8 @@ TextSearch.prototype.clear = function() {
 	$("#search input").val("");	
 	this._lastValue = "";	
 };
+
+TextSearch.prototype.getText = function()
+{
+	return this._lastValue;
+};
