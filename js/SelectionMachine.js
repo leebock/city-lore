@@ -2,6 +2,7 @@ function SelectionMachine(jsonVideos)
 {
     this._categories = [];
     this._borough = null;
+    this._searchText = null;
     this._videos = $.map(
         jsonVideos, 
         function(json, index) {
@@ -18,6 +19,11 @@ SelectionMachine.prototype.setCategories = function(categories)
 SelectionMachine.prototype.setBorough = function(borough)
 {
     this._borough = borough;
+};
+
+SelectionMachine.prototype.setSearchText = function(searchText)
+{
+    this._searchText = searchText;
 };
 
 SelectionMachine.prototype.getVideos = function()
@@ -49,6 +55,16 @@ SelectionMachine.prototype.getVideos = function()
                 return video.getBorough() === borough;
             }
         );        
+    }
+    var searchText = this._searchText;
+    if (searchText) { /* null value or empty string will eval false */
+        var exp = new RegExp(searchText, "i");
+        videos = $.grep(
+            videos,
+            function(video) {
+                return  exp.test(video.getTitle()) || exp.test(video.getLocation());
+            }
+        );
     }
     return videos;
 };
