@@ -147,10 +147,6 @@ a {
     flex-direction: column;
     padding: 20px;
     position: relative;
-
-    #search {
-      @import "Search";
-    }
   
     @media #{$SIZE-COMPACT} {
       position: absolute;
@@ -166,6 +162,11 @@ a {
     
     @media #{$SIZE-TINY} {
       height: initial;
+    }
+    
+    #search {
+      @import "Search";
+      padding: 10px;
     }
     
     & > div:nth-of-type(2)
