@@ -110,8 +110,6 @@
 				.on("itemPresent", table_onItemPresent)
 				.get(0);
 				
-			_table.load(_selectionMachine.getVideos());
-
 			_playPanel = new PlayPanel($("#video-display").eq(0));
 			
 			_categorySelect = $(new CategorySelect($("select#categories").get(0)))
@@ -132,6 +130,8 @@
 				.on("change", onTextSearchChange)
 				.on("clear", onTextSearchClear).get(0);
 
+			loadTable(_selectionMachine.getVideos());
+	
 			/*  if there's an id in the url parameter, then initialize
 				with that video active. */
 
@@ -153,7 +153,7 @@
 	{
 		_locationFilterBadge.hide();
 		_map.closePopup();
-		_table.load(_selectionMachine.getVideos(), _textSearchWidget.getText());
+		loadTable(_selectionMachine.getVideos());
 	}
 
 	function map_onClick()
@@ -161,7 +161,7 @@
 		_table.clearActive();
 		if (_locationFilterBadge.isVisible()) {
 			_locationFilterBadge.hide();
-			_table.load(_selectionMachine.getVideos(), _textSearchWidget.getText());
+			loadTable(_selectionMachine.getVideos());
 		}
 		_playPanel.conceal();
 	}
@@ -172,11 +172,11 @@
 		_playPanel.conceal();
 		var videos = location.getVideos();
 		if (videos.length > 1) {
-			_table.load(videos, _textSearchWidget.getText());
+			loadTable(videos);
 			_locationFilterBadge.show(location.getName());
 		} else {
 			if (_locationFilterBadge.isVisible()) {
-				_table.load(_selectionMachine.getVideos(), _textSearchWidget.getText());
+				loadTable(_selectionMachine.getVideos());
 				_locationFilterBadge.hide();
 			}
 			_table.activateItem(videos.shift());
@@ -188,7 +188,7 @@
 		_locationFilterBadge.hide();
 		_selectionMachine.setCategories(_categorySelect.getActiveCategories());
 		var videos = _selectionMachine.getVideos();
-		_table.load(videos, _textSearchWidget.getText());
+		loadTable(videos);
 		_map.loadData(_selectionMachine.summarizeLocations(videos));
 	}
 	
@@ -197,7 +197,7 @@
 		_locationFilterBadge.hide();
 		_selectionMachine.setBorough(_boroughSelect.getActiveBorough());
 		var videos = _selectionMachine.getVideos();
-		_table.load(videos, _textSearchWidget.getText());
+		loadTable(videos);
 		_map.loadData(_selectionMachine.summarizeLocations(videos));
 		_map.flyToBounds(
 			_boroughSelect.getActiveBorough() ? 
@@ -211,7 +211,7 @@
 		_locationFilterBadge.hide();
 		_selectionMachine.setSearchText(_textSearchWidget.getText());
 		var videos = _selectionMachine.getVideos();
-		_table.load(videos, _textSearchWidget.getText());
+		loadTable(videos);
 		_map.loadData(_selectionMachine.summarizeLocations(videos));
 	}
 	
@@ -220,7 +220,7 @@
 		_locationFilterBadge.hide();
 		_selectionMachine.setSearchText(_textSearchWidget.getText());
 		var videos = _selectionMachine.getVideos();
-		_table.load(videos, _textSearchWidget.getText());
+		loadTable(videos);
 		_map.loadData(_selectionMachine.summarizeLocations(videos));
 	}
 			
@@ -250,6 +250,11 @@
 	/***************************************************************************
 	******************************** FUNCTIONS *********************************
 	***************************************************************************/
+
+	function loadTable(videos) /* helper that automatically passes search text */
+	{
+		_table.load(videos, _textSearchWidget.getText());
+	}
 
 	function getExtentPadding()
 	{
