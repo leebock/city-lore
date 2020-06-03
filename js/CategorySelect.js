@@ -15,7 +15,8 @@ function CategorySelect(select)
             "Treasured Places", 
             "Grassroots Poetry", 
             "Neighborhood Tours", 
-            "Education"
+            "Education",
+			"Special Projects"
         ],
         function(index, value)
         {    
