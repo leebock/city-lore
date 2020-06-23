@@ -135,7 +135,7 @@
 			/*  if there's an id in the url parameter, then initialize
 				with that video active. */
 
-			var video = _selectionMachine.selectVideoByID(parseID());
+			var video = _selectionMachine.selectVideoByID(parseInt(parseArgs().id));
 			if (video) {
 				_table.activateItem(video);
 				_map.activateMarker(_selectionMachine.summarizeLocations([video]).shift());
@@ -307,27 +307,25 @@
 			.html();		
 	}
 	
-	function parseID()
+	function parseArgs()
 	{
+		
 		var parts = decodeURIComponent(document.location.href).split("?");
-		if (parts.length === 1) {
-			return null;
+		var args = {};
+		
+		if (parts.length > 1) {
+			args = parts[1].toLowerCase().split("&").reduce(
+				function(accumulator, value) {
+					var temp = value.split("=");
+					if (temp.length > 1) {accumulator[temp[0]] = temp[1];}
+					return accumulator; 
+				}, 
+				args
+			);
 		}
 
-		var args = parts[1].toLowerCase().split("&");
-		var obj = {};
-		args = $.each(
-			args, 
-			function(index, value){
-				var temp = value.split("=");
-				if (temp.length > 1) {
-					obj[temp[0]] = temp[1];
-				} 
-			}
-		);
-
-		return obj.id === undefined ? null : parseInt(obj.id);
-
-	}	
-
+		return args;
+	
+	}
+		
 })();
