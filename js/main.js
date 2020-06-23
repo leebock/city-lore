@@ -28,8 +28,8 @@
 	};
 	
 	var BOUNDS_NYC = L.latLngBounds(
-		L.latLng(40.616643, -74.146981), 
-		L.latLng(40.882684, -73.771086)
+		L.latLng(40.57, -74.14), 
+		L.latLng(40.88, -73.72)
 	);
 
 	var _map;
@@ -48,6 +48,8 @@
 		_map = new L.CLMap(
 			"map", 
 			{
+				center: L.latLng(40.74, -73.96),
+				zoom: 9,
 				zoomControl: false, 
 				attributionControl: false, 
 				maxZoom: 16, minZoom: 8, 
@@ -98,13 +100,7 @@
 
 		function finish(data)
 		{
-
-			_selectionMachine = new SelectionMachine(data);
-			_map.loadData(
-				_selectionMachine.summarizeLocations(_selectionMachine.getVideos())
-			);
-			_map.fitBounds(BOUNDS_NYC);
-				
+			
 			_table = $(new Table($("ul#table").eq(0)))
 				.on("itemActivate", table_onItemActivate)
 				.on("itemPresent", table_onItemPresent)
@@ -130,13 +126,29 @@
 				.on("change", onTextSearchChange)
 				.on("clear", onTextSearchClear).get(0);
 
-			loadTable(_selectionMachine.getVideos());
+			_selectionMachine = new SelectionMachine(data);
 	
-			/*  if there's an id in the url parameter, then initialize
-				with that video active. */
+			var borough = parseArgs().borough;
+			if (borough) {
+				_boroughSelect.setActiveBorough(borough);
+				_selectionMachine.setBorough(_boroughSelect.getActiveBorough());
+			}
 
+			var videos = _selectionMachine.getVideos();
+			loadTable(videos);
+			_map.loadData(_selectionMachine.summarizeLocations(videos));
+			_map.flyToBounds(
+				_boroughSelect.getActiveBorough() ? 
+				BOUNDS_LOOKUP[_boroughSelect.getActiveBorough()] :
+				BOUNDS_NYC
+			);
+
+			/*  if there's an id in the url parameter, then initialize
+				with that video active (assuming its in the currently 
+				selected set of videos). */
+				
 			var video = _selectionMachine.selectVideoByID(parseInt(parseArgs().id));
-			if (video) {
+			if (video && $.inArray(video, videos)>-1) {
 				_table.activateItem(video);
 				_map.activateMarker(_selectionMachine.summarizeLocations([video]).shift());
 			}
