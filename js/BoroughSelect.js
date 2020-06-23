@@ -40,3 +40,23 @@ BoroughSelect.prototype.getActiveBorough = function()
            null :
            this._select.value;
 };
+
+BoroughSelect.prototype.setActiveBorough = function(borough)
+{
+    // set the select value to the incoming borough name.
+    
+    /* this first bit of drama is just to get the case 
+        insensitive borough match */
+    var match =(
+        $.grep(
+            $.map(
+                $("option", this._select), 
+                function(value) {return $(value).text();}
+            ),
+            function(value){return value.toLowerCase() === borough.toLowerCase();}
+        )
+    ).shift();
+    if (match) {
+        $(this._select).val(match);
+    }
+};
