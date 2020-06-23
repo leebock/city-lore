@@ -48,3 +48,23 @@ CategorySelect.prototype.getActiveCategories = function()
     }
     return categories;
 };
+
+CategorySelect.prototype.setActiveCategory = function(category)
+{
+    // set the select value to the incoming borough name.
+    
+    /* this first bit of drama is just to get the case 
+        insensitive borough match */
+    var match =(
+        $.grep(
+            $.map(
+                $("option", this._select), 
+                function(value) {return $(value).text();}
+            ),
+            function(value){return value.toLowerCase() === category.toLowerCase();}
+        )
+    ).shift();
+    if (match) {
+        $(this._select).val(match);
+    }
+};

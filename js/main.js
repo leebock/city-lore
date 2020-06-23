@@ -128,10 +128,18 @@
 
 			_selectionMachine = new SelectionMachine(data);
 	
-			var borough = parseArgs().borough;
-			if (borough) {
-				_boroughSelect.setActiveBorough(borough);
+			/* check URL parameters for initial selection options */
+	
+			var args = parseArgs();
+
+			if (args.borough) {
+				_boroughSelect.setActiveBorough(args.borough);
 				_selectionMachine.setBorough(_boroughSelect.getActiveBorough());
+			}
+			
+			if (args.category) {
+				_categorySelect.setActiveCategory(args.category);
+				_selectionMachine.setCategories(_categorySelect.getActiveCategories());
 			}
 
 			var videos = _selectionMachine.getVideos();
@@ -146,12 +154,14 @@
 			/*  if there's an id in the url parameter, then initialize
 				with that video active (assuming its in the currently 
 				selected set of videos). */
-				
-			var video = _selectionMachine.selectVideoByID(parseInt(parseArgs().id));
-			if (video && $.inArray(video, videos)>-1) {
-				_table.activateItem(video);
-				_map.activateMarker(_selectionMachine.summarizeLocations([video]).shift());
-			}
+			
+			if (args.id) {
+				var video = _selectionMachine.selectVideoByID(parseInt(parseArgs().id));
+				if (video && $.inArray(video, videos)>-1) {
+					_table.activateItem(video);
+					_map.activateMarker(_selectionMachine.summarizeLocations([video]).shift());
+				}
+			}	
 
 		}
 
