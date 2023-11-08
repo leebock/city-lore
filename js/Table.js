@@ -68,8 +68,28 @@ Table.prototype.load = function(items, highlightText) {
     
     function markup(text, pattern)
     {
+        /*  had to do a bit of homegrown text processing here...the end goal
+            is to check for a pattern match within the text, but because we're 
+            allowing for diacritics, there's an extra step: 1) normalize the
+            text, 2) search for the pattern within the normalized 
+            text, 3) get the position of that pattern, 4) mark the characters
+            at that position within the native text.
+        
+            the bit of regexp magic employed below replaces any instance 
+            of a diacritic in the incoming text with its corresponding
+            'normal' character.  in this way, for example, the search pattern 
+            'cafe' will test positive against an occurence of 'Café' 
+            
+            also, note that toLowerCase() is being applied to both text and 
+            pattern so that the comparison will be case insensitive (there's 
+            probably a more clever way to accomplish this with regexp) */
+        const position = text
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/gi, "")
+            .toLowerCase()
+            .search(pattern.toLowerCase());
         return text.replace(
-            RegExp(pattern, "ig"),
+            RegExp(position > -1 && text.substring(position, position+pattern.length), "ig"),
             function(str) {return "<mark>"+str+"</mark>";}
         );
     }

@@ -62,7 +62,17 @@ SelectionMachine.prototype.getVideos = function()
         videos = $.grep(
             videos,
             function(video) {
-                return  exp.test(video.getTitle()) || exp.test(video.getLocation());
+                /*  the bit of regexp magic employed in these next two lines 
+                    replaces any instance of a diacritic with its corresponding
+                    'normal' character.  in this way, the searchText 'cafe' 
+                    will test positive against an occurence of 'Café' */
+                const normTitle = video.getTitle()
+                        .normalize("NFD")
+                        .replace(/[\u0300-\u036f]/g, "");
+                const normLocation =  video.getLocation()
+                        .normalize("NFD")
+                        .replace(/[\u0300-\u036f]/g, "");
+                return  exp.test(normTitle) || exp.test(normLocation);
             }
         );
     }
